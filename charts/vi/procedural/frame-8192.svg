@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="862" viewBox="0 0 900 862">
+<rect width="100%%" height="100%%" fill="#101316"/>
+<text x="20" y="28" fill="#e7eaec" font-size="18" font-weight="600" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">Thời gian frame ở 8192 bàn (thanh = frame ms; vạch = GPU ms; vòng = render thread ms)</text>
+<rect x="20" y="40" width="14" height="8" fill="#98a2ab"/><text x="40" y="48" fill="#98a2ab" font-size="13" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">LOD, auto (bài báo)</text>
+<rect x="183" y="40" width="14" height="8" fill="#4fa3e0"/><text x="203" y="48" fill="#98a2ab" font-size="13" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">Nanite, cấu hình Zone9</text>
+<rect x="367" y="40" width="14" height="8" fill="#5cc8a8"/><text x="387" y="48" fill="#98a2ab" font-size="13" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">Nanite, mặc định</text>
+<line x1="190.0" x2="190.0" y1="62" y2="832" stroke="#2a3139"/>
+<text x="190.0" y="846" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">0 ms</text>
+<line x1="271.4" x2="271.4" y1="62" y2="832" stroke="#2a3139"/>
+<text x="271.4" y="846" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">2 ms</text>
+<line x1="352.8" x2="352.8" y1="62" y2="832" stroke="#2a3139"/>
+<text x="352.8" y="846" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">4 ms</text>
+<line x1="434.2" x2="434.2" y1="62" y2="832" stroke="#2a3139"/>
+<text x="434.2" y="846" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">6 ms</text>
+<line x1="515.6" x2="515.6" y1="62" y2="832" stroke="#2a3139"/>
+<text x="515.6" y="846" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">8 ms</text>
+<line x1="597.0" x2="597.0" y1="62" y2="832" stroke="#2a3139"/>
+<text x="597.0" y="846" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">10 ms</text>
+<line x1="678.4" x2="678.4" y1="62" y2="832" stroke="#2a3139"/>
+<text x="678.4" y="846" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">12 ms</text>
+<line x1="759.8" x2="759.8" y1="62" y2="832" stroke="#2a3139"/>
+<text x="759.8" y="846" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">14 ms</text>
+<line x1="841.2" x2="841.2" y1="62" y2="832" stroke="#2a3139"/>
+<text x="841.2" y="846" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">16 ms</text>
+<text x="182" y="89" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B0_close</text>
+<rect x="190" y="70" width="357.1" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B0_close: frame 8.78 ms (114 fps), GPU 7.51, RT 8.76, draws 479.0</title></rect>
+<rect x="494.7" y="69" width="2" height="11" fill="#e7eaec"/>
+<circle cx="546.5" cy="74.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="81" width="279.6" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B0_close: frame 6.87 ms (146 fps), GPU 5.75, RT 5.50, draws 43.0</title></rect>
+<rect x="422.8" y="80" width="2" height="11" fill="#e7eaec"/>
+<circle cx="413.8" cy="85.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="92" width="299.8" height="9" fill="#5cc8a8"><title>Nanite, mặc định B0_close: frame 7.37 ms (136 fps), GPU 6.24, RT 6.21, draws 55.0</title></rect>
+<rect x="443.1" y="91" width="2" height="11" fill="#e7eaec"/>
+<circle cx="442.9" cy="96.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="136" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B1_edge_eye</text>
+<rect x="190" y="117" width="515.6" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B1_edge_eye: frame 12.67 ms (79 fps), GPU 11.25, RT 12.62, draws 1919.0</title></rect>
+<rect x="647.0" y="116" width="2" height="11" fill="#e7eaec"/>
+<circle cx="703.5" cy="121.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="128" width="254.8" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B1_edge_eye: frame 6.26 ms (160 fps), GPU 5.20, RT 5.31, draws 43.0</title></rect>
+<rect x="400.7" y="127" width="2" height="11" fill="#e7eaec"/>
+<circle cx="406.0" cy="132.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="139" width="279.3" height="9" fill="#5cc8a8"><title>Nanite, mặc định B1_edge_eye: frame 6.86 ms (146 fps), GPU 5.73, RT 6.26, draws 55.0</title></rect>
+<rect x="422.3" y="138" width="2" height="11" fill="#e7eaec"/>
+<circle cx="444.9" cy="143.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="183" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B2_mid_high</text>
+<rect x="190" y="164" width="647.6" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B2_mid_high: frame 15.91 ms (63 fps), GPU 14.48, RT 15.89, draws 816.0</title></rect>
+<rect x="778.4" y="163" width="2" height="11" fill="#e7eaec"/>
+<circle cx="836.7" cy="168.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="175" width="295.5" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B2_mid_high: frame 7.26 ms (138 fps), GPU 6.13, RT 5.67, draws 43.0</title></rect>
+<rect x="438.6" y="174" width="2" height="11" fill="#e7eaec"/>
+<circle cx="420.7" cy="179.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="186" width="317.1" height="9" fill="#5cc8a8"><title>Nanite, mặc định B2_mid_high: frame 7.79 ms (128 fps), GPU 6.66, RT 6.44, draws 55.0</title></rect>
+<rect x="460.1" y="185" width="2" height="11" fill="#e7eaec"/>
+<circle cx="452.3" cy="190.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="230" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B3_overview</text>
+<rect x="190" y="211" width="626.0" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B3_overview: frame 15.38 ms (65 fps), GPU 13.82, RT 15.38, draws 840.0</title></rect>
+<rect x="751.5" y="210" width="2" height="11" fill="#e7eaec"/>
+<circle cx="816.0" cy="215.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="222" width="295.6" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B3_overview: frame 7.26 ms (138 fps), GPU 6.11, RT 5.63, draws 43.0</title></rect>
+<rect x="437.6" y="221" width="2" height="11" fill="#e7eaec"/>
+<circle cx="419.0" cy="226.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="233" width="317.4" height="9" fill="#5cc8a8"><title>Nanite, mặc định B3_overview: frame 7.80 ms (128 fps), GPU 6.63, RT 6.46, draws 55.0</title></rect>
+<rect x="459.0" y="232" width="2" height="11" fill="#e7eaec"/>
+<circle cx="452.8" cy="237.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="277" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B4_far</text>
+<rect x="190" y="258" width="589.0" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B4_far: frame 14.47 ms (69 fps), GPU 12.99, RT 14.43, draws 919.0</title></rect>
+<rect x="717.6" y="257" width="2" height="11" fill="#e7eaec"/>
+<circle cx="777.1" cy="262.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="269" width="255.3" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B4_far: frame 6.27 ms (159 fps), GPU 5.16, RT 5.21, draws 43.0</title></rect>
+<rect x="399.1" y="268" width="2" height="11" fill="#e7eaec"/>
+<circle cx="402.0" cy="273.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="280" width="278.7" height="9" fill="#5cc8a8"><title>Nanite, mặc định B4_far: frame 6.85 ms (146 fps), GPU 5.69, RT 6.31, draws 55.0</title></rect>
+<rect x="420.7" y="279" width="2" height="11" fill="#e7eaec"/>
+<circle cx="447.0" cy="284.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="324" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B5_extreme</text>
+<rect x="190" y="305" width="490.3" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B5_extreme: frame 12.05 ms (83 fps), GPU 10.58, RT 12.06, draws 3391.0</title></rect>
+<rect x="619.7" y="304" width="2" height="11" fill="#e7eaec"/>
+<circle cx="680.8" cy="309.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="316" width="242.0" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B5_extreme: frame 5.95 ms (168 fps), GPU 4.82, RT 5.28, draws 43.0</title></rect>
+<rect x="385.1" y="315" width="2" height="11" fill="#e7eaec"/>
+<circle cx="404.9" cy="320.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="327" width="258.8" height="9" fill="#5cc8a8"><title>Nanite, mặc định B5_extreme: frame 6.36 ms (157 fps), GPU 5.17, RT 6.19, draws 55.0</title></rect>
+<rect x="399.5" y="326" width="2" height="11" fill="#e7eaec"/>
+<circle cx="441.9" cy="331.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="371" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B6_topdown</text>
+<rect x="190" y="352" width="555.8" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B6_topdown: frame 13.65 ms (73 fps), GPU 12.20, RT 13.59, draws 682.0</title></rect>
+<rect x="685.4" y="351" width="2" height="11" fill="#e7eaec"/>
+<circle cx="743.1" cy="356.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="363" width="328.3" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B6_topdown: frame 8.07 ms (124 fps), GPU 6.89, RT 6.00, draws 43.0</title></rect>
+<rect x="469.3" y="362" width="2" height="11" fill="#e7eaec"/>
+<circle cx="434.2" cy="367.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="374" width="345.5" height="9" fill="#5cc8a8"><title>Nanite, mặc định B6_topdown: frame 8.49 ms (118 fps), GPU 7.32, RT 6.72, draws 55.0</title></rect>
+<rect x="486.8" y="373" width="2" height="11" fill="#e7eaec"/>
+<circle cx="463.5" cy="378.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="418" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B7_sky</text>
+<rect x="190" y="399" width="167.3" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B7_sky: frame 4.11 ms (243 fps), GPU 2.30, RT 4.09, draws 28.0</title></rect>
+<rect x="282.6" y="398" width="2" height="11" fill="#e7eaec"/>
+<circle cx="356.4" cy="403.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="410" width="200.0" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B7_sky: frame 4.91 ms (204 fps), GPU 3.62, RT 4.88, draws 43.0</title></rect>
+<rect x="336.2" y="409" width="2" height="11" fill="#e7eaec"/>
+<circle cx="388.4" cy="414.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="421" width="230.4" height="9" fill="#5cc8a8"><title>Nanite, mặc định B7_sky: frame 5.66 ms (177 fps), GPU 3.89, RT 5.64, draws 55.0</title></rect>
+<rect x="347.2" y="420" width="2" height="11" fill="#e7eaec"/>
+<circle cx="419.7" cy="425.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="465" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B0_close (không sáng)</text>
+<rect x="190" y="446" width="165.6" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B0_close (không sáng): frame 4.07 ms (246 fps), GPU 2.92, RT 4.02, draws 187.0</title></rect>
+<rect x="308.0" y="445" width="2" height="11" fill="#e7eaec"/>
+<circle cx="353.6" cy="450.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="457" width="162.1" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B0_close (không sáng): frame 3.98 ms (251 fps), GPU 2.48, RT 3.94, draws 13.0</title></rect>
+<rect x="289.9" y="456" width="2" height="11" fill="#e7eaec"/>
+<circle cx="350.3" cy="461.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="468" width="159.6" height="9" fill="#5cc8a8"><title>Nanite, mặc định B0_close (không sáng): frame 3.92 ms (255 fps), GPU 2.99, RT 3.85, draws 19.0</title></rect>
+<rect x="310.6" y="467" width="2" height="11" fill="#e7eaec"/>
+<circle cx="346.5" cy="472.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="512" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B1_edge_eye (không sáng)</text>
+<rect x="190" y="493" width="247.7" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B1_edge_eye (không sáng): frame 6.09 ms (164 fps), GPU 5.08, RT 6.08, draws 511.0</title></rect>
+<rect x="395.6" y="492" width="2" height="11" fill="#e7eaec"/>
+<circle cx="437.5" cy="497.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="504" width="151.9" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B1_edge_eye (không sáng): frame 3.73 ms (268 fps), GPU 2.00, RT 3.71, draws 13.0</title></rect>
+<rect x="270.6" y="503" width="2" height="11" fill="#e7eaec"/>
+<circle cx="341.2" cy="508.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="515" width="152.2" height="9" fill="#5cc8a8"><title>Nanite, mặc định B1_edge_eye (không sáng): frame 3.74 ms (267 fps), GPU 2.38, RT 3.71, draws 19.0</title></rect>
+<rect x="286.0" y="514" width="2" height="11" fill="#e7eaec"/>
+<circle cx="341.2" cy="519.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="559" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B2_mid_high (không sáng)</text>
+<rect x="190" y="540" width="506.4" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B2_mid_high (không sáng): frame 12.44 ms (80 fps), GPU 10.99, RT 12.44, draws 789.0</title></rect>
+<rect x="636.1" y="539" width="2" height="11" fill="#e7eaec"/>
+<circle cx="696.5" cy="544.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="551" width="179.1" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B2_mid_high (không sáng): frame 4.40 ms (227 fps), GPU 2.88, RT 4.37, draws 13.0</title></rect>
+<rect x="306.1" y="550" width="2" height="11" fill="#e7eaec"/>
+<circle cx="367.8" cy="555.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="562" width="180.4" height="9" fill="#5cc8a8"><title>Nanite, mặc định B2_mid_high (không sáng): frame 4.43 ms (226 fps), GPU 3.37, RT 4.14, draws 19.0</title></rect>
+<rect x="326.3" y="561" width="2" height="11" fill="#e7eaec"/>
+<circle cx="358.7" cy="566.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="606" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B3_overview (không sáng)</text>
+<rect x="190" y="587" width="519.4" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B3_overview (không sáng): frame 12.76 ms (78 fps), GPU 11.28, RT 12.64, draws 817.0</title></rect>
+<rect x="648.3" y="586" width="2" height="11" fill="#e7eaec"/>
+<circle cx="704.4" cy="591.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="598" width="175.1" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B3_overview (không sáng): frame 4.30 ms (233 fps), GPU 2.60, RT 4.27, draws 13.0</title></rect>
+<rect x="294.9" y="597" width="2" height="11" fill="#e7eaec"/>
+<circle cx="363.9" cy="602.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="609" width="166.1" height="9" fill="#5cc8a8"><title>Nanite, mặc định B3_overview (không sáng): frame 4.08 ms (245 fps), GPU 3.16, RT 3.90, draws 19.0</title></rect>
+<rect x="317.7" y="608" width="2" height="11" fill="#e7eaec"/>
+<circle cx="348.8" cy="613.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="653" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B4_far (không sáng)</text>
+<rect x="190" y="634" width="475.4" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B4_far (không sáng): frame 11.68 ms (86 fps), GPU 10.29, RT 11.67, draws 808.0</title></rect>
+<rect x="607.9" y="633" width="2" height="11" fill="#e7eaec"/>
+<circle cx="665.1" cy="638.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="645" width="148.5" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B4_far (không sáng): frame 3.65 ms (274 fps), GPU 1.92, RT 3.63, draws 13.0</title></rect>
+<rect x="267.3" y="644" width="2" height="11" fill="#e7eaec"/>
+<circle cx="337.9" cy="649.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="656" width="152.7" height="9" fill="#5cc8a8"><title>Nanite, mặc định B4_far (không sáng): frame 3.75 ms (267 fps), GPU 2.23, RT 3.73, draws 19.0</title></rect>
+<rect x="279.8" y="655" width="2" height="11" fill="#e7eaec"/>
+<circle cx="341.7" cy="660.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="700" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B5_extreme (không sáng)</text>
+<rect x="190" y="681" width="222.1" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B5_extreme (không sáng): frame 5.46 ms (183 fps), GPU 4.15, RT 5.36, draws 618.0</title></rect>
+<rect x="357.9" y="680" width="2" height="11" fill="#e7eaec"/>
+<circle cx="408.0" cy="685.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="692" width="135.4" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B5_extreme (không sáng): frame 3.33 ms (301 fps), GPU 1.66, RT 3.31, draws 13.0</title></rect>
+<rect x="256.4" y="691" width="2" height="11" fill="#e7eaec"/>
+<circle cx="324.9" cy="696.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="703" width="145.2" height="9" fill="#5cc8a8"><title>Nanite, mặc định B5_extreme (không sáng): frame 3.57 ms (280 fps), GPU 1.92, RT 3.56, draws 19.0</title></rect>
+<rect x="266.9" y="702" width="2" height="11" fill="#e7eaec"/>
+<circle cx="334.9" cy="707.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="747" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B6_topdown (không sáng)</text>
+<rect x="190" y="728" width="441.7" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B6_topdown (không sáng): frame 10.85 ms (92 fps), GPU 9.52, RT 10.78, draws 659.0</title></rect>
+<rect x="576.3" y="727" width="2" height="11" fill="#e7eaec"/>
+<circle cx="628.9" cy="732.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="739" width="192.8" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B6_topdown (không sáng): frame 4.74 ms (211 fps), GPU 3.36, RT 4.72, draws 13.0</title></rect>
+<rect x="325.7" y="738" width="2" height="11" fill="#e7eaec"/>
+<circle cx="382.2" cy="743.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="750" width="194.2" height="9" fill="#5cc8a8"><title>Nanite, mặc định B6_topdown (không sáng): frame 4.77 ms (210 fps), GPU 3.78, RT 3.99, draws 19.0</title></rect>
+<rect x="342.9" y="749" width="2" height="11" fill="#e7eaec"/>
+<circle cx="352.4" cy="754.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="794" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B7_sky (không sáng)</text>
+<rect x="190" y="775" width="82.9" height="9" fill="#98a2ab"><title>LOD, auto (bài báo) B7_sky (không sáng): frame 2.04 ms (491 fps), GPU 0.64, RT 1.99, draws 5.0</title></rect>
+<rect x="215.1" y="774" width="2" height="11" fill="#e7eaec"/>
+<circle cx="270.8" cy="779.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="786" width="114.6" height="9" fill="#4fa3e0"><title>Nanite, cấu hình Zone9 B7_sky (không sáng): frame 2.82 ms (355 fps), GPU 1.07, RT 2.81, draws 13.0</title></rect>
+<rect x="232.4" y="785" width="2" height="11" fill="#e7eaec"/>
+<circle cx="304.2" cy="790.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="797" width="132.3" height="9" fill="#5cc8a8"><title>Nanite, mặc định B7_sky (không sáng): frame 3.25 ms (308 fps), GPU 1.25, RT 3.23, draws 19.0</title></rect>
+<rect x="239.9" y="796" width="2" height="11" fill="#e7eaec"/>
+<circle cx="321.6" cy="801.5" r="3" fill="none" stroke="#e7eaec"/>
+</svg>

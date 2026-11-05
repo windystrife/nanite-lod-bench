@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nanite vs LOD bench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root { --ground: #101316; --panel: #171c21; --line: #2a3139; --ink: #e7eaec; --muted: #98a2ab; --sun: #f0a640; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--ground); color: var(--ink); font: 16px/1.5 "Source Sans 3", "Segoe UI", system-ui, sans-serif; margin: 0; }
+main { max-width: 960px; margin: 0 auto; padding: 48px 16px 64px; display: grid; gap: 22px; }
+.eyebrow { font: 500 12px/1.2 "IBM Plex Mono", ui-monospace, Consolas, monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--sun); }
+h1 { font: 600 clamp(34px, 6vw, 56px)/1.05 "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif; margin: 0; }
+h2 { font: 600 26px/1.1 "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif; margin: 16px 0 0; }
+h3 { font: 600 20px/1.15 "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif; margin: 8px 0 0; }
+p { margin: 0; color: var(--muted); max-width: 72ch; }
+p b, li b { color: var(--ink); font-weight: 600; }
+a { color: var(--sun); }
+code { font: 500 13px "IBM Plex Mono", ui-monospace, Consolas, monospace; color: var(--ink); }
+.charts { display: grid; gap: 14px; }
+.charts figure, .shots figure { margin: 0; display: grid; gap: 6px; min-width: 0; }
+.charts a, .shots a { display: block; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; line-height: 0; }
+.charts a:hover, .shots a:hover { border-color: var(--sun); }
+.charts img, .shots img { width: 100%; height: auto; display: block; }
+figcaption { color: var(--muted); font-size: 14px; }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+ul.alike { margin: 0; padding-left: 20px; color: var(--muted); max-width: 76ch; display: grid; gap: 6px; }
+.cmp { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+.cmp table { border-collapse: collapse; width: 100%; min-width: 720px; font-size: 14px; }
+.cmp th, .cmp td { text-align: left; vertical-align: top; padding: 8px 10px; border-top: 1px solid var(--line); white-space: nowrap; }
+.cmp thead th { border-top: 0; background: var(--panel); font: 500 11px/1.2 "IBM Plex Mono", ui-monospace, Consolas, monospace; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.cmp thead th.w { color: var(--sun); }
+.cmp tbody th { font-weight: 600; color: var(--ink); }
+.cmp td { color: var(--muted); }
+.cmp td b { color: var(--ink); font-weight: 600; }
+p.note { font-size: 14px; }
+.cmp.wrap th, .cmp.wrap td { white-space: normal; }
+.cmp.wrap table { min-width: 640px; }
+.cmp.wrap tbody th { width: 16%; }
+.cmp.wrap td { width: 42%; }
+.viewer { display: grid; gap: 12px; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+label.pick { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; color: var(--muted); }
+select { background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font: 14px "Source Sans 3", system-ui, sans-serif; max-width: 100%; }
+select:focus-visible, input[type=range]:focus-visible { outline: 2px solid var(--sun); outline-offset: 2px; }
+.stage { position: relative; width: 100%; aspect-ratio: 16 / 10; background: #000; border-radius: 6px; overflow: hidden; user-select: none; touch-action: pan-y; }
+.stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+.stage .top { clip-path: inset(0 0 0 var(--cut, 50%)); }
+.stage .handle { position: absolute; top: 0; bottom: 0; left: var(--cut, 50%); width: 2px; background: var(--sun); transform: translateX(-1px); pointer-events: none; }
+.stage .handle::after { content: ""; position: absolute; top: 50%; left: 50%; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--sun); background: rgba(16,19,22,.6); transform: translate(-50%, -50%); }
+.stage .tag { position: absolute; top: 10px; display: grid; gap: 1px; max-width: 46%; background: rgba(16,19,22,.78); padding: 5px 10px 6px; border-radius: 4px; pointer-events: none; }
+.stage .tag .t1 { font: 600 15px/1.2 "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif; letter-spacing: .04em; }
+.stage .tag .t2 { font: 500 13px/1.3 "IBM Plex Mono", ui-monospace, Consolas, monospace; font-variant-numeric: tabular-nums; color: var(--ink); }
+.stage .tag .t2 b { color: var(--sun); font-weight: 600; }
+.stage .tag .t3 { font: 400 12px/1.3 "IBM Plex Mono", ui-monospace, Consolas, monospace; color: var(--muted); }
+.stage .tag.l { left: 10px; } .stage .tag.r { right: 10px; text-align: right; }
+.stage input[type=range] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+
+</style>
+<main>
+<div class="eyebrow">Unreal Engine 5.8 · máy cầm tay Radeon 680M · 1280×800 · <a href="../">English</a></div>
+<h1>Nanite vs LOD</h1>
+<p>Làm lại <a href="https://crdg.jp/studio-tech-1/en/2025/05/29/3438/">bài test Nanite vs LOD của CRDG Studio</a> (UE 5.5, RX 580) trên bản Unreal Engine 5.8.4 của một game đang làm, đo trên <b>máy cầm tay AOKZOE A1 (Radeon 680M, RDNA 2, 12 CU)</b> ở 1280×800. Cùng cái bàn Megascans <i>Wooden Table</i> được đặt 1, 2048, 4096 và 8192 lần, mỗi bàn là một static mesh actor riêng, nhìn từ tám góc camera, có và không chiếu sáng.</p>
+<p>Mỗi bên một mesh: <b>Nanite</b> dùng bản scan gốc (2 000 018 tam giác). <b>LOD</b> là mesh không Nanite, dựng từ ba tier High, Mid và Low của Megascans cộng các LOD sinh xen giữa (8 LOD, LOD0 21 852 tam giác). Cả hai đổ bóng bằng cascaded shadow map, không dùng virtual shadow map, TAA ở độ phân giải gốc.</p>
+<h2>Kết luận</h2>
+<p><b>Từ 2048 bàn trở lên, Nanite nhanh hơn ở mọi góc có bàn trong khung</b> (ngoại lệ duy nhất là góc gần ở 2048 bàn, hòa với 0,97×): 1,4–1,7× ở 2048, 1,2–2,2× ở 4096 và 1,46–3,1× ở 8192 có chiếu sáng, tới 4,5× khi không chiếu sáng. Ở 8192 bàn, mesh LOD chạy 48–83 FPS, Nanite với cấu hình của game chạy 118–163 FPS.</p>
+<p><b>Phía LOD bị nghẽn ở render thread, không phải ở tam giác.</b> Ở 8192 bàn, thời gian render thread bằng đúng thời gian frame ở mọi góc có bàn (12–21 ms), kể cả góc xa và lượt không chiếu sáng, trong khi render thread của Nanite chỉ 3,5–6,2 ms. Đây là chi phí CPU cho từng primitive (visibility, chọn LOD, dựng mesh draw command) mà bài gốc tìm thấy trong <code>MeshDrawCommandPassSetupTask</code>.</p>
+<p><b>Khi ít vật thể, mesh LOD thắng.</b> Một bàn đạt 211–247 FPS với LOD so với 185–212 FPS với Nanite (chậm hơn 11–16 %): trên GPU này Nanite có chi phí cố định khoảng 1 ms. Ở góc nhìn trời, gần như không có gì trong khung, LOD luôn nhanh hơn ở mọi mức số bàn.</p>
+<p><b>Cấu hình Nanite của game nhanh hơn mặc định của engine ở cả 40 tổ hợp góc × số bàn</b>, chênh 0,3–29 % (<code>r.Nanite.MaxPixelsPerEdge=2</code> và <code>r.Nanite.Culling.TwoPass=0</code> so với 1 và bật).</p>
+<p><b>Chỉ gộp instance thì chưa cứu được mesh LOD, nhưng gộp instance cộng chuỗi LOD thấp hơn thì vượt Nanite.</b> Khi cả 8192 bàn nằm trong một component ISM, render thread của mesh LOD giảm còn 1,9–4,8 ms nhưng FPS gần như không đổi (0,89–1,09× so với dạng actor ở 8192 bàn), vì nút cổ chai chuyển sang GPU: chuỗi LOD vẫn vẽ khoảng 3 300 tam giác cho một cái bàn chỉ chiếm vài chục pixel. Với chuỗi LOD gắt (LOD cuối 494 / 198 / 98 / 64 tam giác, screen size nhỏ hơn) trong cùng một ISM, LOD <b>nhanh hơn Nanite ở 38 trên 40 tổ hợp góc × số bàn (tới 1,35×)</b> và hòa ở hai tổ hợp còn lại (0,97–0,99×). Xem mục <a href="#ism">Gộp instance</a>.</p>
+<p><b>Ý nghĩa với impostor:</b> khi mỗi bàn là một actor riêng, impostor không giúp được, vì chi phí nằm ở CPU cho từng actor. Khi đã gộp instance, phần chi phí còn lại đúng là thứ impostor xử lý: rất nhiều tam giác siêu nhỏ ở xa. Chuỗi LOD gắt là bản thay thế bằng hình học và đã bằng Nanite ở đây; impostor bake thật (ImpostorBaker của engine) đang được đo.</p>
+<h2>Nhìn nhanh</h2><div class="charts">
+<figure><a href="../charts/vi/megascans/fps-vs-copies.svg"><img src="../charts/vi/megascans/fps-vs-copies.svg" alt="Bàn Megascans: FPS theo số bàn, có chiếu sáng, mỗi ô một góc camera (trung vị hai lượt bay mỗi arm)."></a><figcaption>Bàn Megascans: FPS theo số bàn, có chiếu sáng, mỗi ô một góc camera (trung vị hai lượt bay mỗi arm).</figcaption></figure>
+<figure><a href="../charts/vi/megascans/frame-8192.svg"><img src="../charts/vi/megascans/frame-8192.svg" alt="Thời gian frame ở 8192 bàn, có và không chiếu sáng: thanh = frame, vạch trắng = GPU, vòng tròn = render thread."></a><figcaption>Thời gian frame ở 8192 bàn, có và không chiếu sáng: thanh = frame, vạch trắng = GPU, vòng tròn = render thread.</figcaption></figure>
+</div>
+<h2 id="compare">So sánh</h2>
+<section class="viewer" aria-label="So sánh">
+  <div class="controls">
+    <label class="pick">Trái <select id="cmpL"><option value="M">LOD, actor</option><option value="Nz">Nanite, actor</option><option value="Ns">Nanite, actor, mặc định</option><option value="Mi">LOD, một ISM</option><option value="Mx">LOD gắt, một ISM</option><option value="Nzi">Nanite, một ISM</option></select></label>
+    <label class="pick">Phải <select id="cmpR"><option value="M">LOD, actor</option><option value="Nz">Nanite, actor</option><option value="Ns">Nanite, actor, mặc định</option><option value="Mi">LOD, một ISM</option><option value="Mx">LOD gắt, một ISM</option><option value="Nzi">Nanite, một ISM</option></select></label>
+    <label class="pick">Góc <select id="cmpV"><option value="n08192_B0_close">Gần</option><option value="n08192_B1_edge_eye">Ngang mắt ở mép</option><option value="n08192_B3_overview">Tổng quan</option><option value="n08192_B4_far">Xa</option></select></label>
+  </div>
+  <div class="stage" id="stage">
+    <img id="imgL" alt="">
+    <img id="imgR" class="top" alt="">
+    <div class="handle"></div>
+    <div class="tag l" id="tagL"></div>
+    <div class="tag r" id="tagR"></div>
+    <input type="range" id="cut" min="0" max="100" value="50" step="0.1" aria-label="Thanh chia so sánh">
+  </div>
+  <p class="note">Kéo qua lại trên ảnh. 8192 bàn trên Radeon 680M ở 1280×800; FPS và thời gian GPU là trung vị các lượt bay của arm đó ở góc đó.</p>
+</section>
+<script>
+(() => {
+  const D = {"views": [["n08192_B0_close", "Gần"], ["n08192_B1_edge_eye", "Ngang mắt ở mép"], ["n08192_B3_overview", "Tổng quan"], ["n08192_B4_far", "Xa"]], "src": {"M": {"label": "LOD, actor", "sub": "8 LOD từ tier Megascans", "img": "../img/megascans/M_{v}.webp", "fps": {"n08192_B0_close": [83.2, 10.63], "n08192_B1_edge_eye": [54.7, 16.89], "n08192_B3_overview": [50.6, 18.47], "n08192_B4_far": [52.3, 17.76]}}, "Nz": {"label": "Nanite, actor", "sub": "cấu hình game", "img": "../img/megascans/Nz_{v}.webp", "fps": {"n08192_B0_close": [121.1, 7.04], "n08192_B1_edge_eye": [128.2, 6.65], "n08192_B3_overview": [134.5, 6.29], "n08192_B4_far": [159.7, 5.18]}}, "Ns": {"label": "Nanite, actor, mặc định", "sub": "mặc định engine", "img": "../img/megascans/Ns_{v}.webp", "fps": {"n08192_B0_close": [111.6, 7.69], "n08192_B1_edge_eye": [111.4, 7.69], "n08192_B3_overview": [120.7, 7.13], "n08192_B4_far": [145.3, 5.79]}}, "Mi": {"label": "LOD, một ISM", "sub": "cùng 8 LOD", "img": "../img/ism/Mi_{v}.webp", "fps": {"n08192_B0_close": [90.6, 9.82], "n08192_B1_edge_eye": [56.3, 16.5], "n08192_B3_overview": [47.2, 19.97], "n08192_B4_far": [52.1, 17.9]}}, "Mx": {"label": "LOD gắt, một ISM", "sub": "LOD cuối 494/198/98/64 tam giác", "img": "../img/ism/Mx_{v}.webp", "fps": {"n08192_B0_close": [159.8, 5.25], "n08192_B1_edge_eye": [143.0, 5.9], "n08192_B3_overview": [141.2, 6.01], "n08192_B4_far": [164.6, 5.12]}}, "Nzi": {"label": "Nanite, một ISM", "sub": "cấu hình game", "img": "../img/ism/Nzi_{v}.webp", "fps": {"n08192_B0_close": [128.0, 6.66], "n08192_B1_edge_eye": [133.2, 6.33], "n08192_B3_overview": [143.3, 5.84], "n08192_B4_far": [170.0, 4.77]}}}, "left": "Mx", "right": "Nzi", "nodata": "không có số"};
+  const $ = id => document.getElementById(id);
+  const L = $('cmpL'), R = $('cmpR'), V = $('cmpV'), st = $('stage'), cut = $('cut');
+  L.value = D.left; R.value = D.right; V.value = D.views[0][0];
+  const tag = (s, v) => { const f = s.fps[v] || [];
+    return '<div class="t1">' + s.label + '</div><div class="t2">' + (f[0] != null ? '<b>' + f[0].toFixed(1) + ' FPS</b> · ' + (1000 / f[0]).toFixed(2) + ' ms' : D.nodata) + '</div>' +
+      (f[1] != null ? '<div class="t3">GPU ' + f[1].toFixed(2) + ' ms' + (s.sub ? ' · ' + s.sub : '') + '</div>' : ''); };
+  const render = () => { const v = V.value, a = D.src[L.value], b = D.src[R.value];
+    $('imgL').src = a.img.replace('{v}', v); $('imgR').src = b.img.replace('{v}', v);
+    $('imgL').alt = a.label; $('imgR').alt = b.label;
+    $('tagL').innerHTML = tag(a, v); $('tagR').innerHTML = tag(b, v); };
+  cut.addEventListener('input', () => st.style.setProperty('--cut', cut.value + '%'));
+  [L, R, V].forEach(e => e.addEventListener('change', render));
+  render();
+})();
+</script>
+<h2 id="setup">Cấu hình đo</h2>
+<div class="cmp wrap"><table><thead><tr><th></th><th class="w">Bài test này</th><th>Bài CRDG</th></tr></thead><tbody><tr><th>GPU</th><td><b>Radeon 680M</b> (máy cầm tay AOKZOE A1, RDNA 2, 12 CU, bộ nhớ dùng chung), Adrenalin 26.10.1, cắm AC</td><td>RX 580</td></tr><tr><th>Engine</th><td>Unreal Engine <b>5.8.4</b> (bản engine của game), package Development đã cook, D3D12 SM6</td><td>UE 5.5, editor</td></tr><tr><th>Độ phân giải</th><td>1280×800 toàn màn hình, screen percentage 100, <b>TAA</b> (r.AntiAliasingMethod=2, chất lượng 1)</td><td>—</td></tr><tr><th>Mesh</th><td>Megascans Wooden Table <code>uc1kebzfa</code>, 78 × 79 × 52 cm</td><td>Một cái bàn Megascans</td></tr><tr><th>Mesh Nanite</th><td>Bản scan gốc, <b>2 000 018</b> tam giác, fallback 7 090 tam giác</td><td>Fallback 7 430 tam giác</td></tr><tr><th>Mesh LOD</th><td><b>8 LOD</b>: tier High 21 852 · 17 482 · 14 204 · tier Mid 12 236 · 7 342 · 4 894 · tier Low 3 288 · 1 644; screen size 1,0 / 0,6 / 0,4 / 0,28 / 0,18 / 0,12 / 0,07 / 0,04</td><td>4 LOD tự động 5 / 2,5 / 1 / 0,5 %</td></tr><tr><th>Bố trí</th><td>1 / 2048 / 4096 / 8192 <code>StaticMeshActor</code> trên lưới vuông, ô 102 cm cho cả hai mesh</td><td>1 / 2048 / 4096 / 8192 actor</td></tr><tr><th>Ánh sáng</th><td>Mặt trời movable với <b>cascaded shadow map</b> (1 cascade, 1024, tắt caching), sky atmosphere, sky light, height fog. <b>Không VSM</b>, không GI, không distance-field shadow. Scalability Low (mức của game cho 680M).</td><td>Có và không chiếu sáng</td></tr><tr><th>Cấu hình Nanite</th><td><b>Nz</b>: của game (MaxPixelsPerEdge 2, tắt two-pass culling) · <b>Ns</b>: mặc định engine (1, bật)</td><td>Mặc định</td></tr></tbody></table></div>
+<h2 id="numbers">Số liệu, 8192 bàn, có chiếu sáng</h2>
+<div class="cmp"><table><thead><tr><th>Góc</th>
+<th class="w">LOD (tier Megascans) FPS</th>
+<th>Nanite, cấu hình Zone9 FPS</th>
+<th>Nanite, mặc định engine FPS</th>
+<th>Nz / M</th>
+<th>Ns / M</th>
+<th>GPU ms M/Nz/Ns</th>
+<th>RT ms M/Nz/Ns</th>
+<th>nhiễu ms</th></tr></thead><tbody>
+<tr><th>B0_close</th><td>83.2</td><td><b>121.1</b></td><td>111.6</td><td>1.46×</td><td>1.34×</td><td>10.63 / 7.04 / 7.69</td><td>11.95 / 6.03 / 6.90</td><td>0.06 / 0.15 / 0.05</td></tr>
+<tr><th>B1_edge_eye</th><td>54.7</td><td><b>128.2</b></td><td>111.4</td><td>2.34×</td><td>2.04×</td><td>16.89 / 6.65 / 7.69</td><td>18.30 / 5.85 / 7.06</td><td>0.01 / 0.01 / 0.09</td></tr>
+<tr><th>B2_mid_high</th><td>47.7</td><td><b>124.2</b></td><td>103.7</td><td>2.61×</td><td>2.18×</td><td>19.63 / 6.92 / 8.32</td><td>20.95 / 5.95 / 7.09</td><td>0.09 / 0.00 / 0.07</td></tr>
+<tr><th>B3_overview</th><td>50.6</td><td><b>134.5</b></td><td>120.7</td><td>2.66×</td><td>2.39×</td><td>18.47 / 6.29 / 7.13</td><td>19.75 / 5.75 / 6.67</td><td>0.11 / 0.01 / 0.06</td></tr>
+<tr><th>B4_far</th><td>52.3</td><td><b>159.7</b></td><td>145.3</td><td>3.06×</td><td>2.78×</td><td>17.76 / 5.18 / 5.79</td><td>19.11 / 5.36 / 6.33</td><td>0.10 / 0.01 / 0.01</td></tr>
+<tr><th>B5_extreme</th><td>59.9</td><td><b>162.7</b></td><td>149.5</td><td>2.72×</td><td>2.50×</td><td>15.12 / 5.06 / 5.57</td><td>16.64 / 5.30 / 6.28</td><td>0.04 / 0.03 / 0.02</td></tr>
+<tr><th>B6_topdown</th><td>57.6</td><td><b>118.1</b></td><td>101.9</td><td>2.05×</td><td>1.77×</td><td>16.04 / 7.27 / 8.55</td><td>17.36 / 6.16 / 7.25</td><td>0.04 / 0.05 / 0.00</td></tr>
+<tr><th>B7_sky</th><td><b>245.2</b></td><td>199.2</td><td>174.9</td><td>0.81×</td><td>0.71×</td><td>2.38 / 3.68 / 3.97</td><td>4.05 / 4.99 / 5.70</td><td>0.03 / 0.05 / 0.03</td></tr>
+</tbody></table></div>
+<h3>8192 bàn, không chiếu sáng</h3>
+<div class="cmp"><table><thead><tr><th>Góc</th>
+<th class="w">LOD (tier Megascans) FPS</th>
+<th>Nanite, cấu hình Zone9 FPS</th>
+<th>Nanite, mặc định engine FPS</th>
+<th>Nz / M</th>
+<th>Ns / M</th>
+<th>GPU ms M/Nz/Ns</th>
+<th>RT ms M/Nz/Ns</th>
+<th>nhiễu ms</th></tr></thead><tbody>
+<tr><th>B0_close</th><td>142.3</td><td><b>202.9</b></td><td>195.0</td><td>1.43×</td><td>1.37×</td><td>5.93 / 3.94 / 4.11</td><td>7.03 / 3.48 / 4.02</td><td>0.39 / 0.41 / 0.02</td></tr>
+<tr><th>B1_edge_eye</th><td>84.3</td><td><b>218.1</b></td><td>194.2</td><td>2.59×</td><td>2.30×</td><td>10.45 / 3.56 / 4.10</td><td>11.80 / 3.48 / 4.10</td><td>1.33 / 0.02 / 0.00</td></tr>
+<tr><th>B2_mid_high</th><td>58.4</td><td><b>210.2</b></td><td>162.8</td><td>3.60×</td><td>2.79×</td><td>15.64 / 3.75 / 4.97</td><td>17.05 / 3.56 / 4.63</td><td>0.32 / 0.01 / 0.26</td></tr>
+<tr><th>B3_overview</th><td>58.0</td><td><b>225.7</b></td><td>216.6</td><td>3.89×</td><td>3.74×</td><td>15.68 / 2.80 / 3.64</td><td>17.19 / 4.41 / 4.00</td><td>0.27 / 0.04 / 0.01</td></tr>
+<tr><th>B4_far</th><td>59.9</td><td><b>269.2</b></td><td>268.2</td><td>4.49×</td><td>4.48×</td><td>15.11 / 1.99 / 2.42</td><td>16.63 / 3.70 / 3.72</td><td>0.11 / 0.01 / 0.01</td></tr>
+<tr><th>B5_extreme</th><td>108.1</td><td><b>283.7</b></td><td>274.8</td><td>2.62×</td><td>2.54×</td><td>7.87 / 1.80 / 2.05</td><td>9.17 / 3.51 / 3.63</td><td>0.04 / 0.00 / 0.06</td></tr>
+<tr><th>B6_topdown</th><td>68.7</td><td><b>204.8</b></td><td>166.1</td><td>2.98×</td><td>2.42×</td><td>13.07 / 3.95 / 4.98</td><td>14.50 / 3.52 / 4.40</td><td>0.37 / 0.06 / 0.01</td></tr>
+<tr><th>B7_sky</th><td><b>489.6</b></td><td>350.8</td><td>306.5</td><td>0.72×</td><td>0.63×</td><td>0.65 / 1.08 / 1.27</td><td>1.96 / 2.84 / 3.25</td><td>0.04 / 0.03 / 0.02</td></tr>
+</tbody></table></div>
+<h3>4096 bàn, có chiếu sáng</h3>
+<div class="cmp"><table><thead><tr><th>Góc</th>
+<th class="w">LOD (tier Megascans) FPS</th>
+<th>Nanite, cấu hình Zone9 FPS</th>
+<th>Nanite, mặc định engine FPS</th>
+<th>Nz / M</th>
+<th>Ns / M</th>
+<th>GPU ms M/Nz/Ns</th>
+<th>RT ms M/Nz/Ns</th>
+<th>nhiễu ms</th></tr></thead><tbody>
+<tr><th>B0_close</th><td>107.4</td><td><b>130.3</b></td><td>120.0</td><td>1.21×</td><td>1.12×</td><td>8.14 / 6.53 / 7.15</td><td>9.29 / 5.82 / 6.62</td><td>0.08 / 0.03 / 0.08</td></tr>
+<tr><th>B1_edge_eye</th><td>76.9</td><td><b>166.0</b></td><td>147.6</td><td>2.16×</td><td>1.92×</td><td>11.62 / 4.93 / 5.63</td><td>12.97 / 5.28 / 6.25</td><td>0.04 / 0.04 / 0.05</td></tr>
+<tr><th>B2_mid_high</th><td>77.9</td><td><b>160.9</b></td><td>142.5</td><td>2.06×</td><td>1.83×</td><td>11.43 / 5.12 / 5.86</td><td>12.78 / 5.33 / 6.27</td><td>0.02 / 0.02 / 0.22</td></tr>
+<tr><th>B3_overview</th><td>80.7</td><td><b>156.6</b></td><td>145.1</td><td>1.94×</td><td>1.80×</td><td>11.04 / 5.29 / 5.79</td><td>12.33 / 5.42 / 6.25</td><td>0.03 / 0.00 / 0.15</td></tr>
+<tr><th>B4_far</th><td>85.1</td><td><b>176.9</b></td><td>164.1</td><td>2.08×</td><td>1.93×</td><td>10.39 / 4.57 / 4.91</td><td>11.72 / 5.28 / 6.07</td><td>0.01 / 0.02 / 0.09</td></tr>
+<tr><th>B5_extreme</th><td>95.9</td><td><b>173.0</b></td><td>165.0</td><td>1.80×</td><td>1.72×</td><td>8.96 / 4.41 / 4.78</td><td>10.34 / 5.56 / 6.02</td><td>0.03 / 0.36 / 0.04</td></tr>
+<tr><th>B6_topdown</th><td>79.4</td><td><b>141.9</b></td><td>125.0</td><td>1.79×</td><td>1.57×</td><td>11.26 / 5.92 / 6.83</td><td>12.54 / 5.69 / 6.53</td><td>0.05 / 0.03 / 0.17</td></tr>
+<tr><th>B7_sky</th><td><b>247.5</b></td><td>207.1</td><td>182.8</td><td>0.84×</td><td>0.74×</td><td>2.29 / 3.32 / 3.60</td><td>4.01 / 4.81 / 5.46</td><td>0.08 / 0.01 / 0.03</td></tr>
+</tbody></table></div>
+<h3>2048 bàn, có chiếu sáng</h3>
+<div class="cmp"><table><thead><tr><th>Góc</th>
+<th class="w">LOD (tier Megascans) FPS</th>
+<th>Nanite, cấu hình Zone9 FPS</th>
+<th>Nanite, mặc định engine FPS</th>
+<th>Nz / M</th>
+<th>Ns / M</th>
+<th>GPU ms M/Nz/Ns</th>
+<th>RT ms M/Nz/Ns</th>
+<th>nhiễu ms</th></tr></thead><tbody>
+<tr><th>B0_close</th><td><b>139.9</b></td><td>136.4</td><td>126.8</td><td>0.97×</td><td>0.91×</td><td>6.16 / 6.15 / 6.69</td><td>7.18 / 5.68 / 6.45</td><td>0.22 / 0.04 / 0.06</td></tr>
+<tr><th>B1_edge_eye</th><td>110.1</td><td><b>184.8</b></td><td>163.0</td><td>1.68×</td><td>1.48×</td><td>7.88 / 4.36 / 4.90</td><td>9.08 / 5.16 / 6.09</td><td>0.12 / 0.03 / 0.04</td></tr>
+<tr><th>B2_mid_high</th><td>119.1</td><td><b>183.9</b></td><td>163.0</td><td>1.54×</td><td>1.37×</td><td>7.16 / 4.38 / 4.81</td><td>8.36 / 5.18 / 6.09</td><td>0.05 / 0.06 / 0.09</td></tr>
+<tr><th>B3_overview</th><td>116.4</td><td><b>168.5</b></td><td>157.4</td><td>1.45×</td><td>1.35×</td><td>7.30 / 4.83 / 5.20</td><td>8.56 / 5.32 / 6.30</td><td>0.05 / 0.03 / 0.07</td></tr>
+<tr><th>B4_far</th><td>123.8</td><td><b>185.3</b></td><td>170.4</td><td>1.50×</td><td>1.38×</td><td>6.89 / 4.25 / 4.35</td><td>8.09 / 5.27 / 5.85</td><td>0.05 / 0.16 / 0.00</td></tr>
+<tr><th>B5_extreme</th><td>136.4</td><td><b>190.3</b></td><td>171.7</td><td>1.40×</td><td>1.26×</td><td>6.11 / 4.15 / 4.34</td><td>7.33 / 5.16 / 5.80</td><td>0.09 / 0.05 / 0.04</td></tr>
+<tr><th>B6_topdown</th><td>116.6</td><td><b>162.7</b></td><td>143.9</td><td>1.40×</td><td>1.23×</td><td>7.35 / 5.05 / 5.79</td><td>8.56 / 5.31 / 6.40</td><td>0.07 / 0.06 / 0.04</td></tr>
+<tr><th>B7_sky</th><td><b>247.1</b></td><td>207.3</td><td>183.6</td><td>0.84×</td><td>0.74×</td><td>2.24 / 3.19 / 3.49</td><td>4.03 / 4.80 / 5.44</td><td>0.08 / 0.07 / 0.01</td></tr>
+</tbody></table></div>
+<h3>1 bàn, có chiếu sáng</h3>
+<div class="cmp"><table><thead><tr><th>Góc</th>
+<th class="w">LOD (tier Megascans) FPS</th>
+<th>Nanite, cấu hình Zone9 FPS</th>
+<th>Nanite, mặc định engine FPS</th>
+<th>Nz / M</th>
+<th>Ns / M</th>
+<th>GPU ms M/Nz/Ns</th>
+<th>RT ms M/Nz/Ns</th>
+<th>nhiễu ms</th></tr></thead><tbody>
+<tr><th>B0_close</th><td><b>218.4</b></td><td>193.2</td><td>172.3</td><td>0.88×</td><td>0.79×</td><td>2.83 / 3.94 / 4.18</td><td>4.56 / 5.14 / 5.78</td><td>0.15 / 0.08 / 0.06</td></tr>
+<tr><th>B1_edge_eye</th><td><b>232.0</b></td><td>197.7</td><td>174.8</td><td>0.85×</td><td>0.75×</td><td>2.76 / 3.71 / 4.00</td><td>4.28 / 5.04 / 5.69</td><td>0.20 / 0.04 / 0.07</td></tr>
+<tr><th>B2_mid_high</th><td><b>225.1</b></td><td>197.7</td><td>174.8</td><td>0.88×</td><td>0.78×</td><td>2.80 / 3.75 / 4.00</td><td>4.43 / 5.02 / 5.70</td><td>0.04 / 0.05 / 0.03</td></tr>
+<tr><th>B3_overview</th><td><b>211.1</b></td><td>185.5</td><td>168.8</td><td>0.88×</td><td>0.80×</td><td>3.29 / 4.33 / 4.44</td><td>4.65 / 5.22 / 5.89</td><td>0.13 / 0.04 / 0.10</td></tr>
+<tr><th>B4_far</th><td><b>223.0</b></td><td>198.7</td><td>174.6</td><td>0.89×</td><td>0.78×</td><td>2.84 / 3.81 / 4.04</td><td>4.46 / 5.01 / 5.71</td><td>0.07 / 0.07 / 0.04</td></tr>
+<tr><th>B5_extreme</th><td><b>225.4</b></td><td>188.7</td><td>173.5</td><td>0.84×</td><td>0.77×</td><td>2.93 / 3.85 / 4.05</td><td>4.35 / 5.27 / 5.75</td><td>0.32 / 0.56 / 0.00</td></tr>
+<tr><th>B6_topdown</th><td><b>219.8</b></td><td>190.6</td><td>171.1</td><td>0.87×</td><td>0.78×</td><td>3.25 / 4.21 / 4.39</td><td>4.47 / 5.13 / 5.82</td><td>0.07 / 0.01 / 0.02</td></tr>
+<tr><th>B7_sky</th><td><b>246.6</b></td><td>211.5</td><td>187.1</td><td>0.86×</td><td>0.76×</td><td>2.21 / 3.06 / 3.33</td><td>4.03 / 4.70 / 5.33</td><td>0.01 / 0.07 / 0.07</td></tr>
+</tbody></table></div>
+<p class="note">FPS = 1000 / trung vị thời gian frame trong cửa sổ đo (5 giây mỗi góc và mỗi mức số bàn). Hai lượt bay mỗi arm, lấy trung vị; "spread" = chênh lệch giữa hai lượt, tức độ nhiễu. GPU = frame GPU vừa xong, RT = render thread. In đậm = arm nhanh nhất trong dòng.</p>
+<h2 id="ism">Gộp instance: một ISM thay cho 8192 actor</h2>
+<p>Cùng cái bàn Megascans, toàn bộ bản sao nằm trong <b>một InstancedStaticMeshComponent</b> (cull trên GPU và chọn LOD cho từng instance trên GPU, <code>r.InstancedStaticMeshes.GpuLod=1</code>), so với dạng actor. Hai campaign 5 và 4 lượt: Mi (mesh LOD, ISM), Nzi (Nanite, ISM), M (LOD dạng actor, một lượt đối chứng: 82,9 FPS ở góc gần 8192 bàn so với 83,0–83,4 ở campaign trước) và Mx (<b>chuỗi LOD gắt</b>, ISM): High 21 852 · Mid 12 236 · Low 3 288 · 1 316 · 494 · 198 · 98 · 64 tam giác với screen size 1,0 / 0,45 / 0,25 / 0,12 / 0,06 / 0,03 / 0,015 / 0,008.</p>
+<p><b>LOD, một ISM (Mi):</b> render thread hết là nút cổ chai, GPU thành nút cổ chai (15–20 ms ở 8192 bàn ở mọi góc trừ góc gần). <b>LOD gắt, một ISM (Mx):</b> 139–182 FPS có chiếu sáng ở 8192 bàn so với 125–175 FPS của Nanite trong một ISM. Ở góc nhìn trời, khi không có gì trong khung, ISM làm mesh LOD tốn thêm khoảng 1,8–1,9 ms GPU từ 2048 bàn trở lên (mỗi frame GPU vẫn cull từng instance). Nanite thay đổi 0,97–1,10× khi dùng ISM.</p>
+<p>Các arm ISM nhiễu hơn arm actor: cùng một đoạn của cùng arm lệch tới ±15 % giữa các lượt bay (spread tới 2,8 ms với Mi), trong khi trung vị cả lượt lệch nhau khoảng 1 %. Ảnh tĩnh không cho thấy hiện tượng LOD "pop", và chuỗi LOD gắt pop nhiều hơn; cần xem khi camera chuyển động trước khi chọn.</p>
+<div class="charts"><figure><a href="../charts/vi/ism/fps-vs-copies.svg"><img src="../charts/vi/ism/fps-vs-copies.svg" alt="LOD dạng actor riêng (lượt đối chứng) so với một component ISM, mesh LOD và mesh Nanite."></a><figcaption>LOD dạng actor riêng (lượt đối chứng) so với một component ISM, mesh LOD và mesh Nanite.</figcaption></figure></div>
+<h3>8192 bàn, có chiếu sáng</h3>
+<div class="cmp"><table><thead><tr><th>Góc</th>
+<th class="w">LOD (tier Megascans) FPS</th>
+<th>LOD, một ISM FPS</th>
+<th>LOD gắt, một ISM FPS</th>
+<th>Nanite, một ISM FPS</th>
+<th>Mi / M</th>
+<th>Mx / M</th>
+<th>Nzi / M</th>
+<th>GPU ms M/Mi/Mx/Nzi</th>
+<th>RT ms M/Mi/Mx/Nzi</th>
+<th>nhiễu ms</th></tr></thead><tbody>
+<tr><th>B0_close</th><td>82.9</td><td>90.6</td><td><b>159.8</b></td><td>128.0</td><td>1.09×</td><td>1.93×</td><td>1.54×</td><td>10.62 / 9.82 / 5.25 / 6.66</td><td>11.99 / 4.65 / 4.17 / 5.81</td><td>0.00 / 1.44 / 0.15 / 0.05</td></tr>
+<tr><th>B1_edge_eye</th><td>53.4</td><td>56.3</td><td><b>143.0</b></td><td>133.2</td><td>1.05×</td><td>2.68×</td><td>2.49×</td><td>17.32 / 16.50 / 5.90 / 6.33</td><td>18.58 / 4.75 / 4.44 / 5.70</td><td>0.00 / 2.27 / 0.90 / 0.04</td></tr>
+<tr><th>B2_mid_high</th><td>47.4</td><td>47.6</td><td><b>139.3</b></td><td>131.6</td><td>1.00×</td><td>2.94×</td><td>2.78×</td><td>19.75 / 19.81 / 6.21 / 6.49</td><td>21.04 / 4.78 / 4.55 / 5.77</td><td>0.00 / 2.73 / 0.07 / 0.07</td></tr>
+<tr><th>B3_overview</th><td>50.2</td><td>47.2</td><td>141.2</td><td><b>143.3</b></td><td>0.94×</td><td>2.81×</td><td>2.85×</td><td>18.58 / 19.97 / 6.01 / 5.84</td><td>19.91 / 4.79 / 4.51 / 5.52</td><td>0.00 / 2.81 / 0.07 / 0.04</td></tr>
+<tr><th>B4_far</th><td>52.0</td><td>52.1</td><td>164.6</td><td><b>170.0</b></td><td>1.00×</td><td>3.16×</td><td>3.27×</td><td>17.85 / 17.90 / 5.12 / 4.77</td><td>19.27 / 4.81 / 3.97 / 5.15</td><td>0.00 / 2.66 / 0.04 / 0.00</td></tr>
+<tr><th>B5_extreme</th><td>59.7</td><td>53.2</td><td><b>182.4</b></td><td>175.1</td><td>0.89×</td><td>3.05×</td><td>2.93×</td><td>15.08 / 17.50 / 4.49 / 4.64</td><td>16.70 / 4.78 / 4.01 / 5.18</td><td>0.00 / 2.77 / 1.03 / 0.02</td></tr>
+<tr><th>B6_topdown</th><td>57.3</td><td>60.9</td><td><b>155.1</b></td><td>125.3</td><td>1.06×</td><td>2.71×</td><td>2.19×</td><td>16.15 / 15.07 / 5.44 / 6.83</td><td>17.43 / 4.71 / 4.39 / 5.93</td><td>0.00 / 2.26 / 0.06 / 0.01</td></tr>
+<tr><th>B7_sky</th><td>236.5</td><td>195.9</td><td><b>241.1</b></td><td>209.7</td><td>0.83×</td><td>1.02×</td><td>0.89×</td><td>2.33 / 4.18 / 2.76 / 3.54</td><td>4.21 / 3.49 / 4.04 / 4.74</td><td>0.00 / 0.65 / 0.01 / 0.04</td></tr>
+</tbody></table></div>
+<h3>8192 bàn, không chiếu sáng</h3>
+<div class="cmp"><table><thead><tr><th>Góc</th>
+<th class="w">LOD (tier Megascans) FPS</th>
+<th>LOD, một ISM FPS</th>
+<th>LOD gắt, một ISM FPS</th>
+<th>Nanite, một ISM FPS</th>
+<th>Mi / M</th>
+<th>Mx / M</th>
+<th>Nzi / M</th>
+<th>GPU ms M/Mi/Mx/Nzi</th>
+<th>RT ms M/Mi/Mx/Nzi</th>
+<th>nhiễu ms</th></tr></thead><tbody>
+<tr><th>B0_close</th><td>145.3</td><td>134.7</td><td><b>276.8</b></td><td>213.0</td><td>0.93×</td><td>1.90×</td><td>1.47×</td><td>5.79 / 6.45 / 2.72 / 3.64</td><td>6.90 / 3.06 / 2.70 / 3.33</td><td>0.00 / 0.18 / 0.16 / 0.17</td></tr>
+<tr><th>B1_edge_eye</th><td>88.8</td><td>72.5</td><td><b>251.3</b></td><td>224.2</td><td>0.82×</td><td>2.83×</td><td>2.53×</td><td>9.84 / 12.56 / 3.16 / 3.31</td><td>11.17 / 3.09 / 2.46 / 3.91</td><td>0.00 / 0.31 / 0.15 / 0.18</td></tr>
+<tr><th>B2_mid_high</th><td>57.8</td><td>61.5</td><td><b>237.6</b></td><td>223.9</td><td>1.07×</td><td>4.11×</td><td>3.88×</td><td>15.72 / 14.89 / 3.41 / 3.42</td><td>17.24 / 3.25 / 2.52 / 3.81</td><td>0.00 / 2.24 / 0.05 / 0.09</td></tr>
+<tr><th>B3_overview</th><td>57.5</td><td>55.2</td><td><b>283.2</b></td><td>248.0</td><td>0.96×</td><td>4.92×</td><td>4.31×</td><td>15.88 / 16.77 / 2.54 / 2.49</td><td>17.37 / 3.24 / 2.95 / 4.01</td><td>0.00 / 2.18 / 0.00 / 0.20</td></tr>
+<tr><th>B4_far</th><td>59.6</td><td>56.4</td><td><b>362.3</b></td><td>297.0</td><td>0.95×</td><td>6.08×</td><td>4.98×</td><td>15.23 / 16.38 / 1.86 / 1.71</td><td>16.77 / 3.26 / 2.48 / 3.35</td><td>0.00 / 2.18 / 0.00 / 0.02</td></tr>
+<tr><th>B5_extreme</th><td>107.5</td><td>57.6</td><td><b>379.9</b></td><td>310.4</td><td>0.54×</td><td>3.53×</td><td>2.89×</td><td>7.92 / 15.95 / 1.67 / 1.57</td><td>9.27 / 3.19 / 2.38 / 3.21</td><td>0.00 / 0.14 / 0.04 / 0.03</td></tr>
+<tr><th>B6_topdown</th><td>66.8</td><td>67.5</td><td><b>260.5</b></td><td>216.8</td><td>1.01×</td><td>3.90×</td><td>3.25×</td><td>13.45 / 13.54 / 2.93 / 3.64</td><td>14.92 / 3.11 / 3.07 / 3.55</td><td>0.00 / 1.72 / 0.04 / 0.04</td></tr>
+<tr><th>B7_sky</th><td>481.5</td><td>490.9</td><td><b>493.0</b></td><td>366.1</td><td>1.02×</td><td>1.02×</td><td>0.76×</td><td>0.65 / 0.67 / 0.72 / 1.04</td><td>2.01 / 1.92 / 1.88 / 2.72</td><td>0.00 / 0.08 / 0.05 / 0.03</td></tr>
+</tbody></table></div>
+<h2 id="appendix">Phụ lục: bàn tự sinh, LOD tự động như bài báo</h2>
+<p>Trước khi có asset Megascans, cùng campaign đã bay với một cái bàn tự sinh 249 228 tam giác và LOD tự động như bài báo (LOD0–3 = 5 / 2,5 / 1 / 0,5 % mesh gốc, screen size tự động), một lượt mỗi arm. Xu hướng giống hệt: Nanite dẫn từ 2048 bàn trở lên (trừ góc gần ở 2048), LOD dẫn khi có một bàn và ở góc nhìn trời.</p>
+<div class="charts"><figure><a href="../charts/vi/procedural/fps-vs-copies.svg"><img src="../charts/vi/procedural/fps-vs-copies.svg" alt="Bàn tự sinh 249k tam giác, một lượt bay mỗi arm."></a><figcaption>Bàn tự sinh 249k tam giác, một lượt bay mỗi arm.</figcaption></figure></div>
+<div class="cmp"><table><thead><tr><th>Góc</th>
+<th class="w">LOD (auto, như bài báo) FPS</th>
+<th>Nanite, cấu hình Zone9 FPS</th>
+<th>Nanite, mặc định engine FPS</th>
+<th>Nz / L</th>
+<th>Ns / L</th>
+<th>GPU ms L/Nz/Ns</th>
+<th>RT ms L/Nz/Ns</th>
+<th>nhiễu ms</th></tr></thead><tbody>
+<tr><th>B0_close</th><td>114.0</td><td><b>145.6</b></td><td>135.7</td><td>1.28×</td><td>1.19×</td><td>7.51 / 5.75 / 6.24</td><td>8.76 / 5.50 / 6.21</td><td>0.00 / 0.00 / 0.00</td></tr>
+<tr><th>B1_edge_eye</th><td>78.9</td><td><b>159.7</b></td><td>145.7</td><td>2.02×</td><td>1.85×</td><td>11.25 / 5.20 / 5.73</td><td>12.62 / 5.31 / 6.26</td><td>0.00 / 0.00 / 0.00</td></tr>
+<tr><th>B2_mid_high</th><td>62.8</td><td><b>137.7</b></td><td>128.3</td><td>2.19×</td><td>2.04×</td><td>14.48 / 6.13 / 6.66</td><td>15.89 / 5.67 / 6.44</td><td>0.00 / 0.00 / 0.00</td></tr>
+<tr><th>B3_overview</th><td>65.0</td><td><b>137.7</b></td><td>128.2</td><td>2.12×</td><td>1.97×</td><td>13.82 / 6.11 / 6.63</td><td>15.38 / 5.63 / 6.46</td><td>0.00 / 0.00 / 0.00</td></tr>
+<tr><th>B4_far</th><td>69.1</td><td><b>159.4</b></td><td>146.0</td><td>2.31×</td><td>2.11×</td><td>12.99 / 5.16 / 5.69</td><td>14.43 / 5.21 / 6.31</td><td>0.00 / 0.00 / 0.00</td></tr>
+<tr><th>B5_extreme</th><td>83.0</td><td><b>168.2</b></td><td>157.3</td><td>2.03×</td><td>1.89×</td><td>10.58 / 4.82 / 5.17</td><td>12.06 / 5.28 / 6.19</td><td>0.00 / 0.00 / 0.00</td></tr>
+<tr><th>B6_topdown</th><td>73.2</td><td><b>124.0</b></td><td>117.8</td><td>1.69×</td><td>1.61×</td><td>12.20 / 6.89 / 7.32</td><td>13.59 / 6.00 / 6.72</td><td>0.00 / 0.00 / 0.00</td></tr>
+<tr><th>B7_sky</th><td><b>243.2</b></td><td>203.5</td><td>176.7</td><td>0.84×</td><td>0.73×</td><td>2.30 / 3.62 / 3.89</td><td>4.09 / 4.88 / 5.64</td><td>0.00 / 0.00 / 0.00</td></tr>
+</tbody></table></div>
+<h2 id="method">Cách đo</h2>
+<ul class="alike"><li><b>Lượt bay.</b> Mỗi lượt là một lần chạy game đã package, thứ tự LOD, Nz, Ns, Ns, Nz, LOD: mỗi arm hai lần, ở hai đầu, nên độ trôi hiện ra thành spread. Mỗi lượt 6,7 phút; nghỉ 4 phút giữa các lượt để máy cầm tay không chạm giới hạn nhiệt và công suất.</li><li><b>Từng đoạn đo.</b> Với mỗi mức số bàn và mỗi góc: cắt camera, chờ ổn định 3 giây (ít nhất 5 frame), đo 5 giây. Garbage collection bị hoãn trong cửa sổ đo. FPS = 1000 / trung vị thời gian frame.</li><li><b>Bộ đếm.</b> Thời gian frame, game thread, render thread và RHI lấy từ timer của engine, thời gian GPU từ frame GPU vừa xong, draw call từ RHI. Hai lượt mỗi arm; bảng hiện trung vị, spread là chênh lệch giữa hai lượt (trung vị 0,05 ms, 90 % đoạn đo dưới 0,22 ms, lớn nhất 1,33 ms).</li><li><b>Điều kiện hợp lệ.</b> Một lượt chỉ được tính khi game giữ foreground suốt lượt, màn hình luôn 1280×800, máy luôn cắm AC, không có tác vụ GPU nào khác, mọi console variable yêu cầu đều được xác nhận trong log, và mọi bản sao là Nanite proxy ở arm Nanite (không có cái nào ở arm LOD). Cả 6 lượt đều đạt.</li><li><b>Không chiếu sáng.</b> Tắt ánh sáng nhưng giữ đường vẽ bình thường (chế độ Unlit gốc của UE đẩy mesh thường sang đường debug vẽ lại mỗi frame trong khi Nanite bỏ qua nó).</li><li><b>Chưa đo.</b> HISM và HLOD, LOD pop khi camera chuyển động, material masked hoặc biến dạng, Nanite Foliage, virtual shadow map, GPU khác.</li></ul>
+<p class="note">Mã nguồn, cấu hình, công cụ và CSV/JSON của từng lượt bay có trong <a href="https://github.com/windystrife/nanite-lod-bench">repository</a>. Asset Megascans không được phát lại.</p>
+</main>
+</html>

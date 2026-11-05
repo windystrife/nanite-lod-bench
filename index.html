@@ -39,10 +39,27 @@ p.note { font-size: 14px; }
 .cmp.wrap table { min-width: 640px; }
 .cmp.wrap tbody th { width: 16%; }
 .cmp.wrap td { width: 42%; }
+.viewer { display: grid; gap: 12px; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+label.pick { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; color: var(--muted); }
+select { background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font: 14px "Source Sans 3", system-ui, sans-serif; max-width: 100%; }
+select:focus-visible, input[type=range]:focus-visible { outline: 2px solid var(--sun); outline-offset: 2px; }
+.stage { position: relative; width: 100%; aspect-ratio: 16 / 10; background: #000; border-radius: 6px; overflow: hidden; user-select: none; touch-action: pan-y; }
+.stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+.stage .top { clip-path: inset(0 0 0 var(--cut, 50%)); }
+.stage .handle { position: absolute; top: 0; bottom: 0; left: var(--cut, 50%); width: 2px; background: var(--sun); transform: translateX(-1px); pointer-events: none; }
+.stage .handle::after { content: ""; position: absolute; top: 50%; left: 50%; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--sun); background: rgba(16,19,22,.6); transform: translate(-50%, -50%); }
+.stage .tag { position: absolute; top: 10px; display: grid; gap: 1px; max-width: 46%; background: rgba(16,19,22,.78); padding: 5px 10px 6px; border-radius: 4px; pointer-events: none; }
+.stage .tag .t1 { font: 600 15px/1.2 "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif; letter-spacing: .04em; }
+.stage .tag .t2 { font: 500 13px/1.3 "IBM Plex Mono", ui-monospace, Consolas, monospace; font-variant-numeric: tabular-nums; color: var(--ink); }
+.stage .tag .t2 b { color: var(--sun); font-weight: 600; }
+.stage .tag .t3 { font: 400 12px/1.3 "IBM Plex Mono", ui-monospace, Consolas, monospace; color: var(--muted); }
+.stage .tag.l { left: 10px; } .stage .tag.r { right: 10px; text-align: right; }
+.stage input[type=range] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
 
 </style>
 <main>
-<div class="eyebrow">Unreal Engine 5.8 · Radeon 680M handheld · 1280×800</div>
+<div class="eyebrow">Unreal Engine 5.8 · Radeon 680M handheld · 1280×800 · <a href="vi/">Tiếng Việt</a></div>
 <h1>Nanite vs LOD</h1>
 <p>A replication of <a href="https://crdg.jp/studio-tech-1/en/2025/05/29/3438/">CRDG Studio's Nanite vs LOD test</a> (UE 5.5, RX 580) on the Unreal Engine 5.8.4 build of a shipping game, measured on an <b>AOKZOE A1 handheld (Radeon 680M, RDNA 2, 12 CU)</b> at 1280×800. The same Megascans <i>Wooden Table</i> is placed 1, 2048, 4096 and 8192 times as separate static mesh actors and seen from eight camera views, lit and unlit.</p>
 <p>Two meshes, one per side: <b>Nanite</b> uses the raw scan (2 000 018 triangles). <b>LOD</b> is a classic non-Nanite mesh built from the Megascans High, Mid and Low tiers with generated LODs in between (8 LODs, LOD0 21 852 triangles). Both are shadowed by cascaded shadow maps, no virtual shadow maps, TAA at native resolution.</p>
@@ -54,19 +71,44 @@ p.note { font-size: 14px; }
 <p><b>Instancing alone does not rescue the LOD mesh, but instancing plus a lower LOD chain beats Nanite.</b> With all 8192 tables in one ISM component, the LOD mesh's render thread drops to 1.9–4.8 ms, but its FPS barely moves (0.89–1.09× the actor layout at 8192 copies) because the GPU takes over as the limit: the LOD chain still draws about 3 300 triangles for a table that covers a few dozen pixels. With an aggressive chain (last LODs of 494 / 198 / 98 / 64 triangles, smaller screen sizes) in the same ISM component, LOD is <b>faster than Nanite in 38 of 40 view and count combinations (up to 1.35×)</b> and ties it in the two others (0.97–0.99×). See <a href="#ism">Instanced</a>.</p>
 <p><b>What this means for impostors:</b> with separate actors they would not help, because the cost is per actor on the CPU. Once the meshes are instanced, the remaining cost is exactly the one impostors remove: many tiny far triangles. The aggressive LOD chain is a geometric stand-in for that and already matches Nanite here; baked impostors (the engine's ImpostorBaker) are not measured.</p>
 <h2>At a glance</h2><div class="charts">
-<figure><a href="charts/megascans/fps-vs-copies.svg"><img src="charts/megascans/fps-vs-copies.svg" alt="FPS against copies per view, Megascans table"></a><figcaption>Megascans table: FPS against the number of copies, lit, one panel per camera view (median of two flights per arm).</figcaption></figure>
-<figure><a href="charts/megascans/frame-8192.svg"><img src="charts/megascans/frame-8192.svg" alt="Frame time at 8192 copies"></a><figcaption>Frame time at 8192 copies, lit and unlit: bar = frame, white tick = GPU, ring = render thread.</figcaption></figure>
+<figure><a href="charts/megascans/fps-vs-copies.svg"><img src="charts/megascans/fps-vs-copies.svg" alt="Megascans table: FPS against the number of copies, lit, one panel per camera view (median of two flights per arm)."></a><figcaption>Megascans table: FPS against the number of copies, lit, one panel per camera view (median of two flights per arm).</figcaption></figure>
+<figure><a href="charts/megascans/frame-8192.svg"><img src="charts/megascans/frame-8192.svg" alt="Frame time at 8192 copies, lit and unlit: bar = frame, white tick = GPU, ring = render thread."></a><figcaption>Frame time at 8192 copies, lit and unlit: bar = frame, white tick = GPU, ring = render thread.</figcaption></figure>
 </div>
-<h2>What the camera sees</h2><div class="shots">
-<figure><a href="img/megascans/M_n08192_B0_close.webp"><img src="img/megascans/M_n08192_B0_close.webp" alt="LOD, 8192 copies, close view: 83 FPS" loading="lazy"></a><figcaption>LOD, 8192 copies, close view: 83 FPS</figcaption></figure>
-<figure><a href="img/megascans/Nz_n08192_B0_close.webp"><img src="img/megascans/Nz_n08192_B0_close.webp" alt="Nanite (game settings), 8192 copies, close view: 121 FPS" loading="lazy"></a><figcaption>Nanite (game settings), 8192 copies, close view: 121 FPS</figcaption></figure>
-<figure><a href="img/megascans/M_n08192_B1_edge_eye.webp"><img src="img/megascans/M_n08192_B1_edge_eye.webp" alt="LOD, 8192 copies, eye level at the edge: 55 FPS" loading="lazy"></a><figcaption>LOD, 8192 copies, eye level at the edge: 55 FPS</figcaption></figure>
-<figure><a href="img/megascans/Nz_n08192_B1_edge_eye.webp"><img src="img/megascans/Nz_n08192_B1_edge_eye.webp" alt="Nanite, 8192 copies, eye level at the edge: 128 FPS" loading="lazy"></a><figcaption>Nanite, 8192 copies, eye level at the edge: 128 FPS</figcaption></figure>
-<figure><a href="img/megascans/M_n08192_B3_overview.webp"><img src="img/megascans/M_n08192_B3_overview.webp" alt="LOD, 8192 copies, overview: 51 FPS" loading="lazy"></a><figcaption>LOD, 8192 copies, overview: 51 FPS</figcaption></figure>
-<figure><a href="img/megascans/Nz_n08192_B3_overview.webp"><img src="img/megascans/Nz_n08192_B3_overview.webp" alt="Nanite, 8192 copies, overview: 135 FPS" loading="lazy"></a><figcaption>Nanite, 8192 copies, overview: 135 FPS</figcaption></figure>
-<figure><a href="img/ism/Mx_n08192_B1_edge_eye.webp"><img src="img/ism/Mx_n08192_B1_edge_eye.webp" alt="LOD aggressive, one ISM, 8192 copies, eye level: 143 FPS" loading="lazy"></a><figcaption>LOD aggressive, one ISM, 8192 copies, eye level: 143 FPS</figcaption></figure>
-<figure><a href="img/ism/Nzi_n08192_B1_edge_eye.webp"><img src="img/ism/Nzi_n08192_B1_edge_eye.webp" alt="Nanite, one ISM, 8192 copies, eye level: 133 FPS" loading="lazy"></a><figcaption>Nanite, one ISM, 8192 copies, eye level: 133 FPS</figcaption></figure>
-</div>
+<h2 id="compare">Compare</h2>
+<section class="viewer" aria-label="Compare">
+  <div class="controls">
+    <label class="pick">Left <select id="cmpL"><option value="M">LOD, actors</option><option value="Nz">Nanite, actors</option><option value="Ns">Nanite, actors, stock knobs</option><option value="Mi">LOD, one ISM</option><option value="Mx">LOD aggressive, one ISM</option><option value="Nzi">Nanite, one ISM</option></select></label>
+    <label class="pick">Right <select id="cmpR"><option value="M">LOD, actors</option><option value="Nz">Nanite, actors</option><option value="Ns">Nanite, actors, stock knobs</option><option value="Mi">LOD, one ISM</option><option value="Mx">LOD aggressive, one ISM</option><option value="Nzi">Nanite, one ISM</option></select></label>
+    <label class="pick">View <select id="cmpV"><option value="n08192_B0_close">Close</option><option value="n08192_B1_edge_eye">Eye level at the edge</option><option value="n08192_B3_overview">Overview</option><option value="n08192_B4_far">Far</option></select></label>
+  </div>
+  <div class="stage" id="stage">
+    <img id="imgL" alt="">
+    <img id="imgR" class="top" alt="">
+    <div class="handle"></div>
+    <div class="tag l" id="tagL"></div>
+    <div class="tag r" id="tagR"></div>
+    <input type="range" id="cut" min="0" max="100" value="50" step="0.1" aria-label="Comparison divider">
+  </div>
+  <p class="note">Drag across the picture. 8192 copies on the Radeon 680M at 1280×800; FPS and GPU time are the medians of the flights of that arm at that view.</p>
+</section>
+<script>
+(() => {
+  const D = {"views": [["n08192_B0_close", "Close"], ["n08192_B1_edge_eye", "Eye level at the edge"], ["n08192_B3_overview", "Overview"], ["n08192_B4_far", "Far"]], "src": {"M": {"label": "LOD, actors", "sub": "8 LODs from the Megascans tiers", "img": "img/megascans/M_{v}.webp", "fps": {"n08192_B0_close": [83.2, 10.63], "n08192_B1_edge_eye": [54.7, 16.89], "n08192_B3_overview": [50.6, 18.47], "n08192_B4_far": [52.3, 17.76]}}, "Nz": {"label": "Nanite, actors", "sub": "game settings", "img": "img/megascans/Nz_{v}.webp", "fps": {"n08192_B0_close": [121.1, 7.04], "n08192_B1_edge_eye": [128.2, 6.65], "n08192_B3_overview": [134.5, 6.29], "n08192_B4_far": [159.7, 5.18]}}, "Ns": {"label": "Nanite, actors, stock knobs", "sub": "engine defaults", "img": "img/megascans/Ns_{v}.webp", "fps": {"n08192_B0_close": [111.6, 7.69], "n08192_B1_edge_eye": [111.4, 7.69], "n08192_B3_overview": [120.7, 7.13], "n08192_B4_far": [145.3, 5.79]}}, "Mi": {"label": "LOD, one ISM", "sub": "same 8 LODs", "img": "img/ism/Mi_{v}.webp", "fps": {"n08192_B0_close": [90.6, 9.82], "n08192_B1_edge_eye": [56.3, 16.5], "n08192_B3_overview": [47.2, 19.97], "n08192_B4_far": [52.1, 17.9]}}, "Mx": {"label": "LOD aggressive, one ISM", "sub": "last LODs 494/198/98/64 tris", "img": "img/ism/Mx_{v}.webp", "fps": {"n08192_B0_close": [159.8, 5.25], "n08192_B1_edge_eye": [143.0, 5.9], "n08192_B3_overview": [141.2, 6.01], "n08192_B4_far": [164.6, 5.12]}}, "Nzi": {"label": "Nanite, one ISM", "sub": "game settings", "img": "img/ism/Nzi_{v}.webp", "fps": {"n08192_B0_close": [128.0, 6.66], "n08192_B1_edge_eye": [133.2, 6.33], "n08192_B3_overview": [143.3, 5.84], "n08192_B4_far": [170.0, 4.77]}}}, "left": "Mx", "right": "Nzi", "nodata": "no data"};
+  const $ = id => document.getElementById(id);
+  const L = $('cmpL'), R = $('cmpR'), V = $('cmpV'), st = $('stage'), cut = $('cut');
+  L.value = D.left; R.value = D.right; V.value = D.views[0][0];
+  const tag = (s, v) => { const f = s.fps[v] || [];
+    return '<div class="t1">' + s.label + '</div><div class="t2">' + (f[0] != null ? '<b>' + f[0].toFixed(1) + ' FPS</b> · ' + (1000 / f[0]).toFixed(2) + ' ms' : D.nodata) + '</div>' +
+      (f[1] != null ? '<div class="t3">GPU ' + f[1].toFixed(2) + ' ms' + (s.sub ? ' · ' + s.sub : '') + '</div>' : ''); };
+  const render = () => { const v = V.value, a = D.src[L.value], b = D.src[R.value];
+    $('imgL').src = a.img.replace('{v}', v); $('imgR').src = b.img.replace('{v}', v);
+    $('imgL').alt = a.label; $('imgR').alt = b.label;
+    $('tagL').innerHTML = tag(a, v); $('tagR').innerHTML = tag(b, v); };
+  cut.addEventListener('input', () => st.style.setProperty('--cut', cut.value + '%'));
+  [L, R, V].forEach(e => e.addEventListener('change', render));
+  render();
+})();
+</script>
 <h2 id="setup">Setup</h2>
 <div class="cmp wrap"><table><thead><tr><th></th><th class="w">This test</th><th>CRDG article</th></tr></thead><tbody><tr><th>GPU</th><td><b>Radeon 680M</b> (AOKZOE A1 handheld, RDNA 2, 12 CU, shared memory), Adrenalin 26.10.1, on AC power</td><td>RX 580</td></tr><tr><th>Engine</th><td>Unreal Engine <b>5.8.4</b> (the game's engine build), cooked Development package, D3D12 SM6</td><td>UE 5.5, editor</td></tr><tr><th>Resolution</th><td>1280×800 fullscreen, screen percentage 100, <b>TAA</b> (r.AntiAliasingMethod=2, quality 1)</td><td>—</td></tr><tr><th>Mesh</th><td>Megascans Wooden Table <code>uc1kebzfa</code>, 78 × 79 × 52 cm</td><td>A Megascans table</td></tr><tr><th>Nanite mesh</th><td>Raw scan, <b>2 000 018</b> triangles, fallback 7 090 triangles</td><td>Fallback 7 430 triangles</td></tr><tr><th>LOD mesh</th><td><b>8 LODs</b>: High tier 21 852 · 17 482 · 14 204 · Mid tier 12 236 · 7 342 · 4 894 · Low tier 3 288 · 1 644; screen sizes 1.0 / 0.6 / 0.4 / 0.28 / 0.18 / 0.12 / 0.07 / 0.04</td><td>4 auto LODs at 5 / 2.5 / 1 / 0.5 %</td></tr><tr><th>Placement</th><td>1 / 2048 / 4096 / 8192 <code>StaticMeshActor</code>s on a square grid, 102 cm cells for both meshes</td><td>1 / 2048 / 4096 / 8192 actors</td></tr><tr><th>Lighting</th><td>Movable sun with <b>cascaded shadow maps</b> (1 cascade, 1024, caching off), sky atmosphere, sky light, height fog. <b>No VSM</b>, no GI, no distance-field shadows. Scalability Low (the game's 680M tier).</td><td>Lit and unlit</td></tr><tr><th>Nanite settings</th><td><b>Nz</b>: the game's (MaxPixelsPerEdge 2, two-pass culling off) · <b>Ns</b>: engine defaults (1, on)</td><td>Defaults</td></tr></tbody></table></div>
 <h2 id="numbers">Numbers, 8192 copies, lit</h2>
@@ -169,7 +211,7 @@ p.note { font-size: 14px; }
 <p>The same Megascans table, all copies in <b>one InstancedStaticMeshComponent</b> (GPU instance culling and per-instance GPU LOD selection, <code>r.InstancedStaticMeshes.GpuLod=1</code>), against the actor layout. Two campaigns of 5 and 4 flights: Mi (LOD mesh, ISM), Nzi (Nanite, ISM), M (LOD actors, one control flight: 82.9 FPS in the close view at 8192 against 83.0–83.4 in the earlier campaign) and Mx (an <b>aggressive LOD chain</b>, ISM): High 21 852 · Mid 12 236 · Low 3 288 · 1 316 · 494 · 198 · 98 · 64 triangles at screen sizes 1.0 / 0.45 / 0.25 / 0.12 / 0.06 / 0.03 / 0.015 / 0.008.</p>
 <p><b>LOD, one ISM (Mi):</b> the render thread is no longer the limit, the GPU is (15–20 ms at 8192 copies in every view but the close one). <b>LOD aggressive, one ISM (Mx):</b> 139–182 FPS lit at 8192 copies against 125–175 FPS for Nanite in one ISM. In the sky view, where nothing is on screen, ISM costs the LOD mesh about 1.8–1.9 ms of extra GPU time from 2048 copies up (every instance is culled on the GPU each frame). Nanite changes by 0.97–1.10× with ISM.</p>
 <p>The ISM arms are noisier than the actor arms: single segments of the same arm differ by up to ±15 % between flights (spread up to 2.8 ms for Mi), while the medians of whole flights agree within 1 %. Still pictures cannot show LOD popping, which the aggressive chain has more of; judge that in motion before choosing it.</p>
-<div class="charts"><figure><a href="charts/ism/fps-vs-copies.svg"><img src="charts/ism/fps-vs-copies.svg" alt="FPS against copies, ISM"></a><figcaption>LOD as separate actors (control flight) against one ISM component, LOD and Nanite meshes.</figcaption></figure></div>
+<div class="charts"><figure><a href="charts/ism/fps-vs-copies.svg"><img src="charts/ism/fps-vs-copies.svg" alt="LOD as separate actors (control flight) against one ISM component, LOD and Nanite meshes."></a><figcaption>LOD as separate actors (control flight) against one ISM component, LOD and Nanite meshes.</figcaption></figure></div>
 <h3>8192 copies, lit</h3>
 <div class="cmp"><table><thead><tr><th>View</th>
 <th class="w">LOD (Megascans tiers) FPS</th>
@@ -214,7 +256,7 @@ p.note { font-size: 14px; }
 </tbody></table></div>
 <h2 id="appendix">Appendix: procedural table, auto LODs as in the article</h2>
 <p>Before the Megascans asset was available, the same campaign ran with a procedural 249 228-triangle table and auto-generated LODs as in the article (LOD0–3 = 5 / 2.5 / 1 / 0.5 % of the source, auto screen sizes), one flight per arm. The trend is the same: Nanite ahead from 2048 copies on (except the close view at 2048), LOD ahead with one copy and in the sky view.</p>
-<div class="charts"><figure><a href="charts/procedural/fps-vs-copies.svg"><img src="charts/procedural/fps-vs-copies.svg" alt="FPS against copies, procedural table"></a><figcaption>Procedural 249k-triangle table, one flight per arm.</figcaption></figure></div>
+<div class="charts"><figure><a href="charts/procedural/fps-vs-copies.svg"><img src="charts/procedural/fps-vs-copies.svg" alt="Procedural 249k-triangle table, one flight per arm."></a><figcaption>Procedural 249k-triangle table, one flight per arm.</figcaption></figure></div>
 <div class="cmp"><table><thead><tr><th>View</th>
 <th class="w">LOD (auto, article) FPS</th>
 <th>Nanite, Zone9 knobs FPS</th>

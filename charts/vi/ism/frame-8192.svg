@@ -1,0 +1,240 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1038" viewBox="0 0 900 1038">
+<rect width="100%%" height="100%%" fill="#101316"/>
+<text x="20" y="28" fill="#e7eaec" font-size="18" font-weight="600" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">Thời gian frame ở 8192 bàn (thanh = frame ms; vạch = GPU ms; vòng = render thread ms)</text>
+<rect x="20" y="40" width="14" height="8" fill="#f0a640"/><text x="40" y="48" fill="#98a2ab" font-size="13" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">LOD, tier Megascans</text>
+<rect x="183" y="40" width="14" height="8" fill="#e06a4f"/><text x="203" y="48" fill="#98a2ab" font-size="13" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">LOD, một ISM</text>
+<rect x="297" y="40" width="14" height="8" fill="#ffd166"/><text x="317" y="48" fill="#98a2ab" font-size="13" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">LOD gắt, một ISM</text>
+<rect x="439" y="40" width="14" height="8" fill="#a78bfa"/><text x="459" y="48" fill="#98a2ab" font-size="13" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">Nanite, một ISM</text>
+<line x1="190.0" x2="190.0" y1="62" y2="1008" stroke="#2a3139"/>
+<text x="190.0" y="1022" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">0 ms</text>
+<line x1="251.1" x2="251.1" y1="62" y2="1008" stroke="#2a3139"/>
+<text x="251.1" y="1022" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">2 ms</text>
+<line x1="312.2" x2="312.2" y1="62" y2="1008" stroke="#2a3139"/>
+<text x="312.2" y="1022" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">4 ms</text>
+<line x1="373.3" x2="373.3" y1="62" y2="1008" stroke="#2a3139"/>
+<text x="373.3" y="1022" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">6 ms</text>
+<line x1="434.4" x2="434.4" y1="62" y2="1008" stroke="#2a3139"/>
+<text x="434.4" y="1022" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">8 ms</text>
+<line x1="495.5" x2="495.5" y1="62" y2="1008" stroke="#2a3139"/>
+<text x="495.5" y="1022" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">10 ms</text>
+<line x1="556.6" x2="556.6" y1="62" y2="1008" stroke="#2a3139"/>
+<text x="556.6" y="1022" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">12 ms</text>
+<line x1="617.7" x2="617.7" y1="62" y2="1008" stroke="#2a3139"/>
+<text x="617.7" y="1022" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">14 ms</text>
+<line x1="678.8" x2="678.8" y1="62" y2="1008" stroke="#2a3139"/>
+<text x="678.8" y="1022" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">16 ms</text>
+<line x1="739.9" x2="739.9" y1="62" y2="1008" stroke="#2a3139"/>
+<text x="739.9" y="1022" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">18 ms</text>
+<line x1="800.9" x2="800.9" y1="62" y2="1008" stroke="#2a3139"/>
+<text x="800.9" y="1022" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">20 ms</text>
+<line x1="862.0" x2="862.0" y1="62" y2="1008" stroke="#2a3139"/>
+<text x="862.0" y="1022" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">22 ms</text>
+<text x="182" y="95" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B0_close</text>
+<rect x="190" y="70" width="368.5" height="9" fill="#f0a640"><title>LOD, tier Megascans B0_close: frame 12.06 ms (83 fps), GPU 10.62, RT 11.99, draws 271.0</title></rect>
+<rect x="513.3" y="69" width="2" height="11" fill="#e7eaec"/>
+<circle cx="556.2" cy="74.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="81" width="337.2" height="9" fill="#e06a4f"><title>LOD, một ISM B0_close: frame 11.04 ms (91 fps), GPU 9.82, RT 4.65, draws 52.0</title></rect>
+<rect x="489.0" y="80" width="2" height="11" fill="#e7eaec"/>
+<circle cx="332.2" cy="85.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="92" width="191.2" height="9" fill="#ffd166"><title>LOD gắt, một ISM B0_close: frame 6.26 ms (160 fps), GPU 5.25, RT 4.17, draws 50.0</title></rect>
+<rect x="349.3" y="91" width="2" height="11" fill="#e7eaec"/>
+<circle cx="317.4" cy="96.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="103" width="238.6" height="9" fill="#a78bfa"><title>Nanite, một ISM B0_close: frame 7.81 ms (128 fps), GPU 6.66, RT 5.81, draws 43.0</title></rect>
+<rect x="392.6" y="102" width="2" height="11" fill="#e7eaec"/>
+<circle cx="367.4" cy="107.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="153" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B1_edge_eye</text>
+<rect x="190" y="128" width="571.9" height="9" fill="#f0a640"><title>LOD, tier Megascans B1_edge_eye: frame 18.72 ms (53 fps), GPU 17.32, RT 18.58, draws 1196.0</title></rect>
+<rect x="718.1" y="127" width="2" height="11" fill="#e7eaec"/>
+<circle cx="757.7" cy="132.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="139" width="542.5" height="9" fill="#e06a4f"><title>LOD, một ISM B1_edge_eye: frame 17.76 ms (56 fps), GPU 16.50, RT 4.75, draws 52.0</title></rect>
+<rect x="693.1" y="138" width="2" height="11" fill="#e7eaec"/>
+<circle cx="335.0" cy="143.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="150" width="213.6" height="9" fill="#ffd166"><title>LOD gắt, một ISM B1_edge_eye: frame 6.99 ms (143 fps), GPU 5.90, RT 4.44, draws 52.0</title></rect>
+<rect x="369.3" y="149" width="2" height="11" fill="#e7eaec"/>
+<circle cx="325.6" cy="154.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="161" width="229.3" height="9" fill="#a78bfa"><title>Nanite, một ISM B1_edge_eye: frame 7.51 ms (133 fps), GPU 6.33, RT 5.70, draws 43.0</title></rect>
+<rect x="382.4" y="160" width="2" height="11" fill="#e7eaec"/>
+<circle cx="364.2" cy="165.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="211" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B2_mid_high</text>
+<rect x="190" y="186" width="644.5" height="9" fill="#f0a640"><title>LOD, tier Megascans B2_mid_high: frame 21.10 ms (47 fps), GPU 19.75, RT 21.04, draws 817.0</title></rect>
+<rect x="792.2" y="185" width="2" height="11" fill="#e7eaec"/>
+<circle cx="832.8" cy="190.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="197" width="642.3" height="9" fill="#e06a4f"><title>LOD, một ISM B2_mid_high: frame 21.03 ms (48 fps), GPU 19.81, RT 4.78, draws 46.0</title></rect>
+<rect x="794.1" y="196" width="2" height="11" fill="#e7eaec"/>
+<circle cx="336.1" cy="201.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="208" width="219.3" height="9" fill="#ffd166"><title>LOD gắt, một ISM B2_mid_high: frame 7.18 ms (139 fps), GPU 6.21, RT 4.55, draws 48.0</title></rect>
+<rect x="378.7" y="207" width="2" height="11" fill="#e7eaec"/>
+<circle cx="328.9" cy="212.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="219" width="232.1" height="9" fill="#a78bfa"><title>Nanite, một ISM B2_mid_high: frame 7.60 ms (132 fps), GPU 6.49, RT 5.77, draws 43.0</title></rect>
+<rect x="387.1" y="218" width="2" height="11" fill="#e7eaec"/>
+<circle cx="366.2" cy="223.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="269" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B3_overview</text>
+<rect x="190" y="244" width="608.1" height="9" fill="#f0a640"><title>LOD, tier Megascans B3_overview: frame 19.91 ms (50 fps), GPU 18.58, RT 19.91, draws 840.0</title></rect>
+<rect x="756.6" y="243" width="2" height="11" fill="#e7eaec"/>
+<circle cx="798.2" cy="248.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="255" width="647.6" height="9" fill="#e06a4f"><title>LOD, một ISM B3_overview: frame 21.20 ms (47 fps), GPU 19.97, RT 4.79, draws 31.0</title></rect>
+<rect x="799.1" y="254" width="2" height="11" fill="#e7eaec"/>
+<circle cx="336.3" cy="259.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="266" width="216.4" height="9" fill="#ffd166"><title>LOD gắt, một ISM B3_overview: frame 7.08 ms (141 fps), GPU 6.01, RT 4.51, draws 35.0</title></rect>
+<rect x="372.7" y="265" width="2" height="11" fill="#e7eaec"/>
+<circle cx="327.8" cy="270.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="277" width="213.2" height="9" fill="#a78bfa"><title>Nanite, một ISM B3_overview: frame 6.98 ms (143 fps), GPU 5.84, RT 5.52, draws 43.0</title></rect>
+<rect x="367.5" y="276" width="2" height="11" fill="#e7eaec"/>
+<circle cx="358.7" cy="281.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="327" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B4_far</text>
+<rect x="190" y="302" width="587.2" height="9" fill="#f0a640"><title>LOD, tier Megascans B4_far: frame 19.22 ms (52 fps), GPU 17.85, RT 19.27, draws 871.0</title></rect>
+<rect x="734.4" y="301" width="2" height="11" fill="#e7eaec"/>
+<circle cx="778.5" cy="306.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="313" width="586.2" height="9" fill="#e06a4f"><title>LOD, một ISM B4_far: frame 19.19 ms (52 fps), GPU 17.90, RT 4.81, draws 31.0</title></rect>
+<rect x="735.8" y="312" width="2" height="11" fill="#e7eaec"/>
+<circle cx="337.1" cy="317.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="324" width="185.6" height="9" fill="#ffd166"><title>LOD gắt, một ISM B4_far: frame 6.08 ms (165 fps), GPU 5.12, RT 3.97, draws 33.0</title></rect>
+<rect x="345.4" y="323" width="2" height="11" fill="#e7eaec"/>
+<circle cx="311.3" cy="328.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="335" width="179.7" height="9" fill="#a78bfa"><title>Nanite, một ISM B4_far: frame 5.88 ms (170 fps), GPU 4.77, RT 5.15, draws 43.0</title></rect>
+<rect x="334.8" y="334" width="2" height="11" fill="#e7eaec"/>
+<circle cx="347.5" cy="339.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="385" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B5_extreme</text>
+<rect x="190" y="360" width="511.6" height="9" fill="#f0a640"><title>LOD, tier Megascans B5_extreme: frame 16.75 ms (60 fps), GPU 15.08, RT 16.70, draws 2657.0</title></rect>
+<rect x="649.6" y="359" width="2" height="11" fill="#e7eaec"/>
+<circle cx="700.1" cy="364.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="371" width="574.1" height="9" fill="#e06a4f"><title>LOD, một ISM B5_extreme: frame 18.79 ms (53 fps), GPU 17.50, RT 4.78, draws 31.0</title></rect>
+<rect x="723.5" y="370" width="2" height="11" fill="#e7eaec"/>
+<circle cx="336.0" cy="375.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="382" width="167.5" height="9" fill="#ffd166"><title>LOD gắt, một ISM B5_extreme: frame 5.48 ms (182 fps), GPU 4.49, RT 4.01, draws 31.0</title></rect>
+<rect x="326.1" y="381" width="2" height="11" fill="#e7eaec"/>
+<circle cx="312.5" cy="386.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="393" width="174.4" height="9" fill="#a78bfa"><title>Nanite, một ISM B5_extreme: frame 5.71 ms (175 fps), GPU 4.64, RT 5.18, draws 43.0</title></rect>
+<rect x="330.9" y="392" width="2" height="11" fill="#e7eaec"/>
+<circle cx="348.3" cy="397.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="443" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B6_topdown</text>
+<rect x="190" y="418" width="533.1" height="9" fill="#f0a640"><title>LOD, tier Megascans B6_topdown: frame 17.45 ms (57 fps), GPU 16.15, RT 17.43, draws 683.0</title></rect>
+<rect x="682.2" y="417" width="2" height="11" fill="#e7eaec"/>
+<circle cx="722.3" cy="422.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="429" width="501.8" height="9" fill="#e06a4f"><title>LOD, một ISM B6_topdown: frame 16.43 ms (61 fps), GPU 15.07, RT 4.71, draws 52.0</title></rect>
+<rect x="649.3" y="428" width="2" height="11" fill="#e7eaec"/>
+<circle cx="333.7" cy="433.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="440" width="197.0" height="9" fill="#ffd166"><title>LOD gắt, một ISM B6_topdown: frame 6.45 ms (155 fps), GPU 5.44, RT 4.39, draws 52.0</title></rect>
+<rect x="355.1" y="439" width="2" height="11" fill="#e7eaec"/>
+<circle cx="324.1" cy="444.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="451" width="243.9" height="9" fill="#a78bfa"><title>Nanite, một ISM B6_topdown: frame 7.98 ms (125 fps), GPU 6.83, RT 5.93, draws 43.0</title></rect>
+<rect x="397.6" y="450" width="2" height="11" fill="#e7eaec"/>
+<circle cx="371.0" cy="455.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="501" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B7_sky</text>
+<rect x="190" y="476" width="129.2" height="9" fill="#f0a640"><title>LOD, tier Megascans B7_sky: frame 4.23 ms (236 fps), GPU 2.33, RT 4.21, draws 28.0</title></rect>
+<rect x="260.2" y="475" width="2" height="11" fill="#e7eaec"/>
+<circle cx="318.6" cy="480.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="487" width="155.9" height="9" fill="#e06a4f"><title>LOD, một ISM B7_sky: frame 5.10 ms (196 fps), GPU 4.18, RT 3.49, draws 52.0</title></rect>
+<rect x="316.6" y="486" width="2" height="11" fill="#e7eaec"/>
+<circle cx="296.6" cy="491.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="498" width="126.7" height="9" fill="#ffd166"><title>LOD gắt, một ISM B7_sky: frame 4.15 ms (241 fps), GPU 2.76, RT 4.04, draws 50.0</title></rect>
+<rect x="273.4" y="497" width="2" height="11" fill="#e7eaec"/>
+<circle cx="313.3" cy="502.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="509" width="145.6" height="9" fill="#a78bfa"><title>Nanite, một ISM B7_sky: frame 4.77 ms (210 fps), GPU 3.54, RT 4.74, draws 43.0</title></rect>
+<rect x="297.2" y="508" width="2" height="11" fill="#e7eaec"/>
+<circle cx="334.9" cy="513.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="559" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B0_close (không sáng)</text>
+<rect x="190" y="534" width="210.2" height="9" fill="#f0a640"><title>LOD, tier Megascans B0_close (không sáng): frame 6.88 ms (145 fps), GPU 5.79, RT 6.90, draws 215.0</title></rect>
+<rect x="365.8" y="533" width="2" height="11" fill="#e7eaec"/>
+<circle cx="400.7" cy="538.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="545" width="226.8" height="9" fill="#e06a4f"><title>LOD, một ISM B0_close (không sáng): frame 7.43 ms (135 fps), GPU 6.45, RT 3.06, draws 21.0</title></rect>
+<rect x="386.0" y="544" width="2" height="11" fill="#e7eaec"/>
+<circle cx="283.5" cy="549.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="556" width="110.4" height="9" fill="#ffd166"><title>LOD gắt, một ISM B0_close (không sáng): frame 3.61 ms (277 fps), GPU 2.72, RT 2.70, draws 19.0</title></rect>
+<rect x="272.0" y="555" width="2" height="11" fill="#e7eaec"/>
+<circle cx="272.6" cy="560.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="567" width="143.4" height="9" fill="#a78bfa"><title>Nanite, một ISM B0_close (không sáng): frame 4.69 ms (213 fps), GPU 3.64, RT 3.33, draws 13.0</title></rect>
+<rect x="300.1" y="566" width="2" height="11" fill="#e7eaec"/>
+<circle cx="291.6" cy="571.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="617" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B1_edge_eye (không sáng)</text>
+<rect x="190" y="592" width="344.1" height="9" fill="#f0a640"><title>LOD, tier Megascans B1_edge_eye (không sáng): frame 11.26 ms (89 fps), GPU 9.84, RT 11.17, draws 567.0</title></rect>
+<rect x="489.6" y="591" width="2" height="11" fill="#e7eaec"/>
+<circle cx="531.2" cy="596.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="603" width="421.2" height="9" fill="#e06a4f"><title>LOD, một ISM B1_edge_eye (không sáng): frame 13.79 ms (73 fps), GPU 12.56, RT 3.09, draws 21.0</title></rect>
+<rect x="572.7" y="602" width="2" height="11" fill="#e7eaec"/>
+<circle cx="284.5" cy="607.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="614" width="121.6" height="9" fill="#ffd166"><title>LOD gắt, một ISM B1_edge_eye (không sáng): frame 3.98 ms (251 fps), GPU 3.16, RT 2.46, draws 21.0</title></rect>
+<rect x="285.4" y="613" width="2" height="11" fill="#e7eaec"/>
+<circle cx="265.1" cy="618.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="625" width="136.2" height="9" fill="#a78bfa"><title>Nanite, một ISM B1_edge_eye (không sáng): frame 4.46 ms (224 fps), GPU 3.31, RT 3.91, draws 13.0</title></rect>
+<rect x="290.1" y="624" width="2" height="11" fill="#e7eaec"/>
+<circle cx="309.6" cy="629.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="675" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B2_mid_high (không sáng)</text>
+<rect x="190" y="650" width="528.9" height="9" fill="#f0a640"><title>LOD, tier Megascans B2_mid_high (không sáng): frame 17.31 ms (58 fps), GPU 15.72, RT 17.24, draws 790.0</title></rect>
+<rect x="669.3" y="649" width="2" height="11" fill="#e7eaec"/>
+<circle cx="716.5" cy="654.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="661" width="496.6" height="9" fill="#e06a4f"><title>LOD, một ISM B2_mid_high (không sáng): frame 16.26 ms (62 fps), GPU 14.89, RT 3.25, draws 19.0</title></rect>
+<rect x="643.7" y="660" width="2" height="11" fill="#e7eaec"/>
+<circle cx="289.2" cy="665.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="672" width="128.5" height="9" fill="#ffd166"><title>LOD gắt, một ISM B2_mid_high (không sáng): frame 4.21 ms (238 fps), GPU 3.41, RT 2.52, draws 19.0</title></rect>
+<rect x="293.3" y="671" width="2" height="11" fill="#e7eaec"/>
+<circle cx="267.0" cy="676.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="683" width="136.4" height="9" fill="#a78bfa"><title>Nanite, một ISM B2_mid_high (không sáng): frame 4.47 ms (224 fps), GPU 3.42, RT 3.81, draws 13.0</title></rect>
+<rect x="293.6" y="682" width="2" height="11" fill="#e7eaec"/>
+<circle cx="306.4" cy="687.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="733" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B3_overview (không sáng)</text>
+<rect x="190" y="708" width="531.3" height="9" fill="#f0a640"><title>LOD, tier Megascans B3_overview (không sáng): frame 17.39 ms (57 fps), GPU 15.88, RT 17.37, draws 817.0</title></rect>
+<rect x="673.9" y="707" width="2" height="11" fill="#e7eaec"/>
+<circle cx="720.7" cy="712.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="719" width="553.5" height="9" fill="#e06a4f"><title>LOD, một ISM B3_overview (không sáng): frame 18.12 ms (55 fps), GPU 16.77, RT 3.24, draws 7.0</title></rect>
+<rect x="701.4" y="718" width="2" height="11" fill="#e7eaec"/>
+<circle cx="289.0" cy="723.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="730" width="107.9" height="9" fill="#ffd166"><title>LOD gắt, một ISM B3_overview (không sáng): frame 3.53 ms (283 fps), GPU 2.54, RT 2.95, draws 11.0</title></rect>
+<rect x="266.5" y="729" width="2" height="11" fill="#e7eaec"/>
+<circle cx="280.0" cy="734.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="741" width="123.2" height="9" fill="#a78bfa"><title>Nanite, một ISM B3_overview (không sáng): frame 4.03 ms (248 fps), GPU 2.49, RT 4.01, draws 13.0</title></rect>
+<rect x="265.0" y="740" width="2" height="11" fill="#e7eaec"/>
+<circle cx="312.5" cy="745.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="791" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B4_far (không sáng)</text>
+<rect x="190" y="766" width="512.5" height="9" fill="#f0a640"><title>LOD, tier Megascans B4_far (không sáng): frame 16.78 ms (60 fps), GPU 15.23, RT 16.77, draws 819.0</title></rect>
+<rect x="654.3" y="765" width="2" height="11" fill="#e7eaec"/>
+<circle cx="702.4" cy="770.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="777" width="541.5" height="9" fill="#e06a4f"><title>LOD, một ISM B4_far (không sáng): frame 17.73 ms (56 fps), GPU 16.38, RT 3.26, draws 7.0</title></rect>
+<rect x="689.5" y="776" width="2" height="11" fill="#e7eaec"/>
+<circle cx="289.6" cy="781.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="788" width="84.3" height="9" fill="#ffd166"><title>LOD gắt, một ISM B4_far (không sáng): frame 2.76 ms (362 fps), GPU 1.86, RT 2.48, draws 9.0</title></rect>
+<rect x="245.9" y="787" width="2" height="11" fill="#e7eaec"/>
+<circle cx="265.7" cy="792.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="799" width="102.9" height="9" fill="#a78bfa"><title>Nanite, một ISM B4_far (không sáng): frame 3.37 ms (297 fps), GPU 1.71, RT 3.35, draws 13.0</title></rect>
+<rect x="241.3" y="798" width="2" height="11" fill="#e7eaec"/>
+<circle cx="292.4" cy="803.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="849" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B5_extreme (không sáng)</text>
+<rect x="190" y="824" width="284.1" height="9" fill="#f0a640"><title>LOD, tier Megascans B5_extreme (không sáng): frame 9.30 ms (108 fps), GPU 7.92, RT 9.27, draws 666.0</title></rect>
+<rect x="430.8" y="823" width="2" height="11" fill="#e7eaec"/>
+<circle cx="473.2" cy="828.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="835" width="530.7" height="9" fill="#e06a4f"><title>LOD, một ISM B5_extreme (không sáng): frame 17.37 ms (58 fps), GPU 15.95, RT 3.19, draws 7.0</title></rect>
+<rect x="676.3" y="834" width="2" height="11" fill="#e7eaec"/>
+<circle cx="287.6" cy="839.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="846" width="80.4" height="9" fill="#ffd166"><title>LOD gắt, một ISM B5_extreme (không sáng): frame 2.63 ms (380 fps), GPU 1.67, RT 2.38, draws 7.0</title></rect>
+<rect x="240.0" y="845" width="2" height="11" fill="#e7eaec"/>
+<circle cx="262.8" cy="850.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="857" width="98.4" height="9" fill="#a78bfa"><title>Nanite, một ISM B5_extreme (không sáng): frame 3.22 ms (310 fps), GPU 1.57, RT 3.21, draws 13.0</title></rect>
+<rect x="237.0" y="856" width="2" height="11" fill="#e7eaec"/>
+<circle cx="288.0" cy="861.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="907" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B6_topdown (không sáng)</text>
+<rect x="190" y="882" width="457.4" height="9" fill="#f0a640"><title>LOD, tier Megascans B6_topdown (không sáng): frame 14.97 ms (67 fps), GPU 13.45, RT 14.92, draws 658.0</title></rect>
+<rect x="599.8" y="881" width="2" height="11" fill="#e7eaec"/>
+<circle cx="645.6" cy="886.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="893" width="452.8" height="9" fill="#e06a4f"><title>LOD, một ISM B6_topdown (không sáng): frame 14.82 ms (67 fps), GPU 13.54, RT 3.11, draws 21.0</title></rect>
+<rect x="602.7" y="892" width="2" height="11" fill="#e7eaec"/>
+<circle cx="285.0" cy="897.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="904" width="117.3" height="9" fill="#ffd166"><title>LOD gắt, một ISM B6_topdown (không sáng): frame 3.84 ms (260 fps), GPU 2.93, RT 3.07, draws 21.0</title></rect>
+<rect x="278.6" y="903" width="2" height="11" fill="#e7eaec"/>
+<circle cx="283.7" cy="908.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="915" width="140.9" height="9" fill="#a78bfa"><title>Nanite, một ISM B6_topdown (không sáng): frame 4.61 ms (217 fps), GPU 3.64, RT 3.55, draws 13.0</title></rect>
+<rect x="300.2" y="914" width="2" height="11" fill="#e7eaec"/>
+<circle cx="298.4" cy="919.5" r="3" fill="none" stroke="#e7eaec"/>
+<text x="182" y="965" fill="#e7eaec" font-size="12" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B7_sky (không sáng)</text>
+<rect x="190" y="940" width="63.4" height="9" fill="#f0a640"><title>LOD, tier Megascans B7_sky (không sáng): frame 2.08 ms (481 fps), GPU 0.65, RT 2.01, draws 5.0</title></rect>
+<rect x="208.9" y="939" width="2" height="11" fill="#e7eaec"/>
+<circle cx="251.5" cy="944.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="951" width="62.2" height="9" fill="#e06a4f"><title>LOD, một ISM B7_sky (không sáng): frame 2.04 ms (491 fps), GPU 0.67, RT 1.92, draws 21.0</title></rect>
+<rect x="209.6" y="950" width="2" height="11" fill="#e7eaec"/>
+<circle cx="248.6" cy="955.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="962" width="62.0" height="9" fill="#ffd166"><title>LOD gắt, một ISM B7_sky (không sáng): frame 2.03 ms (493 fps), GPU 0.72, RT 1.88, draws 19.0</title></rect>
+<rect x="210.9" y="961" width="2" height="11" fill="#e7eaec"/>
+<circle cx="247.5" cy="966.5" r="3" fill="none" stroke="#e7eaec"/>
+<rect x="190" y="973" width="83.4" height="9" fill="#a78bfa"><title>Nanite, một ISM B7_sky (không sáng): frame 2.73 ms (366 fps), GPU 1.04, RT 2.72, draws 13.0</title></rect>
+<rect x="220.8" y="972" width="2" height="11" fill="#e7eaec"/>
+<circle cx="273.2" cy="977.5" r="3" fill="none" stroke="#e7eaec"/>
+</svg>

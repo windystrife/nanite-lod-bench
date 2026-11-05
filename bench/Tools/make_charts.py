@@ -8,8 +8,18 @@ import json
 import os
 import sys
 
-COL = {"M": "#f0a640", "L": "#98a2ab", "Nz": "#4fa3e0", "Ns": "#5cc8a8", "LOD": "#98a2ab", "Nanite": "#4fa3e0", "Mi": "#e06a4f", "Mx": "#ffd166", "Nzi": "#a78bfa"}
-NAME = {"M": "LOD, Megascans tiers", "L": "LOD, auto (article)", "Nz": "Nanite, Zone9 knobs", "Ns": "Nanite, stock knobs", "Mi": "LOD, one ISM", "Mx": "LOD aggressive, one ISM", "Nzi": "Nanite, one ISM"}
+COL = {"M": "#f0a640", "L": "#98a2ab", "Nz": "#4fa3e0", "Ns": "#5cc8a8", "LOD": "#98a2ab", "Nanite": "#4fa3e0", "Mi": "#e06a4f", "Mx": "#ffd166", "Mimp": "#ff7eb6", "Nzi": "#a78bfa"}
+NAME = {"M": "LOD, Megascans tiers", "L": "LOD, auto (article)", "Nz": "Nanite, Zone9 knobs", "Ns": "Nanite, stock knobs", "Mi": "LOD, one ISM", "Mx": "LOD aggressive, one ISM", "Mimp": "LOD + impostor, one ISM", "Nzi": "Nanite, one ISM"}
+NAME_VI = {"M": "LOD, tier Megascans", "L": "LOD, auto (bài báo)", "Nz": "Nanite, cấu hình Zone9", "Ns": "Nanite, mặc định",
+           "Mi": "LOD, một ISM", "Mx": "LOD gắt, một ISM", "Mimp": "LOD + impostor, một ISM", "Nzi": "Nanite, một ISM"}
+TXT = {"en": {"fps": "FPS against copies, lit (median over flights)", "frame": "Frame time at %d copies (bar = frame ms; tick = GPU ms; ring = render thread ms)", "unlit": " (unlit)", "copies": "copies"},
+       "vi": {"fps": "FPS theo số bàn, có chiếu sáng (trung vị các lượt bay)", "frame": "Thời gian frame ở %d bàn (thanh = frame ms; vạch = GPU ms; vòng = render thread ms)", "unlit": " (không sáng)", "copies": "bàn"}}
+LANG = {"v": "en"}
+
+
+def nm(a):
+    return (NAME_VI if LANG["v"] == "vi" else NAME).get(a, a)
+
 INK, MUTED, LINE, PANEL = "#e7eaec", "#98a2ab", "#2a3139", "#171c21"
 FONT = 'font-family="Source Sans 3, Segoe UI, system-ui, sans-serif"'
 
@@ -36,12 +46,12 @@ def fps_panels(pairs, arms, path):
     H = top + rows * (ph + 44) + 20
     out = ['<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="0 0 %d %d">' % (W, H, W, H),
            '<rect width="100%%" height="100%%" fill="#101316"/>',
-           '<text x="20" y="28" fill="%s" font-size="18" font-weight="600" %s>FPS against copies, lit (median over flights)</text>' % (INK, FONT)]
+           '<text x="20" y="28" fill="%s" font-size="18" font-weight="600" %s>%s</text>' % (INK, FONT, esc(TXT[LANG["v"]]["fps"]))]
     lx = 20
     for a in arms:
         out.append('<rect x="%d" y="40" width="14" height="4" fill="%s"/><text x="%d" y="47" fill="%s" font-size="13" %s>%s</text>' % (
-            lx, COL.get(a, INK), lx + 20, MUTED, FONT, esc(NAME.get(a, a))))
-        lx += 30 + 7 * len(NAME.get(a, a))
+            lx, COL.get(a, INK), lx + 20, MUTED, FONT, esc(nm(a))))
+        lx += 30 + 7 * len(nm(a))
     for i, (bid, bname) in enumerate(views):
         cx = 20 + (i % cols) * (pw + gap)
         cy = top + (i // cols) * (ph + 44)
@@ -77,7 +87,7 @@ def fps_panels(pairs, arms, path):
             out.append('<path d="%s" fill="none" stroke="%s" stroke-width="2"/>' % (d, COL.get(a, INK)))
             for c, f in p:
                 out.append('<circle cx="%.1f" cy="%.1f" r="2.6" fill="%s"><title>%s %d copies: %.1f fps</title></circle>' % (
-                    X(c), Y(f), COL.get(a, INK), esc(NAME.get(a, a)), c, f))
+                    X(c), Y(f), COL.get(a, INK), esc(nm(a)), c, f))
     out.append("</svg>")
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(out))
@@ -92,26 +102,26 @@ def frame_bars(pairs, arms, count, path):
     sx = (W - left - 30) / vmax
     out = ['<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="0 0 %d %d">' % (W, H, W, H),
            '<rect width="100%%" height="100%%" fill="#101316"/>',
-           '<text x="20" y="28" fill="%s" font-size="18" font-weight="600" %s>Frame time at %d copies (bar = frame ms; tick = GPU ms; ring = render thread ms)</text>' % (INK, FONT, count)]
+           '<text x="20" y="28" fill="%s" font-size="18" font-weight="600" %s>%s</text>' % (INK, FONT, esc(TXT[LANG["v"]]["frame"] % count))]
     lx = 20
     for a in arms:
         out.append('<rect x="%d" y="40" width="14" height="8" fill="%s"/><text x="%d" y="48" fill="%s" font-size="13" %s>%s</text>' % (
-            lx, COL.get(a, INK), lx + 20, MUTED, FONT, esc(NAME.get(a, a))))
-        lx += 30 + 7 * len(NAME.get(a, a))
+            lx, COL.get(a, INK), lx + 20, MUTED, FONT, esc(nm(a))))
+        lx += 30 + 7 * len(nm(a))
     for t in range(0, int(vmax) + 1, 5 if vmax > 25 else 2):
         x = left + t * sx
         out.append('<line x1="%.1f" x2="%.1f" y1="%d" y2="%d" stroke="%s"/>' % (x, x, top - 8, H - 30, LINE))
         out.append('<text x="%.1f" y="%d" fill="%s" font-size="10" text-anchor="middle" %s>%d ms</text>' % (x, H - 16, MUTED, FONT, t))
     y = top
     for r in rows:
-        label = "%s%s" % (r["bookmark_name"], " (unlit)" if r["unlit"] else "")
+        label = "%s%s" % (r["bookmark_name"], TXT[LANG["v"]]["unlit"] if r["unlit"] else "")
         out.append('<text x="%d" y="%d" fill="%s" font-size="12" text-anchor="end" %s>%s</text>' % (left - 8, y + per / 2 - 4, INK, FONT, esc(label)))
         for k, a in enumerate(arms):
             fm, g, rt = (r.get("%s_%s" % (a, m)) for m in ("frame_ms_med", "gpu_ms_med", "render_ms_med"))
             yy = y + k * (bar + gapa)
             if num(fm):
                 out.append('<rect x="%d" y="%d" width="%.1f" height="%d" fill="%s"><title>%s %s: frame %.2f ms (%.0f fps), GPU %.2f, RT %.2f, draws %s</title></rect>' % (
-                    left, yy, fm * sx, bar, COL.get(a, INK), esc(NAME.get(a, a)), esc(label), fm, 1000 / fm if fm else 0,
+                    left, yy, fm * sx, bar, COL.get(a, INK), esc(nm(a)), esc(label), fm, 1000 / fm if fm else 0,
                     g if num(g) else -1, rt if num(rt) else -1, r.get("%s_drawcalls_med" % a)))
                 if num(g):
                     out.append('<rect x="%.1f" y="%d" width="2" height="%d" fill="%s"/>' % (left + g * sx - 1, yy - 1, bar + 2, INK))
@@ -127,6 +137,7 @@ def main():
     rep = json.load(open(sys.argv[1], encoding="utf-8"))
     out = sys.argv[2]
     os.makedirs(out, exist_ok=True)
+    LANG["v"] = sys.argv[4] if len(sys.argv) > 4 else "en"
     arms = sys.argv[3].split(",") if len(sys.argv) > 3 else rep["arms"]
     arms = [a for a in arms if a in rep["arms"]]
     pairs = rep["pairs"]
