@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nanite vs LOD bench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root { --ground: #101316; --panel: #171c21; --line: #2a3139; --ink: #e7eaec; --muted: #98a2ab; --sun: #f0a640; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--ground); color: var(--ink); font: 16px/1.5 "Source Sans 3", "Segoe UI", system-ui, sans-serif; margin: 0; }
+main { max-width: 960px; margin: 0 auto; padding: 48px 16px 64px; display: grid; gap: 22px; }
+.eyebrow { font: 500 12px/1.2 "IBM Plex Mono", ui-monospace, Consolas, monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--sun); }
+h1 { font: 600 clamp(34px, 6vw, 56px)/1.05 "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif; margin: 0; }
+h2 { font: 600 26px/1.1 "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif; margin: 16px 0 0; }
+h3 { font: 600 20px/1.15 "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif; margin: 8px 0 0; }
+p { margin: 0; color: var(--muted); max-width: 72ch; }
+p b, li b { color: var(--ink); font-weight: 600; }
+a { color: var(--sun); }
+code { font: 500 13px "IBM Plex Mono", ui-monospace, Consolas, monospace; color: var(--ink); }
+.charts { display: grid; gap: 14px; }
+.charts figure, .shots figure { margin: 0; display: grid; gap: 6px; min-width: 0; }
+.charts a, .shots a { display: block; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; line-height: 0; }
+.charts a:hover, .shots a:hover { border-color: var(--sun); }
+.charts img, .shots img { width: 100%; height: auto; display: block; }
+figcaption { color: var(--muted); font-size: 14px; }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+ul.alike { margin: 0; padding-left: 20px; color: var(--muted); max-width: 76ch; display: grid; gap: 6px; }
+.cmp { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+.cmp table { border-collapse: collapse; width: 100%; min-width: 720px; font-size: 14px; }
+.cmp th, .cmp td { text-align: left; vertical-align: top; padding: 8px 10px; border-top: 1px solid var(--line); white-space: nowrap; }
+.cmp thead th { border-top: 0; background: var(--panel); font: 500 11px/1.2 "IBM Plex Mono", ui-monospace, Consolas, monospace; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.cmp thead th.w { color: var(--sun); }
+.cmp tbody th { font-weight: 600; color: var(--ink); }
+.cmp td { color: var(--muted); }
+.cmp td b { color: var(--ink); font-weight: 600; }
+p.note { font-size: 14px; }
+.cmp.wrap th, .cmp.wrap td { white-space: normal; }
+.cmp.wrap table { min-width: 640px; }
+.cmp.wrap tbody th { width: 16%; }
+.cmp.wrap td { width: 42%; }
+
+</style>
+<main>
+<div class="eyebrow">Unreal Engine 5.8 · Radeon 680M handheld · 1280×800</div>
+<h1>Nanite vs LOD</h1>
+<p>A replication of <a href="https://crdg.jp/studio-tech-1/en/2025/05/29/3438/">CRDG Studio's Nanite vs LOD test</a> (UE 5.5, RX 580) on the Unreal Engine 5.8.4 build of a shipping game, measured on an <b>AOKZOE A1 handheld (Radeon 680M, RDNA 2, 12 CU)</b> at 1280×800. The same Megascans <i>Wooden Table</i> is placed 1, 2048, 4096 and 8192 times as separate static mesh actors and seen from eight camera views, lit and unlit.</p>
+<p>Two meshes, one per side: <b>Nanite</b> uses the raw scan (2 000 018 triangles). <b>LOD</b> is a classic non-Nanite mesh built from the Megascans High, Mid and Low tiers with generated LODs in between (8 LODs, LOD0 21 852 triangles). Both are shadowed by cascaded shadow maps, no virtual shadow maps, TAA at native resolution.</p>
+<h2>Verdict</h2>
+<p><b>From 2048 copies on, Nanite is faster in every view that has tables in it</b> (the one exception, the close view at 2048, is a tie at 0.97×): 1.4–1.7× at 2048, 1.2–2.2× at 4096 and 1.46–3.1× at 8192 lit, up to 4.5× unlit. At 8192 copies the LOD mesh runs 48–83 FPS, Nanite with the game's settings 118–163 FPS.</p>
+<p><b>The LOD side is limited by the render thread, not by triangles.</b> At 8192 copies its render-thread time equals the frame time in every view with tables in it (12–21 ms), the far view and the unlit pass included, while Nanite's render thread stays at 3.5–6.2 ms. This is the per-primitive CPU cost (visibility, LOD selection, mesh draw command setup) the original article found in <code>MeshDrawCommandPassSetupTask</code>.</p>
+<p><b>With few objects, the LOD mesh wins.</b> A single table renders at 211–247 FPS as LOD against 185–212 FPS as Nanite (11–16 % slower): Nanite has a fixed cost of about 1 ms of GPU time on this GPU. The sky view, with almost nothing on screen, keeps LOD ahead at every count.</p>
+<p><b>The game's Nanite settings beat the engine defaults in all 40 view and count combinations</b>, by 0.3–29 % (<code>r.Nanite.MaxPixelsPerEdge=2</code> and <code>r.Nanite.Culling.TwoPass=0</code> against 1 and on).</p>
+<p><b>What this means for impostors:</b> they would not fix the LOD side here. Its cost is per actor on the CPU, and an impostor is still one actor. The levers are instancing (ISM/HISM, HLOD) or Nanite. Impostors help when the GPU is busy with far, dense geometry, which is not the case in this test.</p>
+<h2>At a glance</h2><div class="charts">
+<figure><a href="charts/megascans/fps-vs-copies.svg"><img src="charts/megascans/fps-vs-copies.svg" alt="FPS against copies per view, Megascans table"></a><figcaption>Megascans table: FPS against the number of copies, lit, one panel per camera view (median of two flights per arm).</figcaption></figure>
+<figure><a href="charts/megascans/frame-8192.svg"><img src="charts/megascans/frame-8192.svg" alt="Frame time at 8192 copies"></a><figcaption>Frame time at 8192 copies, lit and unlit: bar = frame, white tick = GPU, ring = render thread.</figcaption></figure>
+</div>
+<h2>What the camera sees</h2><div class="shots">
+<figure><a href="img/megascans/M_n08192_B0_close.webp"><img src="img/megascans/M_n08192_B0_close.webp" alt="LOD, 8192 copies, close view: 83 FPS" loading="lazy"></a><figcaption>LOD, 8192 copies, close view: 83 FPS</figcaption></figure>
+<figure><a href="img/megascans/Nz_n08192_B0_close.webp"><img src="img/megascans/Nz_n08192_B0_close.webp" alt="Nanite (game settings), 8192 copies, close view: 121 FPS" loading="lazy"></a><figcaption>Nanite (game settings), 8192 copies, close view: 121 FPS</figcaption></figure>
+<figure><a href="img/megascans/M_n08192_B1_edge_eye.webp"><img src="img/megascans/M_n08192_B1_edge_eye.webp" alt="LOD, 8192 copies, eye level at the edge: 55 FPS" loading="lazy"></a><figcaption>LOD, 8192 copies, eye level at the edge: 55 FPS</figcaption></figure>
+<figure><a href="img/megascans/Nz_n08192_B1_edge_eye.webp"><img src="img/megascans/Nz_n08192_B1_edge_eye.webp" alt="Nanite, 8192 copies, eye level at the edge: 128 FPS" loading="lazy"></a><figcaption>Nanite, 8192 copies, eye level at the edge: 128 FPS</figcaption></figure>
+<figure><a href="img/megascans/M_n08192_B3_overview.webp"><img src="img/megascans/M_n08192_B3_overview.webp" alt="LOD, 8192 copies, overview: 51 FPS" loading="lazy"></a><figcaption>LOD, 8192 copies, overview: 51 FPS</figcaption></figure>
+<figure><a href="img/megascans/Nz_n08192_B3_overview.webp"><img src="img/megascans/Nz_n08192_B3_overview.webp" alt="Nanite, 8192 copies, overview: 135 FPS" loading="lazy"></a><figcaption>Nanite, 8192 copies, overview: 135 FPS</figcaption></figure>
+</div>
+<h2 id="setup">Setup</h2>
+<div class="cmp wrap"><table><thead><tr><th></th><th class="w">This test</th><th>CRDG article</th></tr></thead><tbody><tr><th>GPU</th><td><b>Radeon 680M</b> (AOKZOE A1 handheld, RDNA 2, 12 CU, shared memory), Adrenalin 26.10.1, on AC power</td><td>RX 580</td></tr><tr><th>Engine</th><td>Unreal Engine <b>5.8.4</b> (the game's engine build), cooked Development package, D3D12 SM6</td><td>UE 5.5, editor</td></tr><tr><th>Resolution</th><td>1280×800 fullscreen, screen percentage 100, <b>TAA</b> (r.AntiAliasingMethod=2, quality 1)</td><td>—</td></tr><tr><th>Mesh</th><td>Megascans Wooden Table <code>uc1kebzfa</code>, 78 × 79 × 52 cm</td><td>A Megascans table</td></tr><tr><th>Nanite mesh</th><td>Raw scan, <b>2 000 018</b> triangles, fallback 7 090 triangles</td><td>Fallback 7 430 triangles</td></tr><tr><th>LOD mesh</th><td><b>8 LODs</b>: High tier 21 852 · 17 482 · 14 204 · Mid tier 12 236 · 7 342 · 4 894 · Low tier 3 288 · 1 644; screen sizes 1.0 / 0.6 / 0.4 / 0.28 / 0.18 / 0.12 / 0.07 / 0.04</td><td>4 auto LODs at 5 / 2.5 / 1 / 0.5 %</td></tr><tr><th>Placement</th><td>1 / 2048 / 4096 / 8192 <code>StaticMeshActor</code>s on a square grid, 102 cm cells for both meshes</td><td>1 / 2048 / 4096 / 8192 actors</td></tr><tr><th>Lighting</th><td>Movable sun with <b>cascaded shadow maps</b> (1 cascade, 1024, caching off), sky atmosphere, sky light, height fog. <b>No VSM</b>, no GI, no distance-field shadows. Scalability Low (the game's 680M tier).</td><td>Lit and unlit</td></tr><tr><th>Nanite settings</th><td><b>Nz</b>: the game's (MaxPixelsPerEdge 2, two-pass culling off) · <b>Ns</b>: engine defaults (1, on)</td><td>Defaults</td></tr></tbody></table></div>
+<h2 id="numbers">Numbers, 8192 copies, lit</h2>
+<div class="cmp"><table><thead><tr><th>View</th>
+<th class="w">LOD (Megascans tiers) FPS</th>
+<th>Nanite, Zone9 knobs FPS</th>
+<th>Nanite, stock knobs FPS</th>
+<th>Nz / M</th>
+<th>Ns / M</th>
+<th>GPU ms M/Nz/Ns</th>
+<th>RT ms M/Nz/Ns</th>
+<th>spread ms</th></tr></thead><tbody>
+<tr><th>B0_close</th><td>83.2</td><td><b>121.1</b></td><td>111.6</td><td>1.46×</td><td>1.34×</td><td>10.63 / 7.04 / 7.69</td><td>11.95 / 6.03 / 6.90</td><td>0.06 / 0.15 / 0.05</td></tr>
+<tr><th>B1_edge_eye</th><td>54.7</td><td><b>128.2</b></td><td>111.4</td><td>2.34×</td><td>2.04×</td><td>16.89 / 6.65 / 7.69</td><td>18.30 / 5.85 / 7.06</td><td>0.01 / 0.01 / 0.09</td></tr>
+<tr><th>B2_mid_high</th><td>47.7</td><td><b>124.2</b></td><td>103.7</td><td>2.61×</td><td>2.18×</td><td>19.63 / 6.92 / 8.32</td><td>20.95 / 5.95 / 7.09</td><td>0.09 / 0.00 / 0.07</td></tr>
+<tr><th>B3_overview</th><td>50.6</td><td><b>134.5</b></td><td>120.7</td><td>2.66×</td><td>2.39×</td><td>18.47 / 6.29 / 7.13</td><td>19.75 / 5.75 / 6.67</td><td>0.11 / 0.01 / 0.06</td></tr>
+<tr><th>B4_far</th><td>52.3</td><td><b>159.7</b></td><td>145.3</td><td>3.06×</td><td>2.78×</td><td>17.76 / 5.18 / 5.79</td><td>19.11 / 5.36 / 6.33</td><td>0.10 / 0.01 / 0.01</td></tr>
+<tr><th>B5_extreme</th><td>59.9</td><td><b>162.7</b></td><td>149.5</td><td>2.72×</td><td>2.50×</td><td>15.12 / 5.06 / 5.57</td><td>16.64 / 5.30 / 6.28</td><td>0.04 / 0.03 / 0.02</td></tr>
+<tr><th>B6_topdown</th><td>57.6</td><td><b>118.1</b></td><td>101.9</td><td>2.05×</td><td>1.77×</td><td>16.04 / 7.27 / 8.55</td><td>17.36 / 6.16 / 7.25</td><td>0.04 / 0.05 / 0.00</td></tr>
+<tr><th>B7_sky</th><td><b>245.2</b></td><td>199.2</td><td>174.9</td><td>0.81×</td><td>0.71×</td><td>2.38 / 3.68 / 3.97</td><td>4.05 / 4.99 / 5.70</td><td>0.03 / 0.05 / 0.03</td></tr>
+</tbody></table></div>
+<h3>8192 copies, unlit</h3>
+<div class="cmp"><table><thead><tr><th>View</th>
+<th class="w">LOD (Megascans tiers) FPS</th>
+<th>Nanite, Zone9 knobs FPS</th>
+<th>Nanite, stock knobs FPS</th>
+<th>Nz / M</th>
+<th>Ns / M</th>
+<th>GPU ms M/Nz/Ns</th>
+<th>RT ms M/Nz/Ns</th>
+<th>spread ms</th></tr></thead><tbody>
+<tr><th>B0_close</th><td>142.3</td><td><b>202.9</b></td><td>195.0</td><td>1.43×</td><td>1.37×</td><td>5.93 / 3.94 / 4.11</td><td>7.03 / 3.48 / 4.02</td><td>0.39 / 0.41 / 0.02</td></tr>
+<tr><th>B1_edge_eye</th><td>84.3</td><td><b>218.1</b></td><td>194.2</td><td>2.59×</td><td>2.30×</td><td>10.45 / 3.56 / 4.10</td><td>11.80 / 3.48 / 4.10</td><td>1.33 / 0.02 / 0.00</td></tr>
+<tr><th>B2_mid_high</th><td>58.4</td><td><b>210.2</b></td><td>162.8</td><td>3.60×</td><td>2.79×</td><td>15.64 / 3.75 / 4.97</td><td>17.05 / 3.56 / 4.63</td><td>0.32 / 0.01 / 0.26</td></tr>
+<tr><th>B3_overview</th><td>58.0</td><td><b>225.7</b></td><td>216.6</td><td>3.89×</td><td>3.74×</td><td>15.68 / 2.80 / 3.64</td><td>17.19 / 4.41 / 4.00</td><td>0.27 / 0.04 / 0.01</td></tr>
+<tr><th>B4_far</th><td>59.9</td><td><b>269.2</b></td><td>268.2</td><td>4.49×</td><td>4.48×</td><td>15.11 / 1.99 / 2.42</td><td>16.63 / 3.70 / 3.72</td><td>0.11 / 0.01 / 0.01</td></tr>
+<tr><th>B5_extreme</th><td>108.1</td><td><b>283.7</b></td><td>274.8</td><td>2.62×</td><td>2.54×</td><td>7.87 / 1.80 / 2.05</td><td>9.17 / 3.51 / 3.63</td><td>0.04 / 0.00 / 0.06</td></tr>
+<tr><th>B6_topdown</th><td>68.7</td><td><b>204.8</b></td><td>166.1</td><td>2.98×</td><td>2.42×</td><td>13.07 / 3.95 / 4.98</td><td>14.50 / 3.52 / 4.40</td><td>0.37 / 0.06 / 0.01</td></tr>
+<tr><th>B7_sky</th><td><b>489.6</b></td><td>350.8</td><td>306.5</td><td>0.72×</td><td>0.63×</td><td>0.65 / 1.08 / 1.27</td><td>1.96 / 2.84 / 3.25</td><td>0.04 / 0.03 / 0.02</td></tr>
+</tbody></table></div>
+<h3>4096 copies, lit</h3>
+<div class="cmp"><table><thead><tr><th>View</th>
+<th class="w">LOD (Megascans tiers) FPS</th>
+<th>Nanite, Zone9 knobs FPS</th>
+<th>Nanite, stock knobs FPS</th>
+<th>Nz / M</th>
+<th>Ns / M</th>
+<th>GPU ms M/Nz/Ns</th>
+<th>RT ms M/Nz/Ns</th>
+<th>spread ms</th></tr></thead><tbody>
+<tr><th>B0_close</th><td>107.4</td><td><b>130.3</b></td><td>120.0</td><td>1.21×</td><td>1.12×</td><td>8.14 / 6.53 / 7.15</td><td>9.29 / 5.82 / 6.62</td><td>0.08 / 0.03 / 0.08</td></tr>
+<tr><th>B1_edge_eye</th><td>76.9</td><td><b>166.0</b></td><td>147.6</td><td>2.16×</td><td>1.92×</td><td>11.62 / 4.93 / 5.63</td><td>12.97 / 5.28 / 6.25</td><td>0.04 / 0.04 / 0.05</td></tr>
+<tr><th>B2_mid_high</th><td>77.9</td><td><b>160.9</b></td><td>142.5</td><td>2.06×</td><td>1.83×</td><td>11.43 / 5.12 / 5.86</td><td>12.78 / 5.33 / 6.27</td><td>0.02 / 0.02 / 0.22</td></tr>
+<tr><th>B3_overview</th><td>80.7</td><td><b>156.6</b></td><td>145.1</td><td>1.94×</td><td>1.80×</td><td>11.04 / 5.29 / 5.79</td><td>12.33 / 5.42 / 6.25</td><td>0.03 / 0.00 / 0.15</td></tr>
+<tr><th>B4_far</th><td>85.1</td><td><b>176.9</b></td><td>164.1</td><td>2.08×</td><td>1.93×</td><td>10.39 / 4.57 / 4.91</td><td>11.72 / 5.28 / 6.07</td><td>0.01 / 0.02 / 0.09</td></tr>
+<tr><th>B5_extreme</th><td>95.9</td><td><b>173.0</b></td><td>165.0</td><td>1.80×</td><td>1.72×</td><td>8.96 / 4.41 / 4.78</td><td>10.34 / 5.56 / 6.02</td><td>0.03 / 0.36 / 0.04</td></tr>
+<tr><th>B6_topdown</th><td>79.4</td><td><b>141.9</b></td><td>125.0</td><td>1.79×</td><td>1.57×</td><td>11.26 / 5.92 / 6.83</td><td>12.54 / 5.69 / 6.53</td><td>0.05 / 0.03 / 0.17</td></tr>
+<tr><th>B7_sky</th><td><b>247.5</b></td><td>207.1</td><td>182.8</td><td>0.84×</td><td>0.74×</td><td>2.29 / 3.32 / 3.60</td><td>4.01 / 4.81 / 5.46</td><td>0.08 / 0.01 / 0.03</td></tr>
+</tbody></table></div>
+<h3>2048 copies, lit</h3>
+<div class="cmp"><table><thead><tr><th>View</th>
+<th class="w">LOD (Megascans tiers) FPS</th>
+<th>Nanite, Zone9 knobs FPS</th>
+<th>Nanite, stock knobs FPS</th>
+<th>Nz / M</th>
+<th>Ns / M</th>
+<th>GPU ms M/Nz/Ns</th>
+<th>RT ms M/Nz/Ns</th>
+<th>spread ms</th></tr></thead><tbody>
+<tr><th>B0_close</th><td><b>139.9</b></td><td>136.4</td><td>126.8</td><td>0.97×</td><td>0.91×</td><td>6.16 / 6.15 / 6.69</td><td>7.18 / 5.68 / 6.45</td><td>0.22 / 0.04 / 0.06</td></tr>
+<tr><th>B1_edge_eye</th><td>110.1</td><td><b>184.8</b></td><td>163.0</td><td>1.68×</td><td>1.48×</td><td>7.88 / 4.36 / 4.90</td><td>9.08 / 5.16 / 6.09</td><td>0.12 / 0.03 / 0.04</td></tr>
+<tr><th>B2_mid_high</th><td>119.1</td><td><b>183.9</b></td><td>163.0</td><td>1.54×</td><td>1.37×</td><td>7.16 / 4.38 / 4.81</td><td>8.36 / 5.18 / 6.09</td><td>0.05 / 0.06 / 0.09</td></tr>
+<tr><th>B3_overview</th><td>116.4</td><td><b>168.5</b></td><td>157.4</td><td>1.45×</td><td>1.35×</td><td>7.30 / 4.83 / 5.20</td><td>8.56 / 5.32 / 6.30</td><td>0.05 / 0.03 / 0.07</td></tr>
+<tr><th>B4_far</th><td>123.8</td><td><b>185.3</b></td><td>170.4</td><td>1.50×</td><td>1.38×</td><td>6.89 / 4.25 / 4.35</td><td>8.09 / 5.27 / 5.85</td><td>0.05 / 0.16 / 0.00</td></tr>
+<tr><th>B5_extreme</th><td>136.4</td><td><b>190.3</b></td><td>171.7</td><td>1.40×</td><td>1.26×</td><td>6.11 / 4.15 / 4.34</td><td>7.33 / 5.16 / 5.80</td><td>0.09 / 0.05 / 0.04</td></tr>
+<tr><th>B6_topdown</th><td>116.6</td><td><b>162.7</b></td><td>143.9</td><td>1.40×</td><td>1.23×</td><td>7.35 / 5.05 / 5.79</td><td>8.56 / 5.31 / 6.40</td><td>0.07 / 0.06 / 0.04</td></tr>
+<tr><th>B7_sky</th><td><b>247.1</b></td><td>207.3</td><td>183.6</td><td>0.84×</td><td>0.74×</td><td>2.24 / 3.19 / 3.49</td><td>4.03 / 4.80 / 5.44</td><td>0.08 / 0.07 / 0.01</td></tr>
+</tbody></table></div>
+<h3>1 copy, lit</h3>
+<div class="cmp"><table><thead><tr><th>View</th>
+<th class="w">LOD (Megascans tiers) FPS</th>
+<th>Nanite, Zone9 knobs FPS</th>
+<th>Nanite, stock knobs FPS</th>
+<th>Nz / M</th>
+<th>Ns / M</th>
+<th>GPU ms M/Nz/Ns</th>
+<th>RT ms M/Nz/Ns</th>
+<th>spread ms</th></tr></thead><tbody>
+<tr><th>B0_close</th><td><b>218.4</b></td><td>193.2</td><td>172.3</td><td>0.88×</td><td>0.79×</td><td>2.83 / 3.94 / 4.18</td><td>4.56 / 5.14 / 5.78</td><td>0.15 / 0.08 / 0.06</td></tr>
+<tr><th>B1_edge_eye</th><td><b>232.0</b></td><td>197.7</td><td>174.8</td><td>0.85×</td><td>0.75×</td><td>2.76 / 3.71 / 4.00</td><td>4.28 / 5.04 / 5.69</td><td>0.20 / 0.04 / 0.07</td></tr>
+<tr><th>B2_mid_high</th><td><b>225.1</b></td><td>197.7</td><td>174.8</td><td>0.88×</td><td>0.78×</td><td>2.80 / 3.75 / 4.00</td><td>4.43 / 5.02 / 5.70</td><td>0.04 / 0.05 / 0.03</td></tr>
+<tr><th>B3_overview</th><td><b>211.1</b></td><td>185.5</td><td>168.8</td><td>0.88×</td><td>0.80×</td><td>3.29 / 4.33 / 4.44</td><td>4.65 / 5.22 / 5.89</td><td>0.13 / 0.04 / 0.10</td></tr>
+<tr><th>B4_far</th><td><b>223.0</b></td><td>198.7</td><td>174.6</td><td>0.89×</td><td>0.78×</td><td>2.84 / 3.81 / 4.04</td><td>4.46 / 5.01 / 5.71</td><td>0.07 / 0.07 / 0.04</td></tr>
+<tr><th>B5_extreme</th><td><b>225.4</b></td><td>188.7</td><td>173.5</td><td>0.84×</td><td>0.77×</td><td>2.93 / 3.85 / 4.05</td><td>4.35 / 5.27 / 5.75</td><td>0.32 / 0.56 / 0.00</td></tr>
+<tr><th>B6_topdown</th><td><b>219.8</b></td><td>190.6</td><td>171.1</td><td>0.87×</td><td>0.78×</td><td>3.25 / 4.21 / 4.39</td><td>4.47 / 5.13 / 5.82</td><td>0.07 / 0.01 / 0.02</td></tr>
+<tr><th>B7_sky</th><td><b>246.6</b></td><td>211.5</td><td>187.1</td><td>0.86×</td><td>0.76×</td><td>2.21 / 3.06 / 3.33</td><td>4.03 / 4.70 / 5.33</td><td>0.01 / 0.07 / 0.07</td></tr>
+</tbody></table></div>
+<p class="note">FPS = 1000 / median frame time of the measured window (5 s per view and count). Two flights per arm, median of the two; "spread" = the difference between them, the run-to-run noise. GPU = last finished GPU frame, RT = render thread. Bold = fastest arm in the row.</p>
+<h2 id="appendix">Appendix: procedural table, auto LODs as in the article</h2>
+<p>Before the Megascans asset was available, the same campaign ran with a procedural 249 228-triangle table and auto-generated LODs as in the article (LOD0–3 = 5 / 2.5 / 1 / 0.5 % of the source, auto screen sizes), one flight per arm. The trend is the same: Nanite ahead from 2048 copies on (except the close view at 2048), LOD ahead with one copy and in the sky view.</p>
+<div class="charts"><figure><a href="charts/procedural/fps-vs-copies.svg"><img src="charts/procedural/fps-vs-copies.svg" alt="FPS against copies, procedural table"></a><figcaption>Procedural 249k-triangle table, one flight per arm.</figcaption></figure></div>
+<div class="cmp"><table><thead><tr><th>View</th>
+<th class="w">LOD (auto, article) FPS</th>
+<th>Nanite, Zone9 knobs FPS</th>
+<th>Nanite, stock knobs FPS</th>
+<th>Nz / L</th>
+<th>Ns / L</th>
+<th>GPU ms L/Nz/Ns</th>
+<th>RT ms L/Nz/Ns</th>
+<th>spread ms</th></tr></thead><tbody>
+<tr><th>B0_close</th><td>114.0</td><td><b>145.6</b></td><td>135.7</td><td>1.28×</td><td>1.19×</td><td>7.51 / 5.75 / 6.24</td><td>8.76 / 5.50 / 6.21</td><td>0.00 / 0.00 / 0.00</td></tr>
+<tr><th>B1_edge_eye</th><td>78.9</td><td><b>159.7</b></td><td>145.7</td><td>2.02×</td><td>1.85×</td><td>11.25 / 5.20 / 5.73</td><td>12.62 / 5.31 / 6.26</td><td>0.00 / 0.00 / 0.00</td></tr>
+<tr><th>B2_mid_high</th><td>62.8</td><td><b>137.7</b></td><td>128.3</td><td>2.19×</td><td>2.04×</td><td>14.48 / 6.13 / 6.66</td><td>15.89 / 5.67 / 6.44</td><td>0.00 / 0.00 / 0.00</td></tr>
+<tr><th>B3_overview</th><td>65.0</td><td><b>137.7</b></td><td>128.2</td><td>2.12×</td><td>1.97×</td><td>13.82 / 6.11 / 6.63</td><td>15.38 / 5.63 / 6.46</td><td>0.00 / 0.00 / 0.00</td></tr>
+<tr><th>B4_far</th><td>69.1</td><td><b>159.4</b></td><td>146.0</td><td>2.31×</td><td>2.11×</td><td>12.99 / 5.16 / 5.69</td><td>14.43 / 5.21 / 6.31</td><td>0.00 / 0.00 / 0.00</td></tr>
+<tr><th>B5_extreme</th><td>83.0</td><td><b>168.2</b></td><td>157.3</td><td>2.03×</td><td>1.89×</td><td>10.58 / 4.82 / 5.17</td><td>12.06 / 5.28 / 6.19</td><td>0.00 / 0.00 / 0.00</td></tr>
+<tr><th>B6_topdown</th><td>73.2</td><td><b>124.0</b></td><td>117.8</td><td>1.69×</td><td>1.61×</td><td>12.20 / 6.89 / 7.32</td><td>13.59 / 6.00 / 6.72</td><td>0.00 / 0.00 / 0.00</td></tr>
+<tr><th>B7_sky</th><td><b>243.2</b></td><td>203.5</td><td>176.7</td><td>0.84×</td><td>0.73×</td><td>2.30 / 3.62 / 3.89</td><td>4.09 / 4.88 / 5.64</td><td>0.00 / 0.00 / 0.00</td></tr>
+</tbody></table></div>
+<h2 id="method">Method</h2>
+<ul class="alike"><li><b>Flights.</b> One packaged game run per flight, order LOD, Nz, Ns, Ns, Nz, LOD: every arm twice, at both ends, so drift shows up as spread. Each flight takes 6.7 min; 4 min rest between flights keeps the handheld out of its thermal and power limits.</li><li><b>Per segment.</b> For each count and view: camera cut, 3 s settle (at least 5 frames), 5 s measured. Garbage collection is held off inside measured windows. FPS = 1000 / median frame time.</li><li><b>Counters.</b> Frame, game-thread, render-thread and RHI times from the engine timers, GPU time from the last finished GPU frame, draw calls from the RHI. Two flights per arm; the median is shown and the spread is the difference between them (median 0.05 ms, 90 % of segments under 0.22 ms, worst 1.33 ms).</li><li><b>Validity.</b> A flight counts only if the game kept the foreground the whole time, the display stayed 1280×800, the device stayed on AC, no other GPU work ran, every requested console variable was confirmed in the log and every copy was a Nanite proxy in the Nanite arms (none in the LOD arm). All 6 flights passed.</li><li><b>Unlit.</b> Lighting off but the normal draw path kept (UE's own Unlit view mode would switch classic meshes to a per-frame debug path while Nanite ignores it).</li><li><b>Not covered.</b> Instanced layouts (ISM/HISM, the bench supports <code>-NLBLayout=ISM</code>), masked or deforming materials, Nanite Foliage, virtual shadow maps, other GPUs.</li></ul>
+<p class="note">Source, configs, tools and every flight's CSV/JSON are in the <a href="https://github.com/windystrife/nanite-lod-bench">repository</a>. The Megascans asset itself is not redistributed.</p>
+</main>
+</html>
