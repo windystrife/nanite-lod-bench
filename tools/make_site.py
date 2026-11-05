@@ -1,6 +1,6 @@
 """Build the static site (index.html + charts) of the Nanite-vs-LOD bench from analyze_nlb.py output. Stdlib only.
 
-usage: py -I tools/make_site.py <main report.json> <appendix report.json or -> <notes.json> <site root>
+usage: py -I tools/make_site.py <main report.json> <appendix report.json or -> <notes.json> <site root> [<ism report.json>]
   main      = Megascans table campaign (arms M, Nz, Ns)
   appendix  = procedural-table campaign (arms L, Nz, Ns), optional
   notes     = {"verdict": [html paragraphs], "facts": {...}} written by hand after reading the numbers
@@ -12,7 +12,8 @@ import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-NAME = {"M": "LOD (Megascans tiers)", "L": "LOD (auto, article)", "Nz": "Nanite, Zone9 knobs", "Ns": "Nanite, stock knobs"}
+NAME = {"M": "LOD (Megascans tiers)", "L": "LOD (auto, article)", "Nz": "Nanite, Zone9 knobs", "Ns": "Nanite, stock knobs",
+        "Mi": "LOD, one ISM", "Mx": "LOD aggressive, one ISM", "Nzi": "Nanite, one ISM"}
 
 
 def fmt(v, p=1):
@@ -52,11 +53,14 @@ def main():
     app_rep = json.load(open(sys.argv[2], encoding="utf-8")) if sys.argv[2] != "-" else None
     notes = json.load(open(sys.argv[3], encoding="utf-8"))
     root = sys.argv[4]
+    ism_rep = json.load(open(sys.argv[5], encoding="utf-8")) if len(sys.argv) > 5 else None
     charts = os.path.join(root, "charts")
     mk = os.path.join(HERE, "..", "bench", "Tools", "make_charts.py")
     subprocess.check_call([sys.executable, "-I", mk, sys.argv[1], os.path.join(charts, "megascans"), "M,Nz,Ns"])
     if app_rep:
         subprocess.check_call([sys.executable, "-I", mk, sys.argv[2], os.path.join(charts, "procedural"), "L,Nz,Ns"])
+    if ism_rep:
+        subprocess.check_call([sys.executable, "-I", mk, sys.argv[5], os.path.join(charts, "ism"), "M,Mi,Mx,Nzi"])
     arms = [a for a in ("M", "Nz", "Ns") if a in main_rep["arms"]]
     top = max(r["count"] for r in main_rep["pairs"])
     f = notes.get("facts", {})
@@ -98,6 +102,18 @@ def main():
     p.append('<p class="note">FPS = 1000 / median frame time of the measured window (5 s per view and count). Two flights per arm, '
              'median of the two; "spread" = the difference between them, the run-to-run noise. GPU = last finished GPU frame, '
              'RT = render thread. Bold = fastest arm in the row.</p>')
+    if ism_rep:
+        p.append('<h2 id="ism">Instanced: one ISM component instead of 8192 actors</h2>')
+        for para in notes.get("ism", []):
+            p.append("<p>%s</p>" % para)
+        p.append('<div class="charts"><figure><a href="charts/ism/fps-vs-copies.svg"><img src="charts/ism/fps-vs-copies.svg" alt="FPS against copies, ISM"></a>'
+                 '<figcaption>LOD as separate actors (control flight) against one ISM component, LOD and Nanite meshes.</figcaption></figure></div>')
+        it = max(r["count"] for r in ism_rep["pairs"])
+        ia = [a for a in ("M", "Mi", "Mx", "Nzi") if a in ism_rep["arms"]]
+        p.append('<h3>%d copies, lit</h3>' % it)
+        p.append(table(ism_rep["pairs"], ia, it, 0, ia[0]))
+        p.append('<h3>%d copies, unlit</h3>' % it)
+        p.append(table(ism_rep["pairs"], ia, it, 1, ia[0]))
     if app_rep:
         p.append('<h2 id="appendix">Appendix: procedural table, auto LODs as in the article</h2>')
         for para in notes.get("appendix", []):

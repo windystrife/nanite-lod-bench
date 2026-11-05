@@ -26,7 +26,19 @@ Six flights (LOD, Nz, Ns, Ns, Nz, LOD), every arm twice; the run-to-run spread i
 | 8192 | LOD 48–83 FPS, Nanite 118–163 FPS | 1.46–3.06× |
 | 8192 unlit | | 1.43–4.49× |
 
-- At high counts the LOD side is **render-thread bound**: its render-thread time equals the frame time (12–21 ms at 8192 copies), the per-actor CPU cost the original article found in `MeshDrawCommandPassSetupTask`. Impostors would not change that; instancing (ISM/HISM, HLOD) or Nanite does.
+- At high counts the LOD side is **render-thread bound**: its render-thread time equals the frame time (12–21 ms at 8192 copies), the per-actor CPU cost the original article found in `MeshDrawCommandPassSetupTask`.
+
+### Instanced (one ISM component)
+
+| 8192 copies, lit | LOD actors | LOD, ISM | **LOD aggressive, ISM** | Nanite, ISM |
+|---|--:|--:|--:|--:|
+| close | 83 | 91 | **160** | 128 |
+| eye level | 53 | 56 | **143** | 133 |
+| overview | 50 | 47 | 141 | **143** |
+| far | 52 | 52 | 165 | **170** |
+
+- ISM removes the render-thread limit (1.9–4.8 ms), but the LOD mesh then becomes GPU-bound on tiny far triangles and its FPS barely moves.
+- With an aggressive chain (last LODs 494 / 198 / 98 / 64 triangles) in one ISM, LOD beats Nanite in 38 of 40 view and count combinations (up to 1.35×) and ties in the other two. That is the case impostors are made for; baked impostors are not measured. LOD popping in motion is not measured either.
 - With one table, or in a view with almost nothing on screen, LOD is faster: Nanite has a fixed cost of about 1 ms of GPU time on the 680M.
 - The game's Nanite settings beat the engine defaults in all 40 view and count combinations (by 0.3–29 %).
 

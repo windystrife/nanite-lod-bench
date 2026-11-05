@@ -72,8 +72,9 @@ def fmt(v, p=1):
 
 def main():
     root = sys.argv[1]
-    out = sys.argv[2] if len(sys.argv) > 2 else os.path.join(root, "nlb_report")
-    flights = load_flights(root)
+    out = sys.argv[2] if len(sys.argv) > 2 else os.path.join(root.split(";")[0], "nlb_report")
+    # root may list several campaign folders separated by ";" (11-05: ISM section = i1105 + x1105)
+    flights = [fl for r in root.split(";") if r for fl in load_flights(r)]
     used = [fl for fl in flights if fl["valid"] is not False]
     warn = [fl["dir"] for fl in flights if fl["valid"] is None]
     dropped = [fl["dir"] for fl in flights if fl["valid"] is False]
@@ -83,7 +84,9 @@ def main():
     for fl in used:
         for r in fl["rows"]:
             asset = fl["meta"].get("asset") or r.get("asset") or fl["summary"].get("asset") or "?"
-            k = (asset, r["layout"], int(r["count"]), int(r["bookmark"]), r["bookmark_name"], int(r["unlit"]))
+            # NLB_MERGE_LAYOUT=1: one row per view for arms that differ in layout (Actors vs ISM); the arm names tell them apart
+            lay = "Actors+ISM" if os.environ.get("NLB_MERGE_LAYOUT") == "1" else r["layout"]
+            k = (asset, lay, int(r["count"]), int(r["bookmark"]), r["bookmark_name"], int(r["unlit"]))
             slot = agg.setdefault(fl["arm"], {}).setdefault(k, {mm: [] for mm in METRICS})
             for mm in METRICS:
                 v = fnum(r.get(mm))

@@ -8,8 +8,8 @@ import json
 import os
 import sys
 
-COL = {"M": "#f0a640", "L": "#98a2ab", "Nz": "#4fa3e0", "Ns": "#5cc8a8", "LOD": "#98a2ab", "Nanite": "#4fa3e0"}
-NAME = {"M": "LOD, Megascans tiers", "L": "LOD, auto (article)", "Nz": "Nanite, Zone9 knobs", "Ns": "Nanite, stock knobs"}
+COL = {"M": "#f0a640", "L": "#98a2ab", "Nz": "#4fa3e0", "Ns": "#5cc8a8", "LOD": "#98a2ab", "Nanite": "#4fa3e0", "Mi": "#e06a4f", "Mx": "#ffd166", "Nzi": "#a78bfa"}
+NAME = {"M": "LOD, Megascans tiers", "L": "LOD, auto (article)", "Nz": "Nanite, Zone9 knobs", "Ns": "Nanite, stock knobs", "Mi": "LOD, one ISM", "Mx": "LOD aggressive, one ISM", "Nzi": "Nanite, one ISM"}
 INK, MUTED, LINE, PANEL = "#e7eaec", "#98a2ab", "#2a3139", "#171c21"
 FONT = 'font-family="Source Sans 3, Segoe UI, system-ui, sans-serif"'
 

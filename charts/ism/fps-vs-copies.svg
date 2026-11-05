@@ -1,0 +1,296 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="934" height="512" viewBox="0 0 934 512">
+<rect width="100%%" height="100%%" fill="#101316"/>
+<text x="20" y="28" fill="#e7eaec" font-size="18" font-weight="600" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">FPS against copies, lit (median over flights)</text>
+<rect x="20" y="40" width="14" height="4" fill="#f0a640"/><text x="40" y="47" fill="#98a2ab" font-size="13" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">LOD, Megascans tiers</text>
+<rect x="190" y="40" width="14" height="4" fill="#e06a4f"/><text x="210" y="47" fill="#98a2ab" font-size="13" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">LOD, one ISM</text>
+<rect x="304" y="40" width="14" height="4" fill="#ffd166"/><text x="324" y="47" fill="#98a2ab" font-size="13" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">LOD aggressive, one ISM</text>
+<rect x="495" y="40" width="14" height="4" fill="#a78bfa"/><text x="515" y="47" fill="#98a2ab" font-size="13" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">Nanite, one ISM</text>
+<rect x="20" y="64" width="210" height="200" rx="6" fill="#171c21" stroke="#2a3139"/>
+<text x="30" y="82" fill="#e7eaec" font-size="13" font-weight="600" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B0_close</text>
+<line x1="56" x2="220" y1="234.0" y2="234.0" stroke="#2a3139"/>
+<text x="52" y="237.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">0</text>
+<line x1="56" x2="220" y1="199.0" y2="199.0" stroke="#2a3139"/>
+<text x="52" y="202.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">60</text>
+<line x1="56" x2="220" y1="164.0" y2="164.0" stroke="#2a3139"/>
+<text x="52" y="167.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">121</text>
+<line x1="56" x2="220" y1="129.0" y2="129.0" stroke="#2a3139"/>
+<text x="52" y="132.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">181</text>
+<line x1="56" x2="220" y1="94.0" y2="94.0" stroke="#2a3139"/>
+<text x="52" y="97.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">242</text>
+<text x="56.0" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">1</text>
+<text x="110.7" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">2048</text>
+<text x="165.3" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">4096</text>
+<text x="220.0" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">8192</text>
+<path d="M56.0,104.4 L110.7,154.9 L165.3,172.4 L220.0,186.1" fill="none" stroke="#f0a640" stroke-width="2"/>
+<circle cx="56.0" cy="104.4" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 1 copies: 224.6 fps</title></circle>
+<circle cx="110.7" cy="154.9" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 2048 copies: 137.1 fps</title></circle>
+<circle cx="165.3" cy="172.4" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 4096 copies: 106.7 fps</title></circle>
+<circle cx="220.0" cy="186.1" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 8192 copies: 82.9 fps</title></circle>
+<path d="M56.0,106.7 L110.7,165.6 L165.3,171.7 L220.0,181.7" fill="none" stroke="#e06a4f" stroke-width="2"/>
+<circle cx="56.0" cy="106.7" r="2.6" fill="#e06a4f"><title>LOD, one ISM 1 copies: 220.6 fps</title></circle>
+<circle cx="110.7" cy="165.6" r="2.6" fill="#e06a4f"><title>LOD, one ISM 2048 copies: 118.5 fps</title></circle>
+<circle cx="165.3" cy="171.7" r="2.6" fill="#e06a4f"><title>LOD, one ISM 4096 copies: 107.9 fps</title></circle>
+<circle cx="220.0" cy="181.7" r="2.6" fill="#e06a4f"><title>LOD, one ISM 8192 copies: 90.6 fps</title></circle>
+<path d="M56.0,106.6 L110.7,138.3 L165.3,135.6 L220.0,141.8" fill="none" stroke="#ffd166" stroke-width="2"/>
+<circle cx="56.0" cy="106.6" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 1 copies: 220.8 fps</title></circle>
+<circle cx="110.7" cy="138.3" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 2048 copies: 165.8 fps</title></circle>
+<circle cx="165.3" cy="135.6" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 4096 copies: 170.5 fps</title></circle>
+<circle cx="220.0" cy="141.8" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 8192 copies: 159.8 fps</title></circle>
+<path d="M56.0,125.6 L110.7,153.3 L165.3,156.2 L220.0,160.1" fill="none" stroke="#a78bfa" stroke-width="2"/>
+<circle cx="56.0" cy="125.6" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 1 copies: 187.8 fps</title></circle>
+<circle cx="110.7" cy="153.3" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 2048 copies: 139.8 fps</title></circle>
+<circle cx="165.3" cy="156.2" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 4096 copies: 134.8 fps</title></circle>
+<circle cx="220.0" cy="160.1" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 8192 copies: 128.0 fps</title></circle>
+<rect x="248" y="64" width="210" height="200" rx="6" fill="#171c21" stroke="#2a3139"/>
+<text x="258" y="82" fill="#e7eaec" font-size="13" font-weight="600" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B1_edge_eye</text>
+<line x1="284" x2="448" y1="234.0" y2="234.0" stroke="#2a3139"/>
+<text x="280" y="237.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">0</text>
+<line x1="284" x2="448" y1="199.0" y2="199.0" stroke="#2a3139"/>
+<text x="280" y="202.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">63</text>
+<line x1="284" x2="448" y1="164.0" y2="164.0" stroke="#2a3139"/>
+<text x="280" y="167.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">126</text>
+<line x1="284" x2="448" y1="129.0" y2="129.0" stroke="#2a3139"/>
+<text x="280" y="132.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">189</text>
+<line x1="284" x2="448" y1="94.0" y2="94.0" stroke="#2a3139"/>
+<text x="280" y="97.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">253</text>
+<text x="284.0" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">1</text>
+<text x="338.7" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">2048</text>
+<text x="393.3" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">4096</text>
+<text x="448.0" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">8192</text>
+<path d="M284.0,108.8 L338.7,173.3 L393.3,191.9 L448.0,204.5" fill="none" stroke="#f0a640" stroke-width="2"/>
+<circle cx="284.0" cy="108.8" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 1 copies: 226.4 fps</title></circle>
+<circle cx="338.7" cy="173.3" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 2048 copies: 109.7 fps</title></circle>
+<circle cx="393.3" cy="191.9" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 4096 copies: 76.2 fps</title></circle>
+<circle cx="448.0" cy="204.5" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 8192 copies: 53.4 fps</title></circle>
+<path d="M284.0,110.1 L338.7,163.1 L393.3,183.1 L448.0,202.9" fill="none" stroke="#e06a4f" stroke-width="2"/>
+<circle cx="284.0" cy="110.1" r="2.6" fill="#e06a4f"><title>LOD, one ISM 1 copies: 224.0 fps</title></circle>
+<circle cx="338.7" cy="163.1" r="2.6" fill="#e06a4f"><title>LOD, one ISM 2048 copies: 128.1 fps</title></circle>
+<circle cx="393.3" cy="183.1" r="2.6" fill="#e06a4f"><title>LOD, one ISM 4096 copies: 92.0 fps</title></circle>
+<circle cx="448.0" cy="202.9" r="2.6" fill="#e06a4f"><title>LOD, one ISM 8192 copies: 56.3 fps</title></circle>
+<path d="M284.0,104.4 L338.7,123.9 L393.3,136.8 L448.0,154.9" fill="none" stroke="#ffd166" stroke-width="2"/>
+<circle cx="284.0" cy="104.4" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 1 copies: 234.4 fps</title></circle>
+<circle cx="338.7" cy="123.9" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 2048 copies: 199.2 fps</title></circle>
+<circle cx="393.3" cy="136.8" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 4096 copies: 175.8 fps</title></circle>
+<circle cx="448.0" cy="154.9" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 8192 copies: 143.0 fps</title></circle>
+<path d="M284.0,123.0 L338.7,130.0 L393.3,141.0 L448.0,160.3" fill="none" stroke="#a78bfa" stroke-width="2"/>
+<circle cx="284.0" cy="123.0" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 1 copies: 200.8 fps</title></circle>
+<circle cx="338.7" cy="130.0" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 2048 copies: 188.0 fps</title></circle>
+<circle cx="393.3" cy="141.0" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 4096 copies: 168.1 fps</title></circle>
+<circle cx="448.0" cy="160.3" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 8192 copies: 133.2 fps</title></circle>
+<rect x="476" y="64" width="210" height="200" rx="6" fill="#171c21" stroke="#2a3139"/>
+<text x="486" y="82" fill="#e7eaec" font-size="13" font-weight="600" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B2_mid_high</text>
+<line x1="512" x2="676" y1="234.0" y2="234.0" stroke="#2a3139"/>
+<text x="508" y="237.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">0</text>
+<line x1="512" x2="676" y1="199.0" y2="199.0" stroke="#2a3139"/>
+<text x="508" y="202.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">63</text>
+<line x1="512" x2="676" y1="164.0" y2="164.0" stroke="#2a3139"/>
+<text x="508" y="167.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">127</text>
+<line x1="512" x2="676" y1="129.0" y2="129.0" stroke="#2a3139"/>
+<text x="508" y="132.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">191</text>
+<line x1="512" x2="676" y1="94.0" y2="94.0" stroke="#2a3139"/>
+<text x="508" y="97.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">255</text>
+<text x="512.0" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">1</text>
+<text x="566.7" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">2048</text>
+<text x="621.3" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">4096</text>
+<text x="676.0" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">8192</text>
+<path d="M512.0,104.4 L566.7,168.8 L621.3,191.5 L676.0,208.0" fill="none" stroke="#f0a640" stroke-width="2"/>
+<circle cx="512.0" cy="104.4" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 1 copies: 236.2 fps</title></circle>
+<circle cx="566.7" cy="168.8" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 2048 copies: 118.7 fps</title></circle>
+<circle cx="621.3" cy="191.5" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 4096 copies: 77.5 fps</title></circle>
+<circle cx="676.0" cy="208.0" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 8192 copies: 47.4 fps</title></circle>
+<path d="M512.0,110.7 L566.7,164.0 L621.3,186.2 L676.0,207.9" fill="none" stroke="#e06a4f" stroke-width="2"/>
+<circle cx="512.0" cy="110.7" r="2.6" fill="#e06a4f"><title>LOD, one ISM 1 copies: 224.6 fps</title></circle>
+<circle cx="566.7" cy="164.0" r="2.6" fill="#e06a4f"><title>LOD, one ISM 2048 copies: 127.6 fps</title></circle>
+<circle cx="621.3" cy="186.2" r="2.6" fill="#e06a4f"><title>LOD, one ISM 4096 copies: 87.2 fps</title></circle>
+<circle cx="676.0" cy="207.9" r="2.6" fill="#e06a4f"><title>LOD, one ISM 8192 copies: 47.6 fps</title></circle>
+<path d="M512.0,114.2 L566.7,126.2 L621.3,137.6 L676.0,157.6" fill="none" stroke="#ffd166" stroke-width="2"/>
+<circle cx="512.0" cy="114.2" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 1 copies: 218.2 fps</title></circle>
+<circle cx="566.7" cy="126.2" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 2048 copies: 196.4 fps</title></circle>
+<circle cx="621.3" cy="137.6" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 4096 copies: 175.7 fps</title></circle>
+<circle cx="676.0" cy="157.6" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 8192 copies: 139.3 fps</title></circle>
+<path d="M512.0,124.4 L566.7,131.6 L621.3,143.2 L676.0,161.8" fill="none" stroke="#a78bfa" stroke-width="2"/>
+<circle cx="512.0" cy="124.4" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 1 copies: 199.6 fps</title></circle>
+<circle cx="566.7" cy="131.6" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 2048 copies: 186.6 fps</title></circle>
+<circle cx="621.3" cy="143.2" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 4096 copies: 165.5 fps</title></circle>
+<circle cx="676.0" cy="161.8" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 8192 copies: 131.6 fps</title></circle>
+<rect x="704" y="64" width="210" height="200" rx="6" fill="#171c21" stroke="#2a3139"/>
+<text x="714" y="82" fill="#e7eaec" font-size="13" font-weight="600" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B3_overview</text>
+<line x1="740" x2="904" y1="234.0" y2="234.0" stroke="#2a3139"/>
+<text x="736" y="237.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">0</text>
+<line x1="740" x2="904" y1="199.0" y2="199.0" stroke="#2a3139"/>
+<text x="736" y="202.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">59</text>
+<line x1="740" x2="904" y1="164.0" y2="164.0" stroke="#2a3139"/>
+<text x="736" y="167.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">118</text>
+<line x1="740" x2="904" y1="129.0" y2="129.0" stroke="#2a3139"/>
+<text x="736" y="132.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">177</text>
+<line x1="740" x2="904" y1="94.0" y2="94.0" stroke="#2a3139"/>
+<text x="736" y="97.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">236</text>
+<text x="740.0" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">1</text>
+<text x="794.7" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">2048</text>
+<text x="849.3" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">4096</text>
+<text x="904.0" y="248" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">8192</text>
+<path d="M740.0,104.4 L794.7,165.4 L849.3,186.4 L904.0,204.3" fill="none" stroke="#f0a640" stroke-width="2"/>
+<circle cx="740.0" cy="104.4" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 1 copies: 219.3 fps</title></circle>
+<circle cx="794.7" cy="165.4" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 2048 copies: 116.1 fps</title></circle>
+<circle cx="849.3" cy="186.4" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 4096 copies: 80.6 fps</title></circle>
+<circle cx="904.0" cy="204.3" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 8192 copies: 50.2 fps</title></circle>
+<path d="M740.0,108.7 L794.7,162.1 L849.3,183.3 L904.0,206.1" fill="none" stroke="#e06a4f" stroke-width="2"/>
+<circle cx="740.0" cy="108.7" r="2.6" fill="#e06a4f"><title>LOD, one ISM 1 copies: 212.0 fps</title></circle>
+<circle cx="794.7" cy="162.1" r="2.6" fill="#e06a4f"><title>LOD, one ISM 2048 copies: 121.7 fps</title></circle>
+<circle cx="849.3" cy="183.3" r="2.6" fill="#e06a4f"><title>LOD, one ISM 4096 copies: 85.8 fps</title></circle>
+<circle cx="904.0" cy="206.1" r="2.6" fill="#e06a4f"><title>LOD, one ISM 8192 copies: 47.2 fps</title></circle>
+<path d="M740.0,107.9 L794.7,114.0 L849.3,131.4 L904.0,150.6" fill="none" stroke="#ffd166" stroke-width="2"/>
+<circle cx="740.0" cy="107.9" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 1 copies: 213.3 fps</title></circle>
+<circle cx="794.7" cy="114.0" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 2048 copies: 203.1 fps</title></circle>
+<circle cx="849.3" cy="131.4" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 4096 copies: 173.6 fps</title></circle>
+<circle cx="904.0" cy="150.6" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 8192 copies: 141.2 fps</title></circle>
+<path d="M740.0,126.1 L794.7,132.9 L849.3,138.9 L904.0,149.3" fill="none" stroke="#a78bfa" stroke-width="2"/>
+<circle cx="740.0" cy="126.1" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 1 copies: 182.6 fps</title></circle>
+<circle cx="794.7" cy="132.9" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 2048 copies: 171.1 fps</title></circle>
+<circle cx="849.3" cy="138.9" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 4096 copies: 160.9 fps</title></circle>
+<circle cx="904.0" cy="149.3" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 8192 copies: 143.3 fps</title></circle>
+<rect x="20" y="278" width="210" height="200" rx="6" fill="#171c21" stroke="#2a3139"/>
+<text x="30" y="296" fill="#e7eaec" font-size="13" font-weight="600" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B4_far</text>
+<line x1="56" x2="220" y1="448.0" y2="448.0" stroke="#2a3139"/>
+<text x="52" y="451.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">0</text>
+<line x1="56" x2="220" y1="413.0" y2="413.0" stroke="#2a3139"/>
+<text x="52" y="416.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">60</text>
+<line x1="56" x2="220" y1="378.0" y2="378.0" stroke="#2a3139"/>
+<text x="52" y="381.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">120</text>
+<line x1="56" x2="220" y1="343.0" y2="343.0" stroke="#2a3139"/>
+<text x="52" y="346.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">180</text>
+<line x1="56" x2="220" y1="308.0" y2="308.0" stroke="#2a3139"/>
+<text x="52" y="311.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">240</text>
+<text x="56.0" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">1</text>
+<text x="110.7" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">2048</text>
+<text x="165.3" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">4096</text>
+<text x="220.0" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">8192</text>
+<path d="M56.0,321.0 L110.7,376.2 L165.3,398.5 L220.0,417.7" fill="none" stroke="#f0a640" stroke-width="2"/>
+<circle cx="56.0" cy="321.0" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 1 copies: 217.9 fps</title></circle>
+<circle cx="110.7" cy="376.2" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 2048 copies: 123.2 fps</title></circle>
+<circle cx="165.3" cy="398.5" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 4096 copies: 84.9 fps</title></circle>
+<circle cx="220.0" cy="417.7" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 8192 copies: 52.0 fps</title></circle>
+<path d="M56.0,318.4 L110.7,373.1 L165.3,395.7 L220.0,417.6" fill="none" stroke="#e06a4f" stroke-width="2"/>
+<circle cx="56.0" cy="318.4" r="2.6" fill="#e06a4f"><title>LOD, one ISM 1 copies: 222.3 fps</title></circle>
+<circle cx="110.7" cy="373.1" r="2.6" fill="#e06a4f"><title>LOD, one ISM 2048 copies: 128.4 fps</title></circle>
+<circle cx="165.3" cy="395.7" r="2.6" fill="#e06a4f"><title>LOD, one ISM 4096 copies: 89.7 fps</title></circle>
+<circle cx="220.0" cy="417.6" r="2.6" fill="#e06a4f"><title>LOD, one ISM 8192 copies: 52.1 fps</title></circle>
+<path d="M56.0,319.0 L110.7,318.8 L165.3,332.7 L220.0,352.0" fill="none" stroke="#ffd166" stroke-width="2"/>
+<circle cx="56.0" cy="319.0" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 1 copies: 221.2 fps</title></circle>
+<circle cx="110.7" cy="318.8" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 2048 copies: 221.6 fps</title></circle>
+<circle cx="165.3" cy="332.7" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 4096 copies: 197.7 fps</title></circle>
+<circle cx="220.0" cy="352.0" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 8192 copies: 164.6 fps</title></circle>
+<path d="M56.0,332.5 L110.7,336.9 L165.3,341.9 L220.0,348.9" fill="none" stroke="#a78bfa" stroke-width="2"/>
+<circle cx="56.0" cy="332.5" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 1 copies: 198.2 fps</title></circle>
+<circle cx="110.7" cy="336.9" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 2048 copies: 190.6 fps</title></circle>
+<circle cx="165.3" cy="341.9" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 4096 copies: 182.0 fps</title></circle>
+<circle cx="220.0" cy="348.9" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 8192 copies: 170.0 fps</title></circle>
+<rect x="248" y="278" width="210" height="200" rx="6" fill="#171c21" stroke="#2a3139"/>
+<text x="258" y="296" fill="#e7eaec" font-size="13" font-weight="600" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B5_extreme</text>
+<line x1="284" x2="448" y1="448.0" y2="448.0" stroke="#2a3139"/>
+<text x="280" y="451.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">0</text>
+<line x1="284" x2="448" y1="413.0" y2="413.0" stroke="#2a3139"/>
+<text x="280" y="416.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">60</text>
+<line x1="284" x2="448" y1="378.0" y2="378.0" stroke="#2a3139"/>
+<text x="280" y="381.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">120</text>
+<line x1="284" x2="448" y1="343.0" y2="343.0" stroke="#2a3139"/>
+<text x="280" y="346.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">181</text>
+<line x1="284" x2="448" y1="308.0" y2="308.0" stroke="#2a3139"/>
+<text x="280" y="311.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">241</text>
+<text x="284.0" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">1</text>
+<text x="338.7" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">2048</text>
+<text x="393.3" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">4096</text>
+<text x="448.0" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">8192</text>
+<path d="M284.0,318.4 L338.7,369.4 L393.3,392.6 L448.0,413.4" fill="none" stroke="#f0a640" stroke-width="2"/>
+<circle cx="284.0" cy="318.4" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 1 copies: 223.6 fps</title></circle>
+<circle cx="338.7" cy="369.4" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 2048 copies: 135.6 fps</title></circle>
+<circle cx="393.3" cy="392.6" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 4096 copies: 95.5 fps</title></circle>
+<circle cx="448.0" cy="413.4" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 8192 copies: 59.7 fps</title></circle>
+<path d="M284.0,318.6 L338.7,372.8 L393.3,395.2 L448.0,417.1" fill="none" stroke="#e06a4f" stroke-width="2"/>
+<circle cx="284.0" cy="318.6" r="2.6" fill="#e06a4f"><title>LOD, one ISM 1 copies: 223.1 fps</title></circle>
+<circle cx="338.7" cy="372.8" r="2.6" fill="#e06a4f"><title>LOD, one ISM 2048 copies: 129.7 fps</title></circle>
+<circle cx="393.3" cy="395.2" r="2.6" fill="#e06a4f"><title>LOD, one ISM 4096 copies: 91.0 fps</title></circle>
+<circle cx="448.0" cy="417.1" r="2.6" fill="#e06a4f"><title>LOD, one ISM 8192 copies: 53.2 fps</title></circle>
+<path d="M284.0,320.5 L338.7,320.1 L393.3,323.1 L448.0,342.2" fill="none" stroke="#ffd166" stroke-width="2"/>
+<circle cx="284.0" cy="320.5" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 1 copies: 219.9 fps</title></circle>
+<circle cx="338.7" cy="320.1" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 2048 copies: 220.5 fps</title></circle>
+<circle cx="393.3" cy="323.1" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 4096 copies: 215.5 fps</title></circle>
+<circle cx="448.0" cy="342.2" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 8192 copies: 182.4 fps</title></circle>
+<path d="M284.0,336.7 L338.7,336.2 L393.3,341.2 L448.0,346.5" fill="none" stroke="#a78bfa" stroke-width="2"/>
+<circle cx="284.0" cy="336.7" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 1 copies: 191.9 fps</title></circle>
+<circle cx="338.7" cy="336.2" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 2048 copies: 192.8 fps</title></circle>
+<circle cx="393.3" cy="341.2" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 4096 copies: 184.2 fps</title></circle>
+<circle cx="448.0" cy="346.5" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 8192 copies: 175.1 fps</title></circle>
+<rect x="476" y="278" width="210" height="200" rx="6" fill="#171c21" stroke="#2a3139"/>
+<text x="486" y="296" fill="#e7eaec" font-size="13" font-weight="600" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B6_topdown</text>
+<line x1="512" x2="676" y1="448.0" y2="448.0" stroke="#2a3139"/>
+<text x="508" y="451.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">0</text>
+<line x1="512" x2="676" y1="413.0" y2="413.0" stroke="#2a3139"/>
+<text x="508" y="416.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">59</text>
+<line x1="512" x2="676" y1="378.0" y2="378.0" stroke="#2a3139"/>
+<text x="508" y="381.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">118</text>
+<line x1="512" x2="676" y1="343.0" y2="343.0" stroke="#2a3139"/>
+<text x="508" y="346.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">178</text>
+<line x1="512" x2="676" y1="308.0" y2="308.0" stroke="#2a3139"/>
+<text x="508" y="311.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">237</text>
+<text x="512.0" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">1</text>
+<text x="566.7" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">2048</text>
+<text x="621.3" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">4096</text>
+<text x="676.0" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">8192</text>
+<path d="M512.0,323.7 L566.7,379.9 L621.3,401.5 L676.0,414.2" fill="none" stroke="#f0a640" stroke-width="2"/>
+<circle cx="512.0" cy="323.7" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 1 copies: 211.0 fps</title></circle>
+<circle cx="566.7" cy="379.9" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 2048 copies: 115.6 fps</title></circle>
+<circle cx="621.3" cy="401.5" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 4096 copies: 78.9 fps</title></circle>
+<circle cx="676.0" cy="414.2" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 8192 copies: 57.3 fps</title></circle>
+<path d="M512.0,318.7 L566.7,376.8 L621.3,398.4 L676.0,412.1" fill="none" stroke="#e06a4f" stroke-width="2"/>
+<circle cx="512.0" cy="318.7" r="2.6" fill="#e06a4f"><title>LOD, one ISM 1 copies: 219.4 fps</title></circle>
+<circle cx="566.7" cy="376.8" r="2.6" fill="#e06a4f"><title>LOD, one ISM 2048 copies: 120.9 fps</title></circle>
+<circle cx="621.3" cy="398.4" r="2.6" fill="#e06a4f"><title>LOD, one ISM 4096 copies: 84.2 fps</title></circle>
+<circle cx="676.0" cy="412.1" r="2.6" fill="#e06a4f"><title>LOD, one ISM 8192 copies: 60.9 fps</title></circle>
+<path d="M512.0,318.4 L566.7,330.7 L621.3,342.5 L676.0,356.6" fill="none" stroke="#ffd166" stroke-width="2"/>
+<circle cx="512.0" cy="318.4" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 1 copies: 219.9 fps</title></circle>
+<circle cx="566.7" cy="330.7" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 2048 copies: 199.0 fps</title></circle>
+<circle cx="621.3" cy="342.5" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 4096 copies: 179.0 fps</title></circle>
+<circle cx="676.0" cy="356.6" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 8192 copies: 155.1 fps</title></circle>
+<path d="M512.0,336.0 L566.7,351.5 L621.3,364.4 L676.0,374.2" fill="none" stroke="#a78bfa" stroke-width="2"/>
+<circle cx="512.0" cy="336.0" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 1 copies: 190.0 fps</title></circle>
+<circle cx="566.7" cy="351.5" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 2048 copies: 163.7 fps</title></circle>
+<circle cx="621.3" cy="364.4" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 4096 copies: 141.9 fps</title></circle>
+<circle cx="676.0" cy="374.2" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 8192 copies: 125.3 fps</title></circle>
+<rect x="704" y="278" width="210" height="200" rx="6" fill="#171c21" stroke="#2a3139"/>
+<text x="714" y="296" fill="#e7eaec" font-size="13" font-weight="600" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">B7_sky</text>
+<line x1="740" x2="904" y1="448.0" y2="448.0" stroke="#2a3139"/>
+<text x="736" y="451.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">0</text>
+<line x1="740" x2="904" y1="413.0" y2="413.0" stroke="#2a3139"/>
+<text x="736" y="416.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">67</text>
+<line x1="740" x2="904" y1="378.0" y2="378.0" stroke="#2a3139"/>
+<text x="736" y="381.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">135</text>
+<line x1="740" x2="904" y1="343.0" y2="343.0" stroke="#2a3139"/>
+<text x="736" y="346.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">203</text>
+<line x1="740" x2="904" y1="308.0" y2="308.0" stroke="#2a3139"/>
+<text x="736" y="311.0" fill="#98a2ab" font-size="10" text-anchor="end" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">271</text>
+<text x="740.0" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">1</text>
+<text x="794.7" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">2048</text>
+<text x="849.3" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">4096</text>
+<text x="904.0" y="462" fill="#98a2ab" font-size="10" text-anchor="middle" font-family="Source Sans 3, Segoe UI, system-ui, sans-serif">8192</text>
+<path d="M740.0,322.0 L794.7,320.9 L849.3,322.5 L904.0,325.9" fill="none" stroke="#f0a640" stroke-width="2"/>
+<circle cx="740.0" cy="322.0" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 1 copies: 244.0 fps</title></circle>
+<circle cx="794.7" cy="320.9" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 2048 copies: 246.2 fps</title></circle>
+<circle cx="849.3" cy="322.5" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 4096 copies: 243.1 fps</title></circle>
+<circle cx="904.0" cy="325.9" r="2.6" fill="#f0a640"><title>LOD, Megascans tiers 8192 copies: 236.5 fps</title></circle>
+<path d="M740.0,320.9 L794.7,345.2 L849.3,346.0 L904.0,346.9" fill="none" stroke="#e06a4f" stroke-width="2"/>
+<circle cx="740.0" cy="320.9" r="2.6" fill="#e06a4f"><title>LOD, one ISM 1 copies: 246.3 fps</title></circle>
+<circle cx="794.7" cy="345.2" r="2.6" fill="#e06a4f"><title>LOD, one ISM 2048 copies: 199.2 fps</title></circle>
+<circle cx="849.3" cy="346.0" r="2.6" fill="#e06a4f"><title>LOD, one ISM 4096 copies: 197.6 fps</title></circle>
+<circle cx="904.0" cy="346.9" r="2.6" fill="#e06a4f"><title>LOD, one ISM 8192 copies: 195.9 fps</title></circle>
+<path d="M740.0,318.4 L794.7,328.7 L849.3,325.1 L904.0,323.5" fill="none" stroke="#ffd166" stroke-width="2"/>
+<circle cx="740.0" cy="318.4" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 1 copies: 251.1 fps</title></circle>
+<circle cx="794.7" cy="328.7" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 2048 copies: 231.1 fps</title></circle>
+<circle cx="849.3" cy="325.1" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 4096 copies: 238.1 fps</title></circle>
+<circle cx="904.0" cy="323.5" r="2.6" fill="#ffd166"><title>LOD aggressive, one ISM 8192 copies: 241.1 fps</title></circle>
+<path d="M740.0,334.6 L794.7,337.4 L849.3,337.3 L904.0,339.7" fill="none" stroke="#a78bfa" stroke-width="2"/>
+<circle cx="740.0" cy="334.6" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 1 copies: 219.7 fps</title></circle>
+<circle cx="794.7" cy="337.4" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 2048 copies: 214.2 fps</title></circle>
+<circle cx="849.3" cy="337.3" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 4096 copies: 214.5 fps</title></circle>
+<circle cx="904.0" cy="339.7" r="2.6" fill="#a78bfa"><title>Nanite, one ISM 8192 copies: 209.7 fps</title></circle>
+</svg>

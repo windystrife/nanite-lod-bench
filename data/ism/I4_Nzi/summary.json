@@ -1,0 +1,786 @@
+{
+ "tag": "I4_Nzi",
+ "complete": true,
+ "abort_reason": "",
+ "mode": "Nanite",
+ "layout": "ISM",
+ "engine": "5.8.4-0+UE5",
+ "rhi": "D3D12",
+ "adapter": "AMD Radeon(TM) Graphics",
+ "driver": "AMD Software: Adrenalin Edition 26.10.1",
+ "use_nanite": true,
+ "platform_supports_nanite": true,
+ "atomics64": true,
+ "viewport": [
+  1280,
+  800
+ ],
+ "grid_half_cm": 4645.7,
+ "cell_cm": 102.1,
+ "settings": {
+  "asset": "Table",
+  "mesh_path": "/Game/NLB/SM_Table_Nanite.SM_Table_Nanite",
+  "mesh_scale": 1.0,
+  "spacing": 1.196,
+  "sg": 0,
+  "counts": [
+   1,
+   2048,
+   4096,
+   8192
+  ],
+  "bookmark_ids": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "unlit_pass": true,
+  "unlit_rich_view": false,
+  "shots": true,
+  "csv": true,
+  "boot_s": 8.0,
+  "spawn_settle_s": 6.0,
+  "warm_lap_s": 0.7,
+  "settle_s": 3.0,
+  "settle_min_frames": 5,
+  "measure_s": 5.0,
+  "max_run_s": 900,
+  "cvars_requested": "r.DynamicGlobalIlluminationMethod=0;r.WindyGI.Software.Enable=0;r.Shadow.CSMCaching=0;r.DistanceFieldShadowing=0;r.ScreenPercentage=100",
+  "out_dir": "I4_Nzi",
+  "csv_file": "I4_Nzi_profile.csv"
+ },
+ "mesh": {
+  "path": "/Game/NLB/SM_Table_Nanite.SM_Table_Nanite",
+  "has_valid_nanite_data": true,
+  "nanite_input_tris": 2000018,
+  "bounds_cm": [
+   85.3,
+   80.3,
+   54.4
+  ],
+  "lods": [
+   {
+    "lod": 0,
+    "tris": 7090,
+    "verts": 4552,
+    "screen_size": 2.0
+   }
+  ]
+ },
+ "spawns": [
+  {
+   "from": 0,
+   "to": 1,
+   "ms": 0.3
+  },
+  {
+   "from": 1,
+   "to": 2048,
+   "ms": 0.7
+  },
+  {
+   "from": 2048,
+   "to": 4096,
+   "ms": 0.9
+  },
+  {
+   "from": 4096,
+   "to": 8192,
+   "ms": 1.7
+  }
+ ],
+ "nanite_proxies": [
+  {
+   "count": 1,
+   "nanite_proxies": 1
+  },
+  {
+   "count": 2048,
+   "nanite_proxies": 2048
+  },
+  {
+   "count": 4096,
+   "nanite_proxies": 4096
+  },
+  {
+   "count": 8192,
+   "nanite_proxies": 8192
+  }
+ ],
+ "cvars": {
+  "r.Nanite": "1",
+  "r.Nanite.ProjectEnabled": "1",
+  "r.Nanite.MaxPixelsPerEdge": "2",
+  "r.Nanite.Culling.TwoPass": "0",
+  "r.HZBOcclusion": "0",
+  "r.NumBufferedOcclusionQueries": "2",
+  "r.AllowOcclusionQueries": "true",
+  "r.ScreenPercentage": "100",
+  "r.AntiAliasingMethod": "2",
+  "r.DynamicGlobalIlluminationMethod": "0",
+  "r.ReflectionMethod": "2",
+  "r.Shadow.Virtual.Enable": "0",
+  "r.Shadow.CSM.MaxCascades": "1",
+  "r.Shadow.DistanceScale": "1",
+  "r.StaticMeshLODDistanceScale": "1.5",
+  "r.ViewDistanceScale": "0.8",
+  "r.ForceLOD": "-1",
+  "r.MeshDrawCommands.DynamicInstancing": "1",
+  "r.MeshDrawCommands.ParallelPassSetup": "1",
+  "r.VSync": "0",
+  "t.MaxFPS": "0",
+  "r.FullScreenMode": "1",
+  "r.GPUCsvStatsEnabled": "1",
+  "sg.ResolutionQuality": "50",
+  "sg.ViewDistanceQuality": "0",
+  "sg.ShadowQuality": "0",
+  "sg.GlobalIlluminationQuality": "0",
+  "sg.PostProcessQuality": "0",
+  "sg.EffectsQuality": "0",
+  "sg.FoliageQuality": "0",
+  "sg.TextureQuality": "0",
+  "sg.ShadingQuality": "0"
+ },
+ "bookmarks": [
+  {
+   "id": 0,
+   "name": "B0_close",
+   "loc": [
+    -51.1,
+    51.1,
+    160.0
+   ],
+   "rot": [
+    -15.0,
+    -45.0,
+    0.0
+   ]
+  },
+  {
+   "id": 1,
+   "name": "B1_edge_eye",
+   "loc": [
+    -4849.9,
+    0.0,
+    170.0
+   ],
+   "rot": [
+    -5.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": 2,
+   "name": "B2_mid_high",
+   "loc": [
+    -4645.7,
+    -4645.7,
+    1161.4
+   ],
+   "rot": [
+    -9.79,
+    45.0,
+    0.0
+   ]
+  },
+  {
+   "id": 3,
+   "name": "B3_overview",
+   "loc": [
+    -6039.4,
+    -6039.4,
+    5110.3
+   ],
+   "rot": [
+    -30.76,
+    45.0,
+    0.0
+   ]
+  },
+  {
+   "id": 4,
+   "name": "B4_far",
+   "loc": [
+    -13937.1,
+    0.0,
+    2322.8
+   ],
+   "rot": [
+    -9.35,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": 5,
+   "name": "B5_extreme",
+   "loc": [
+    -37165.5,
+    0.0,
+    4645.7
+   ],
+   "rot": [
+    -7.08,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": 6,
+   "name": "B6_topdown",
+   "loc": [
+    0.0,
+    0.0,
+    6504.0
+   ],
+   "rot": [
+    -89.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": 7,
+   "name": "B7_sky",
+   "loc": [
+    0.0,
+    0.0,
+    170.0
+   ],
+   "rot": [
+    45.0,
+    0.0,
+    0.0
+   ]
+  }
+ ],
+ "segments": [
+  {
+   "name": "n00001_B0_close",
+   "count": 1,
+   "bookmark": 0,
+   "unlit": false,
+   "frames": 952,
+   "frame_ms_med": 5.128,
+   "gpu_ms_med": 4.119,
+   "render_ms_med": 5.002,
+   "game_ms_med": 2.357,
+   "drawcalls_med": 43,
+   "prims_med": 80
+  },
+  {
+   "name": "n00001_B1_edge_eye",
+   "count": 1,
+   "bookmark": 1,
+   "unlit": false,
+   "frames": 974,
+   "frame_ms_med": 4.986,
+   "gpu_ms_med": 3.95,
+   "render_ms_med": 4.903,
+   "game_ms_med": 2.285,
+   "drawcalls_med": 43,
+   "prims_med": 80
+  },
+  {
+   "name": "n00001_B2_mid_high",
+   "count": 1,
+   "bookmark": 2,
+   "unlit": false,
+   "frames": 957,
+   "frame_ms_med": 5.09,
+   "gpu_ms_med": 4.074,
+   "render_ms_med": 4.99,
+   "game_ms_med": 2.346,
+   "drawcalls_med": 43,
+   "prims_med": 80
+  },
+  {
+   "name": "n00001_B3_overview",
+   "count": 1,
+   "bookmark": 3,
+   "unlit": false,
+   "frames": 889,
+   "frame_ms_med": 5.539,
+   "gpu_ms_med": 4.488,
+   "render_ms_med": 4.995,
+   "game_ms_med": 2.474,
+   "drawcalls_med": 43,
+   "prims_med": 80
+  },
+  {
+   "name": "n00001_B4_far",
+   "count": 1,
+   "bookmark": 4,
+   "unlit": false,
+   "frames": 959,
+   "frame_ms_med": 5.101,
+   "gpu_ms_med": 4.088,
+   "render_ms_med": 5.011,
+   "game_ms_med": 2.319,
+   "drawcalls_med": 43,
+   "prims_med": 80
+  },
+  {
+   "name": "n00001_B5_extreme",
+   "count": 1,
+   "bookmark": 5,
+   "unlit": false,
+   "frames": 919,
+   "frame_ms_med": 5.356,
+   "gpu_ms_med": 3.954,
+   "render_ms_med": 5.243,
+   "game_ms_med": 2.372,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n00001_B6_topdown",
+   "count": 1,
+   "bookmark": 6,
+   "unlit": false,
+   "frames": 928,
+   "frame_ms_med": 5.272,
+   "gpu_ms_med": 4.257,
+   "render_ms_med": 4.928,
+   "game_ms_med": 2.427,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n00001_B7_sky",
+   "count": 1,
+   "bookmark": 7,
+   "unlit": false,
+   "frames": 1088,
+   "frame_ms_med": 4.485,
+   "gpu_ms_med": 3.081,
+   "render_ms_med": 4.472,
+   "game_ms_med": 1.971,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n02048_B0_close",
+   "count": 2048,
+   "bookmark": 0,
+   "unlit": false,
+   "frames": 687,
+   "frame_ms_med": 7.263,
+   "gpu_ms_med": 6.081,
+   "render_ms_med": 5.599,
+   "game_ms_med": 2.526,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n02048_B1_edge_eye",
+   "count": 2048,
+   "bookmark": 1,
+   "unlit": false,
+   "frames": 912,
+   "frame_ms_med": 5.381,
+   "gpu_ms_med": 4.335,
+   "render_ms_med": 5.024,
+   "game_ms_med": 2.355,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n02048_B2_mid_high",
+   "count": 2048,
+   "bookmark": 2,
+   "unlit": false,
+   "frames": 897,
+   "frame_ms_med": 5.461,
+   "gpu_ms_med": 4.427,
+   "render_ms_med": 5.125,
+   "game_ms_med": 2.42,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n02048_B3_overview",
+   "count": 2048,
+   "bookmark": 3,
+   "unlit": false,
+   "frames": 842,
+   "frame_ms_med": 5.878,
+   "gpu_ms_med": 4.746,
+   "render_ms_med": 5.131,
+   "game_ms_med": 2.47,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n02048_B4_far",
+   "count": 2048,
+   "bookmark": 4,
+   "unlit": false,
+   "frames": 927,
+   "frame_ms_med": 5.3,
+   "gpu_ms_med": 4.262,
+   "render_ms_med": 5.098,
+   "game_ms_med": 2.396,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n02048_B5_extreme",
+   "count": 2048,
+   "bookmark": 5,
+   "unlit": false,
+   "frames": 930,
+   "frame_ms_med": 5.268,
+   "gpu_ms_med": 4.205,
+   "render_ms_med": 5.087,
+   "game_ms_med": 2.361,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n02048_B6_topdown",
+   "count": 2048,
+   "bookmark": 6,
+   "unlit": false,
+   "frames": 797,
+   "frame_ms_med": 6.189,
+   "gpu_ms_med": 5.062,
+   "render_ms_med": 5.199,
+   "game_ms_med": 2.515,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n02048_B7_sky",
+   "count": 2048,
+   "bookmark": 7,
+   "unlit": false,
+   "frames": 1062,
+   "frame_ms_med": 4.628,
+   "gpu_ms_med": 3.188,
+   "render_ms_med": 4.61,
+   "game_ms_med": 2.014,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n04096_B0_close",
+   "count": 4096,
+   "bookmark": 0,
+   "unlit": false,
+   "frames": 665,
+   "frame_ms_med": 7.518,
+   "gpu_ms_med": 6.366,
+   "render_ms_med": 5.684,
+   "game_ms_med": 2.539,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n04096_B1_edge_eye",
+   "count": 4096,
+   "bookmark": 1,
+   "unlit": false,
+   "frames": 834,
+   "frame_ms_med": 5.974,
+   "gpu_ms_med": 4.873,
+   "render_ms_med": 5.194,
+   "game_ms_med": 2.361,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n04096_B2_mid_high",
+   "count": 4096,
+   "bookmark": 2,
+   "unlit": false,
+   "frames": 820,
+   "frame_ms_med": 6.063,
+   "gpu_ms_med": 4.965,
+   "render_ms_med": 5.208,
+   "game_ms_med": 2.438,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n04096_B3_overview",
+   "count": 4096,
+   "bookmark": 3,
+   "unlit": false,
+   "frames": 796,
+   "frame_ms_med": 6.245,
+   "gpu_ms_med": 5.134,
+   "render_ms_med": 5.3,
+   "game_ms_med": 2.493,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n04096_B4_far",
+   "count": 4096,
+   "bookmark": 4,
+   "unlit": false,
+   "frames": 891,
+   "frame_ms_med": 5.487,
+   "gpu_ms_med": 4.459,
+   "render_ms_med": 4.998,
+   "game_ms_med": 2.377,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n04096_B5_extreme",
+   "count": 4096,
+   "bookmark": 5,
+   "unlit": false,
+   "frames": 904,
+   "frame_ms_med": 5.442,
+   "gpu_ms_med": 4.382,
+   "render_ms_med": 5.117,
+   "game_ms_med": 2.365,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n04096_B6_topdown",
+   "count": 4096,
+   "bookmark": 6,
+   "unlit": false,
+   "frames": 695,
+   "frame_ms_med": 7.18,
+   "gpu_ms_med": 5.948,
+   "render_ms_med": 5.721,
+   "game_ms_med": 2.76,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n04096_B7_sky",
+   "count": 4096,
+   "bookmark": 7,
+   "unlit": false,
+   "frames": 1059,
+   "frame_ms_med": 4.607,
+   "gpu_ms_med": 3.288,
+   "render_ms_med": 4.585,
+   "game_ms_med": 1.977,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n08192_B0_close",
+   "count": 8192,
+   "bookmark": 0,
+   "unlit": false,
+   "frames": 638,
+   "frame_ms_med": 7.836,
+   "gpu_ms_med": 6.676,
+   "render_ms_med": 5.811,
+   "game_ms_med": 2.548,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n08192_B1_edge_eye",
+   "count": 8192,
+   "bookmark": 1,
+   "unlit": false,
+   "frames": 663,
+   "frame_ms_med": 7.525,
+   "gpu_ms_med": 6.36,
+   "render_ms_med": 5.725,
+   "game_ms_med": 2.453,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n08192_B2_mid_high",
+   "count": 8192,
+   "bookmark": 2,
+   "unlit": false,
+   "frames": 654,
+   "frame_ms_med": 7.636,
+   "gpu_ms_med": 6.519,
+   "render_ms_med": 5.722,
+   "game_ms_med": 2.507,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n08192_B3_overview",
+   "count": 8192,
+   "bookmark": 3,
+   "unlit": false,
+   "frames": 713,
+   "frame_ms_med": 7.001,
+   "gpu_ms_med": 5.859,
+   "render_ms_med": 5.519,
+   "game_ms_med": 2.527,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n08192_B4_far",
+   "count": 8192,
+   "bookmark": 4,
+   "unlit": false,
+   "frames": 845,
+   "frame_ms_med": 5.885,
+   "gpu_ms_med": 4.801,
+   "render_ms_med": 5.084,
+   "game_ms_med": 2.356,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n08192_B5_extreme",
+   "count": 8192,
+   "bookmark": 5,
+   "unlit": false,
+   "frames": 864,
+   "frame_ms_med": 5.721,
+   "gpu_ms_med": 4.652,
+   "render_ms_med": 5.102,
+   "game_ms_med": 2.361,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n08192_B6_topdown",
+   "count": 8192,
+   "bookmark": 6,
+   "unlit": false,
+   "frames": 625,
+   "frame_ms_med": 7.978,
+   "gpu_ms_med": 6.838,
+   "render_ms_med": 5.913,
+   "game_ms_med": 2.653,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n08192_B7_sky",
+   "count": 8192,
+   "bookmark": 7,
+   "unlit": false,
+   "frames": 1032,
+   "frame_ms_med": 4.75,
+   "gpu_ms_med": 3.62,
+   "render_ms_med": 4.727,
+   "game_ms_med": 2.034,
+   "drawcalls_med": 43,
+   "prims_med": 82
+  },
+  {
+   "name": "n08192_B0_close_unlit",
+   "count": 8192,
+   "bookmark": 0,
+   "unlit": true,
+   "frames": 1067,
+   "frame_ms_med": 4.608,
+   "gpu_ms_med": 3.61,
+   "render_ms_med": 3.347,
+   "game_ms_med": 2.02,
+   "drawcalls_med": 13,
+   "prims_med": 55
+  },
+  {
+   "name": "n08192_B1_edge_eye_unlit",
+   "count": 8192,
+   "bookmark": 1,
+   "unlit": true,
+   "frames": 1126,
+   "frame_ms_med": 4.372,
+   "gpu_ms_med": 3.351,
+   "render_ms_med": 3.366,
+   "game_ms_med": 1.981,
+   "drawcalls_med": 13,
+   "prims_med": 55
+  },
+  {
+   "name": "n08192_B2_mid_high_unlit",
+   "count": 8192,
+   "bookmark": 2,
+   "unlit": true,
+   "frames": 1114,
+   "frame_ms_med": 4.419,
+   "gpu_ms_med": 3.462,
+   "render_ms_med": 3.352,
+   "game_ms_med": 1.983,
+   "drawcalls_med": 13,
+   "prims_med": 55
+  },
+  {
+   "name": "n08192_B3_overview_unlit",
+   "count": 8192,
+   "bookmark": 3,
+   "unlit": true,
+   "frames": 1251,
+   "frame_ms_med": 3.932,
+   "gpu_ms_med": 2.54,
+   "render_ms_med": 3.901,
+   "game_ms_med": 2.063,
+   "drawcalls_med": 13,
+   "prims_med": 55
+  },
+  {
+   "name": "n08192_B4_far_unlit",
+   "count": 8192,
+   "bookmark": 4,
+   "unlit": true,
+   "frames": 1472,
+   "frame_ms_med": 3.355,
+   "gpu_ms_med": 1.726,
+   "render_ms_med": 3.339,
+   "game_ms_med": 1.814,
+   "drawcalls_med": 13,
+   "prims_med": 55
+  },
+  {
+   "name": "n08192_B5_extreme_unlit",
+   "count": 8192,
+   "bookmark": 5,
+   "unlit": true,
+   "frames": 1541,
+   "frame_ms_med": 3.206,
+   "gpu_ms_med": 1.59,
+   "render_ms_med": 3.192,
+   "game_ms_med": 1.783,
+   "drawcalls_med": 13,
+   "prims_med": 55
+  },
+  {
+   "name": "n08192_B6_topdown_unlit",
+   "count": 8192,
+   "bookmark": 6,
+   "unlit": true,
+   "frames": 1066,
+   "frame_ms_med": 4.592,
+   "gpu_ms_med": 3.651,
+   "render_ms_med": 3.46,
+   "game_ms_med": 2.122,
+   "drawcalls_med": 13,
+   "prims_med": 55
+  },
+  {
+   "name": "n08192_B7_sky_unlit",
+   "count": 8192,
+   "bookmark": 7,
+   "unlit": true,
+   "frames": 1795,
+   "frame_ms_med": 2.719,
+   "gpu_ms_med": 1.039,
+   "render_ms_med": 2.708,
+   "game_ms_med": 1.61,
+   "drawcalls_med": 13,
+   "prims_med": 55
+  }
+ ],
+ "run_s": 396.6
+}
